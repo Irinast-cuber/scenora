@@ -3,719 +3,978 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SCENORA — limited drops ♡</title>
+<title>SCENORA — одежда с вайбом любимой истории</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@300;400;500&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --pink-1:#ffd9ec;
-    --pink-2:#ffb3d9;
-    --pink-3:#ff7ec0;
+    --pink-bg:#ffeef7;
+    --pink-1:#ffe0ef;
+    --pink-2:#ffc9e0;
+    --pink-3:#ff9ecb;
     --pink-4:#ff4fa3;
-    --pink-5:#e02f88;
-    --pink-deep:#a81b5f;
-    --white:#ffffff;
-    --ink:#3a0f24;
-    --ink-soft:#8a5c76;
-    --line:#ffc9e3;
-    --lilac:#e9d5ff;
-    --mint:#d5ffec;
-    --cream:#fff6fb;
+    --pink-5:#e91e63;
+    --pink-deep:#a8164f;
+    --cream:#fffaf5;
+    --paper:#ffffff;
+    --ink:#2a0a1a;
+    --ink-soft:#7a5568;
+    --line:#ffd0e4;
+    --line-soft:#ffe4f0;
+    --gold:#d4a373;
   }
 
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
-    font-family:'Inter',sans-serif;
+    font-family:'DM Sans',sans-serif;
+    font-weight:400;
     color:var(--ink);
-    line-height:1.55;
-    background:
-      radial-gradient(circle at 15% 10%, #ffe0f0 0%, transparent 45%),
-      radial-gradient(circle at 90% 30%, #ffd0e8 0%, transparent 40%),
-      radial-gradient(circle at 50% 90%, #ffeaf6 0%, transparent 50%),
-      #fff2f9;
+    background:var(--pink-bg);
+    line-height:1.6;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    position:relative;
   }
+  body::after{
+    content:"";
+    position:fixed;inset:0;pointer-events:none;z-index:9000;
+    opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode:multiply;
+  }
+
   a{color:inherit;text-decoration:none}
   img{display:block;max-width:100%}
-
-  /* ---------- ЯРКИЕ ПЯТНА ФОНА ---------- */
-  .blob{
-    position:fixed;border-radius:50%;filter:blur(80px);opacity:.55;
-    z-index:-1;pointer-events:none;
-  }
-  .blob.b1{width:420px;height:420px;background:#ff9ecb;top:-80px;left:-80px}
-  .blob.b2{width:380px;height:380px;background:#c99bff;top:40%;right:-120px}
-  .blob.b3{width:500px;height:500px;background:#ffd6ea;bottom:-160px;left:30%}
+  ::selection{background:var(--pink-4);color:#fff}
 
   /* ---------- NAV ---------- */
   nav{
-    position:sticky;top:14px;z-index:100;
-    max-width:1240px;margin:14px auto 0;
-    padding:10px 14px 10px 24px;
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.9);
-    border-radius:999px;
-    box-shadow:0 8px 32px rgba(255,79,163,.18);
+    position:fixed;top:0;left:0;right:0;z-index:100;
     display:flex;align-items:center;justify-content:space-between;
-    gap:20px;
+    padding:20px 48px;
+    background:rgba(255,238,247,.85);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-soft);
   }
   nav .logo{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;font-size:24px;letter-spacing:.02em;
-    color:var(--pink-5);
-    display:flex;align-items:center;gap:6px;
+    font-family:'Instrument Serif',serif;
+    font-size:26px;letter-spacing:.18em;
+    color:var(--ink);
   }
-  nav .logo span{
-    display:inline-block;width:10px;height:10px;border-radius:50%;
-    background:var(--pink-3);
-    box-shadow:0 0 0 4px rgba(255,126,192,.35);
-  }
-  nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+  nav ul{display:flex;gap:34px;list-style:none}
   nav ul a{
-    display:inline-block;
-    padding:9px 18px;border-radius:999px;
-    font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--pink-deep);
-    transition:all .3s ease;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink);
+    opacity:.65;transition:opacity .3s;
   }
-  nav ul a:hover{background:var(--pink-2);color:#fff}
-  nav .cta{
+  nav ul a:hover{opacity:1;color:var(--pink-5)}
+  nav .nav-cta{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    padding:11px 22px;
     background:var(--pink-4);color:#fff;
-    padding:10px 20px;border-radius:999px;
-    font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-    box-shadow:0 4px 14px rgba(255,79,163,.45);
-    transition:transform .3s ease;
+    border-radius:999px;
+    transition:transform .3s,background .3s;
   }
-  nav .cta:hover{transform:translateY(-2px)}
+  nav .nav-cta:hover{background:var(--pink-5);transform:translateY(-2px)}
 
   /* ---------- WRAP ---------- */
-  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 48px}
 
   /* ---------- HERO ---------- */
-  .hero{padding:60px 0 40px;position:relative}
-  .hero-grid{
-    display:grid;
-    grid-template-columns:1.05fr 1fr;
-    gap:36px;
-    align-items:center;
+  .hero{
+    min-height:100vh;
+    position:relative;
+    padding:130px 48px 60px;
+    overflow:hidden;
+    display:flex;flex-direction:column;justify-content:space-between;
   }
-  .hero-card{
-    background:rgba(255,255,255,.75);
-    backdrop-filter:blur(16px);
-    border:1px solid #fff;
-    border-radius:32px;
-    padding:44px 40px 40px;
-    box-shadow:0 20px 60px rgba(255,79,163,.16);
+
+  /* Лучи от проектора */
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-20%;left:-10%;right:-10%;height:100%;
+    background:conic-gradient(from 200deg at 50% -10%,
+      transparent 0deg,
+      rgba(255,79,163,.16) 12deg,
+      transparent 24deg,
+      rgba(255,158,203,.1) 60deg,
+      transparent 90deg,
+      rgba(255,79,163,.08) 130deg,
+      transparent 160deg);
+    pointer-events:none;
+  }
+
+  /* Ряды кресел (абстрактно) */
+  .seats{
+    position:absolute;
+    bottom:0;left:0;right:0;
+    height:34%;
+    display:flex;align-items:flex-end;
+    gap:14px;
+    padding:0 6%;
+    opacity:.55;
+    pointer-events:none;
+    -webkit-mask-image:linear-gradient(180deg, transparent, #000 60%);
+    mask-image:linear-gradient(180deg, transparent, #000 60%);
+  }
+  .seats .row{
+    flex:1;
+    height:100%;
+    display:flex;align-items:flex-end;gap:8px;
+    transform:perspective(600px) rotateX(28deg);
+    transform-origin:bottom center;
+  }
+  .seats .seat{
+    flex:1;
+    height:60%;
+    border-radius:22px 22px 8px 8px;
+    background:linear-gradient(180deg,#ff8bc4 0%,#e91e63 70%,#a8164f 100%);
+    box-shadow:inset 0 -8px 0 rgba(0,0,0,.12), inset 0 6px 12px rgba(255,255,255,.25);
     position:relative;
   }
-  .hero-card .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:6px 14px;border-radius:999px;
-    background:var(--pink-2);color:#fff;
-    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    margin-bottom:22px;
+  .seats .seat::before{
+    content:"";
+    position:absolute;left:12%;right:12%;top:14%;height:22%;
+    background:rgba(255,255,255,.15);
+    border-radius:12px;
+    filter:blur(2px);
   }
-  .hero-card .pill::before{
-    content:"";width:6px;height:6px;border-radius:50%;background:#fff;
+  .seats .seat.tall{height:78%}
+  .seats .seat.short{height:48%}
+
+  .hero-inner{
+    position:relative;z-index:3;
+    max-width:1240px;margin:0 auto;width:100%;
+    display:flex;flex-direction:column;
+  }
+
+  .hero-top{
+    display:flex;justify-content:space-between;align-items:center;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--pink-deep);
+    margin-bottom:auto;
+  }
+  .hero-top .dot{
+    display:inline-block;width:6px;height:6px;border-radius:50%;
+    background:var(--pink-4);
+    margin-right:8px;
     animation:pulse 1.6s infinite;
   }
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .hero-card h1{
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;
-    font-size:clamp(52px,8vw,96px);
-    line-height:.92;
+  .hero-title{
+    margin:auto 0;
+    padding:40px 0;
+  }
+  .hero-kicker{
+    font-family:'Caveat',cursive;
+    font-size:26px;
+    color:var(--pink-5);
+    margin-bottom:6px;
+  }
+  .hero-title h1{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(84px,18vw,260px);
+    line-height:.88;
     letter-spacing:-.02em;
-    color:var(--pink-5);
-    margin-bottom:18px;
-  }
-  .hero-card h1 em{
-    font-family:'Caveat',cursive;
-    font-style:normal;font-weight:700;
-    color:var(--pink-3);
-    font-size:1.15em;
-  }
-  .hero-card p{
-    color:var(--ink-soft);font-size:15px;max-width:440px;
-    margin-bottom:28px;
-  }
-  .hero-tags{
-    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;
-  }
-  .tag{
-    display:inline-flex;align-items:center;gap:6px;
-    padding:8px 14px;border-radius:999px;
-    background:#fff;border:1px solid var(--line);
-    font-size:11px;font-weight:500;letter-spacing:.06em;
-    color:var(--pink-deep);
-  }
-  .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--pink-3)}
-  .tag.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
-
-  .btn{
-    display:inline-flex;align-items:center;gap:10px;
-    padding:16px 32px;border-radius:999px;
-    font-family:'Inter',sans-serif;
-    font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-    border:none;cursor:pointer;
-    transition:all .3s ease;
-  }
-  .btn-primary{
-    background:linear-gradient(135deg,var(--pink-3),var(--pink-5));
-    color:#fff;
-    box-shadow:0 10px 26px rgba(255,79,163,.45);
-  }
-  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(255,79,163,.55)}
-  .btn-ghost{
-    background:#fff;color:var(--pink-5);
-    border:1px solid var(--line);
-  }
-  .btn-ghost:hover{background:var(--pink-1)}
-
-  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-
-  /* ---------- HERO VISUAL (плёнка + фото) ---------- */
-  .hero-visual{
-    position:relative;
-    aspect-ratio:4/4.4;
-  }
-  .film{
-    position:absolute;inset:0;
-    background:var(--pink-3);
-    border-radius:26px;
-    padding:26px 20px;
-    box-shadow:0 24px 60px rgba(224,47,136,.35);
-    transform:rotate(2deg);
-    overflow:hidden;
-  }
-  .film::before,.film::after{
-    content:"";
-    position:absolute;left:0;right:0;height:22px;
-    background-image:radial-gradient(circle, #fff 3px, transparent 3.5px);
-    background-size:22px 22px;
-    background-position:11px 0;
-  }
-  .film::before{top:8px}
-  .film::after{bottom:8px}
-  .film-grid{
-    height:100%;
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    grid-template-rows:1fr 1fr 1fr;
-    gap:8px;
-    padding:14px 0;
-  }
-  .frame{
-    border-radius:10px;
-    background:#fff;
-    position:relative;overflow:hidden;
-    border:2px solid rgba(255,255,255,.9);
-  }
-  .frame .silhouette{
-    position:absolute;inset:0;
-    background:
-      radial-gradient(circle at 50% 30%, rgba(255,255,255,.6) 0%, transparent 40%),
-      linear-gradient(160deg,#ff8bc4,#a81b5f);
-  }
-  .frame .silhouette.b{background:linear-gradient(160deg,#c99bff,#5a2a9c)}
-  .frame .silhouette.c{background:linear-gradient(160deg,#ffc0dd,#e02f88)}
-  .frame .silhouette.d{background:linear-gradient(160deg,#ffd6ea,#ff7ec0)}
-  .frame .silhouette.e{background:linear-gradient(160deg,#b3e5ff,#5a8bd0)}
-  .frame .silhouette.f{background:linear-gradient(160deg,#ffe8b0,#e08a2a)}
-  .frame .name{
-    position:absolute;bottom:6px;left:8px;
-    font-family:'Fredoka',sans-serif;
-    font-size:11px;font-weight:600;letter-spacing:.08em;
-    color:#fff;text-transform:uppercase;
-    text-shadow:0 1px 4px rgba(0,0,0,.5);
-  }
-
-  /* Стикер поверх плёнки */
-  .sticker{
-    position:absolute;z-index:5;
-    font-family:'Caveat',cursive;
-    font-weight:700;
-  }
-  .sticker.script{
-    top:6%;left:-6%;
-    transform:rotate(-14deg);
-    color:#fff;font-size:clamp(48px,7vw,84px);
+    color:var(--paper);
     text-shadow:
-      2px 2px 0 var(--pink-5),
-      4px 4px 0 rgba(168,27,95,.4);
-    line-height:1;
+      4px 4px 0 var(--pink-4),
+      -1px -1px 0 var(--pink-2);
+    margin-bottom:22px;
   }
-  .sticker.heart{
-    bottom:8%;right:-4%;
-    font-size:56px;color:var(--pink-5);
-    transform:rotate(12deg);
-    filter:drop-shadow(0 6px 12px rgba(255,79,163,.5));
+  .hero-title h1 em{
+    font-style:italic;
+    color:var(--pink-4);
+    text-shadow:none;
   }
-  .sticker.sparkle{
-    top:-3%;right:8%;
-    font-size:40px;color:#fff;
-    filter:drop-shadow(0 0 12px #fff);
-    animation:sparkle 2.4s ease-in-out infinite;
+  .hero-sub{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(22px,2.6vw,34px);
+    color:var(--pink-deep);
+    max-width:640px;
+    line-height:1.3;
   }
-  @keyframes sparkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.15) rotate(20deg)}}
+  .hero-sub span{
+    font-family:'DM Sans',sans-serif;
+    font-style:normal;
+    font-size:15px;
+    color:var(--ink-soft);
+    display:block;
+    margin-top:14px;
+    max-width:520px;
+    letter-spacing:0;
+  }
 
-  /* ---------- SECTIONS ---------- */
-  section{padding:80px 0}
-  .sec-head{margin-bottom:40px;display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-  .sec-head h2{
-    font-family:'Fredoka',sans-serif;
-    font-weight:600;
-    font-size:clamp(34px,5vw,56px);
-    line-height:1;letter-spacing:-.01em;
-    color:var(--pink-5);
+  .hero-bottom{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    flex-wrap:wrap;gap:24px;
   }
-  .sec-head h2 em{
-    font-family:'Caveat',cursive;font-style:normal;font-weight:700;
-    color:var(--pink-3);font-size:1.1em;
-  }
-  .sec-head p{color:var(--ink-soft);font-size:14px;max-width:420px}
 
-  /* ---------- PRODUCT CARDS ---------- */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:20px;
-  }
-  .card{
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(10px);
-    border:1px solid #fff;
-    border-radius:24px;
-    padding:14px;
-    box-shadow:0 12px 30px rgba(255,79,163,.12);
+  /* ---------- TICKET (кнопка-билет) ---------- */
+  .ticket{
+    display:inline-grid;
+    grid-template-columns:1fr auto;
+    align-items:stretch;
+    background:var(--pink-4);
+    color:#fff;
+    border-radius:14px;
+    overflow:hidden;
+    position:relative;
+    box-shadow:0 14px 34px rgba(233,30,99,.35);
     transition:transform .35s ease, box-shadow .35s ease;
     cursor:pointer;
-    position:relative;
+    border:none;
+    font-family:inherit;
   }
-  .card:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(255,79,163,.25)}
+  .ticket:hover{transform:translateY(-4px) rotate(-1deg);box-shadow:0 20px 44px rgba(233,30,99,.5)}
+  .ticket-main{
+    padding:18px 28px 18px 30px;
+    display:flex;flex-direction:column;gap:4px;
+    text-align:left;
+  }
+  .ticket-main .top{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+    opacity:.8;
+  }
+  .ticket-main .name{
+    font-family:'Instrument Serif',serif;
+    font-size:26px;line-height:1;
+    letter-spacing:.01em;
+  }
+  .ticket-main .name em{font-style:italic}
+  .ticket-main .meta{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    opacity:.85;
+    margin-top:2px;
+  }
+  .ticket-stub{
+    background:var(--pink-5);
+    padding:18px 20px;
+    display:flex;flex-direction:column;justify-content:center;gap:4px;
+    position:relative;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    text-align:center;
+    border-left:2px dashed rgba(255,255,255,.6);
+  }
+  .ticket-stub .big{
+    font-family:'Instrument Serif',serif;
+    font-size:22px;letter-spacing:0;
+    text-transform:none;
+  }
+  /* Прорези на билете */
+  .ticket::before,.ticket::after{
+    content:"";
+    position:absolute;
+    width:18px;height:18px;
+    background:var(--pink-bg);
+    border-radius:50%;
+    top:50%;transform:translateY(-50%);
+    z-index:2;
+  }
+  .ticket::before{left:calc(100% - 118px - 9px)}
+  .ticket::after{right:calc(118px - 9px)}
+  .ticket.light{
+    background:var(--paper);color:var(--ink);
+    box-shadow:0 14px 34px rgba(233,30,99,.2);
+  }
+  .ticket.light .ticket-stub{background:var(--pink-1);color:var(--pink-deep)}
+  .ticket.light .ticket-main .top{color:var(--pink-5)}
+  .ticket.light .ticket-main .meta{color:var(--ink-soft)}
+  .ticket.light::before,.ticket.light::after{background:var(--pink-bg)}
+
+  .hero-reel{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--ink-soft);
+    text-align:right;
+    line-height:1.9;
+  }
+  .hero-reel b{color:var(--pink-5);font-weight:500}
+
+  /* ---------- FILM STRIP ---------- */
+  .filmstrip{
+    height:36px;
+    background:var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  .filmstrip::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:
+      radial-gradient(ellipse 14px 10px at 20px 50%, rgba(255,238,247,.85) 60%, transparent 61%),
+      radial-gradient(ellipse 14px 10px at 60px 50%, rgba(255,238,247,.85) 60%, transparent 61%);
+    background-size:80px 100%;
+    background-repeat:repeat-x;
+  }
+  .filmstrip::after{
+    content:"";
+    position:absolute;left:0;right:0;top:50%;height:1px;
+    background:rgba(255,255,255,.08);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:110px 0;position:relative}
+  .sec-head{
+    margin-bottom:60px;
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:end;
+    gap:32px;
+    padding-bottom:22px;
+    border-bottom:1px solid var(--line);
+  }
+  .sec-head .act{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--pink-5);
+    margin-bottom:16px;
+    display:flex;align-items:center;gap:14px;
+  }
+  .sec-head .act::before{
+    content:"◆";
+    color:var(--pink-3);
+    font-size:10px;
+  }
+  .sec-head h2{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(44px,7vw,96px);
+    line-height:.98;
+    letter-spacing:-.02em;
+    color:var(--ink);
+  }
+  .sec-head h2 em{font-style:italic;color:var(--pink-5)}
+  .sec-head .aside{
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-soft);
+    text-align:right;line-height:1.9;
+  }
+  .sec-head .aside b{color:var(--pink-5);font-weight:500}
+
+  /* ---------- PRODUCTS ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;
+  }
+  .card{
+    background:var(--paper);
+    border-radius:20px;
+    padding:14px;
+    box-shadow:0 8px 26px rgba(233,30,99,.09);
+    transition:transform .4s ease, box-shadow .4s ease;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 18px 44px rgba(233,30,99,.2)}
+
   .card-img{
     aspect-ratio:1/1.15;
-    border-radius:16px;
-    position:relative;overflow:hidden;
+    border-radius:14px;
+    position:relative;
+    overflow:hidden;
+    margin-bottom:14px;
   }
-  .card-img .ph{
+  .card-img .scene{
     position:absolute;inset:0;
-    background:linear-gradient(160deg,var(--pink-2),var(--pink-5));
+    background:linear-gradient(165deg,#ff8bc4,#a8164f);
   }
-  .card-img .ph.p1{background:linear-gradient(160deg,#ffc0dd,#e02f88)}
-  .card-img .ph.p2{background:linear-gradient(160deg,#e9d5ff,#7c3aed)}
-  .card-img .ph.p3{background:linear-gradient(160deg,#ffd6ea,#ff4fa3)}
-  .card-img .ph.p4{background:linear-gradient(160deg,#d5ffec,#10b981)}
-  .card-img .ph.p5{background:linear-gradient(160deg,#fff0c2,#f59e0b)}
-  .card-img .ph.p6{background:linear-gradient(160deg,#d5e8ff,#3b82f6)}
-  .card-img .num{
-    position:absolute;top:12px;left:12px;
-    font-family:'Fredoka',sans-serif;
-    font-size:28px;font-weight:700;color:rgba(255,255,255,.85);
-    text-shadow:0 2px 6px rgba(0,0,0,.15);
+  .card-img .scene.s1{background:linear-gradient(165deg,#ff9ecb,#a8164f)}
+  .card-img .scene.s2{background:linear-gradient(165deg,#c8a2e8,#5a2a9c)}
+  .card-img .scene.s3{background:linear-gradient(165deg,#ffc9a8,#c2421a)}
+  .card-img .scene.s4{background:linear-gradient(165deg,#9ee0c8,#0a6e52)}
+  .card-img .scene.s5{background:linear-gradient(165deg,#a8c8e8,#2a4a8a)}
+  .card-img .scene.s6{background:linear-gradient(165deg,#f0a8c8,#7a1a4a)}
+
+  /* блик как от света проектора */
+  .card-img .scene::before{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 50% -20%, rgba(255,255,255,.5), transparent 55%),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.05) 0 1px, transparent 1px 4px);
+  }
+  /* зернистость внутри кадра */
+  .card-img .scene::after{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80'><filter id='n'><feTurbulence baseFrequency='1.1' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:.15;
+    mix-blend-mode:overlay;
+  }
+
+  .card-img .frame-no{
+    position:absolute;top:14px;left:16px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+    z-index:2;
+  }
+  .card-img .tc{
+    position:absolute;top:14px;right:16px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;
+    color:rgba(255,255,255,.85);
+    z-index:2;
   }
   .card-img .stock{
-    position:absolute;bottom:10px;left:10px;right:10px;
-    background:rgba(255,255,255,.92);
-    backdrop-filter:blur(6px);
+    position:absolute;bottom:12px;left:12px;right:12px;
+    display:flex;align-items:center;gap:10px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(8px);
+    padding:8px 14px;
     border-radius:999px;
-    padding:7px 12px;
-    font-size:11px;font-weight:600;
-    color:var(--pink-deep);
-    display:flex;justify-content:space-between;align-items:center;
-    letter-spacing:.04em;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);
+    z-index:2;
   }
   .card-img .stock.low{background:var(--ink);color:#fff}
-  .card-img .stock .heart{color:var(--pink-4);font-size:13px}
-  .card-img .stock.low .heart{color:#ff8bc4}
+  .card-img .stock .bar{
+    flex:1;height:3px;background:rgba(0,0,0,.1);
+    border-radius:999px;overflow:hidden;position:relative;
+  }
+  .card-img .stock.low .bar{background:rgba(255,255,255,.15)}
+  .card-img .stock .bar span{
+    position:absolute;left:0;top:0;bottom:0;
+    background:var(--pink-4);
+  }
+  .card-img .stock.low .bar span{background:var(--pink-3)}
 
-  .card-body{padding:14px 6px 6px}
+  .card-body{padding:6px 6px 4px}
   .card-body h3{
-    font-family:'Fredoka',sans-serif;
-    font-size:19px;font-weight:600;
+    font-family:'Instrument Serif',serif;
+    font-size:24px;font-weight:400;
+    line-height:1.15;
     color:var(--ink);
     margin-bottom:4px;
   }
   .card-body .cat{
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-soft);margin-bottom:10px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-bottom:14px;
   }
-  .card-body .row{display:flex;justify-content:space-between;align-items:center}
-  .card-body .price{
-    font-family:'Fredoka',sans-serif;
-    font-size:20px;font-weight:700;color:var(--pink-5);
-  }
-  .card-body .add{
-    width:34px;height:34px;border-radius:50%;
-    background:var(--pink-4);color:#fff;border:none;
-    font-size:18px;font-weight:600;line-height:1;
-    cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    box-shadow:0 6px 14px rgba(255,79,163,.4);
-    transition:transform .25s ease;
-  }
-  .card-body .add:hover{transform:rotate(90deg) scale(1.08)}
 
-  /* ---------- INFO CARD (как MAVIE FAM) ---------- */
-  .info-card{
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(14px);
-    border:1px solid #fff;
-    border-radius:28px;
-    padding:36px 34px;
-    box-shadow:0 18px 50px rgba(255,79,163,.14);
+  /* Билет-стаб под товаром */
+  .stub{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:center;
+    padding:10px 0 2px;
+    border-top:1px dashed var(--line);
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  }
+  .stub .price{
+    color:var(--ink);font-size:14px;letter-spacing:.04em;
+  }
+  .stub .seat{
+    color:var(--pink-5);
+  }
+  .stub .plus{
+    grid-column:1/-1;
+    margin-top:10px;
+    padding:11px 0;
+    border-radius:999px;
+    background:var(--pink-1);
+    color:var(--pink-deep);
+    text-align:center;
+    font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    transition:all .3s;
+  }
+  .card:hover .stub .plus{background:var(--pink-4);color:#fff}
+
+  /* ---------- STORY / 4 STEPS ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+  }
+  .step{
+    background:var(--paper);
+    border-radius:20px;
+    padding:28px 24px 26px;
+    box-shadow:0 8px 26px rgba(233,30,99,.08);
     position:relative;
     overflow:hidden;
+    min-height:280px;
+    display:flex;flex-direction:column;
   }
-  .info-card::before{
+  .step::before{
     content:"";
-    position:absolute;top:-60px;right:-60px;
-    width:200px;height:200px;border-radius:50%;
-    background:radial-gradient(circle,rgba(255,126,192,.35),transparent 70%);
+    position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--pink-3),var(--pink-5));
   }
-
-  .story-grid{
-    display:grid;
-    grid-template-columns:1fr 1.3fr;
-    gap:24px;
+  .step .num{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:52px;
+    color:var(--pink-2);
+    line-height:1;
+    margin-bottom:22px;
   }
-  .story-visual{
-    border-radius:28px;
-    background:
-      radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), transparent 45%),
-      linear-gradient(160deg,#ffb3d9,#a81b5f 80%);
-    position:relative;overflow:hidden;
-    min-height:380px;
-    box-shadow:0 18px 50px rgba(224,47,136,.3);
+  .step h3{
+    font-family:'Instrument Serif',serif;
+    font-size:24px;font-weight:400;
+    line-height:1.15;
+    color:var(--ink);
+    margin-bottom:12px;
   }
-  .story-visual::after{
-    content:"♥ MOODBOARD / DROP 01";
-    position:absolute;bottom:20px;left:22px;
-    font-family:'Fredoka',sans-serif;
-    font-size:11px;font-weight:600;letter-spacing:.18em;
-    color:#fff;text-transform:uppercase;
-  }
-  .story-visual .s1,.story-visual .s2{
-    position:absolute;border-radius:50%;
-    border:2px dashed rgba(255,255,255,.7);
-  }
-  .story-visual .s1{width:160px;height:160px;top:40px;left:40px}
-  .story-visual .s2{width:90px;height:90px;bottom:80px;right:50px}
-
-  .story-text h3{
-    font-family:'Fredoka',sans-serif;
-    font-size:30px;font-weight:600;
-    color:var(--pink-5);margin-bottom:8px;
-  }
-  .story-text .sub{
-    font-family:'Caveat',cursive;font-size:22px;
-    color:var(--pink-3);margin-bottom:20px;
-  }
-  .story-text p{color:var(--ink-soft);font-size:14.5px;margin-bottom:14px}
-  .story-cols{
-    display:grid;grid-template-columns:1fr 1fr;gap:16px;
-    margin-top:20px;
-  }
-  .mini{
-    background:var(--pink-1);
-    border-radius:16px;padding:16px;
-    font-size:13px;color:var(--pink-deep);
-    font-weight:500;
-  }
-  .mini b{display:block;font-family:'Fredoka',sans-serif;font-size:15px;margin-bottom:4px;color:var(--pink-5)}
-
-  /* ---------- FEATURES STRIP ---------- */
-  .features{
-    display:grid;grid-template-columns:repeat(4,1fr);
-    gap:12px;margin-top:22px;
-  }
-  .feature{
-    background:#fff;border:1px solid var(--line);
-    border-radius:16px;padding:14px 16px;
-    display:flex;align-items:center;gap:10px;
-    font-size:12px;font-weight:600;color:var(--pink-deep);
-    letter-spacing:.04em;text-transform:uppercase;
-  }
-  .feature .check{
-    width:22px;height:22px;border-radius:50%;
-    background:var(--pink-2);color:#fff;
-    display:flex;align-items:center;justify-content:center;
-    font-size:12px;flex-shrink:0;
+  .step p{
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.7;
+    margin-top:auto;
   }
 
   /* ---------- DESIGNER ---------- */
-  .designer-grid{
-    display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center;
+  .designer{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
   }
   .designer-photo{
-    aspect-ratio:4/5;
-    border-radius:28px;
-    background:
-      radial-gradient(circle at 50% 30%, rgba(255,255,255,.5), transparent 40%),
-      linear-gradient(160deg,#ffd6ea,#e02f88);
-    position:relative;overflow:hidden;
-    box-shadow:0 18px 50px rgba(224,47,136,.3);
+    aspect-ratio:3/4;
+    border-radius:20px;
+    background:linear-gradient(160deg,#ffb3d9,#e91e63 70%,#a8164f);
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 20px 50px rgba(233,30,99,.28);
   }
   .designer-photo::before{
-    content:"✿";
-    position:absolute;top:20px;right:24px;
-    font-size:36px;color:#fff;
-    opacity:.9;
+    content:"";
+    position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse at 50% 25%, rgba(255,255,255,.5), transparent 45%),
+      repeating-linear-gradient(0deg, rgba(0,0,0,.04) 0 1px, transparent 1px 3px);
   }
   .designer-photo::after{
-    content:"ANNA V.";
-    position:absolute;bottom:24px;left:24px;
-    font-family:'Fredoka',sans-serif;
-    font-weight:700;font-size:20px;
-    color:#fff;letter-spacing:.1em;
-    text-shadow:0 2px 8px rgba(0,0,0,.2);
+    content:"PORTRAIT · REEL 01";
+    position:absolute;bottom:20px;left:22px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:#fff;
+    opacity:.9;
   }
+
   .designer-text .role{
-    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--pink-3);margin-bottom:12px;font-weight:600;
+    font-family:'DM Mono',monospace;
+    font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--pink-5);
+    margin-bottom:16px;
   }
   .designer-text h3{
-    font-family:'Fredoka',sans-serif;
-    font-size:clamp(28px,4vw,42px);
-    color:var(--pink-5);line-height:1.1;margin-bottom:16px;
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(38px,5vw,62px);
+    line-height:1;
+    letter-spacing:-.01em;
+    color:var(--ink);
+    margin-bottom:24px;
   }
+  .designer-text h3 em{font-style:italic;color:var(--pink-5)}
   .designer-text blockquote{
-    font-family:'Caveat',cursive;
-    font-size:24px;line-height:1.35;
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:22px;
+    line-height:1.4;
     color:var(--pink-deep);
-    padding:18px 22px;
-    background:rgba(255,255,255,.7);
-    border-left:4px solid var(--pink-3);
-    border-radius:12px;
-    margin-bottom:18px;
+    padding:22px 26px;
+    background:var(--paper);
+    border-radius:16px;
+    border-left:3px solid var(--pink-4);
+    box-shadow:0 8px 24px rgba(233,30,99,.08);
+    margin-bottom:22px;
   }
-  .designer-text p{color:var(--ink-soft);font-size:14.5px}
+  .designer-text p{color:var(--ink-soft);font-size:14px;line-height:1.75}
 
-  /* ---------- ONE OF ONE ---------- */
-  .ooo{
-    background:
-      radial-gradient(circle at 50% 0%, rgba(255,255,255,.8), transparent 55%),
-      linear-gradient(160deg,#ffb3d9,#ff4fa3 70%,#a81b5f);
-    border-radius:36px;
-    padding:72px 40px;
-    text-align:center;
+  /* ---------- ONE OF ONE (VIP PASS) ---------- */
+  .vip{
+    background:linear-gradient(135deg,#ffb3d9 0%,#ff4fa3 45%,#a8164f 100%);
+    border-radius:32px;
+    padding:70px 56px;
+    position:relative;
+    overflow:hidden;
     color:#fff;
-    box-shadow:0 24px 70px rgba(224,47,136,.4);
-    position:relative;overflow:hidden;
+    box-shadow:0 24px 60px rgba(233,30,99,.32);
   }
-  .ooo::before,.ooo::after{
-    content:"✦";position:absolute;
-    font-size:120px;color:rgba(255,255,255,.15);
+  .vip::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/></svg>");
+    opacity:.2;
+    mix-blend-mode:overlay;
+    pointer-events:none;
   }
-  .ooo::before{top:-20px;left:20px}
-  .ooo::after{bottom:-40px;right:30px;font-size:180px}
-  .ooo .pill{
-    display:inline-block;
-    padding:7px 18px;border-radius:999px;
-    background:rgba(255,255,255,.25);
-    backdrop-filter:blur(10px);
-    font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
-    margin-bottom:20px;
+  .vip-inner{
+    position:relative;z-index:2;
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:56px;
+    align-items:center;
   }
-  .ooo h2{
-    font-family:'Fredoka',sans-serif;
-    font-size:clamp(44px,7vw,84px);
-    font-weight:700;line-height:.95;letter-spacing:-.02em;
+  .vip .kicker{
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.3em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
     margin-bottom:18px;
-    text-shadow:0 4px 20px rgba(0,0,0,.15);
+    display:flex;align-items:center;gap:14px;
   }
-  .ooo h2 em{
-    font-family:'Caveat',cursive;font-style:normal;font-weight:700;
-    font-size:1.05em;
+  .vip .kicker::before{
+    content:"";width:36px;height:1px;background:rgba(255,255,255,.6);
   }
-  .ooo p{
-    max-width:560px;margin:0 auto 32px;
-    font-size:15px;color:rgba(255,255,255,.92);
+  .vip h2{
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:clamp(52px,8vw,120px);
+    line-height:.9;
+    letter-spacing:-.02em;
+    margin-bottom:22px;
   }
-  .ooo .btn-primary{
+  .vip h2 em{font-style:italic;color:#ffe4f0}
+  .vip p{
+    color:rgba(255,255,255,.9);
+    font-size:15px;line-height:1.75;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .vip .btn{
+    display:inline-flex;align-items:center;gap:12px;
+    padding:16px 34px;
     background:#fff;color:var(--pink-5);
-    box-shadow:0 12px 30px rgba(0,0,0,.15);
+    border-radius:999px;border:none;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    cursor:pointer;
+    font-weight:500;
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+    transition:transform .3s,background .3s,color .3s;
   }
-  .ooo .btn-primary:hover{background:var(--ink);color:#fff}
+  .vip .btn:hover{transform:translateY(-3px);background:var(--ink);color:#fff}
+
+  /* Пасс */
+  .pass{
+    background:rgba(255,255,255,.15);
+    border:1px dashed rgba(255,255,255,.7);
+    border-radius:20px;
+    padding:26px 28px;
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .pass .top{
+    display:flex;justify-content:space-between;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+    margin-bottom:18px;
+  }
+  .pass .title{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:38px;
+    line-height:1;
+    margin-bottom:10px;
+  }
+  .pass .desc{
+    font-size:13px;
+    color:rgba(255,255,255,.85);
+    margin-bottom:20px;
+    line-height:1.6;
+  }
+  .pass .rows{
+    display:grid;gap:10px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  }
+  .pass .row{
+    display:flex;justify-content:space-between;
+    padding-bottom:8px;
+    border-bottom:1px solid rgba(255,255,255,.2);
+  }
+  .pass .row b{color:#ffe4f0;font-weight:500}
 
   /* ---------- ARCHIVE ---------- */
   .archive-list{
-    background:rgba(255,255,255,.85);
-    backdrop-filter:blur(14px);
-    border:1px solid #fff;
-    border-radius:28px;
-    padding:12px 28px;
-    box-shadow:0 18px 50px rgba(255,79,163,.14);
+    background:var(--paper);
+    border-radius:24px;
+    padding:14px 34px;
+    box-shadow:0 10px 30px rgba(233,30,99,.08);
   }
   .archive-item{
     display:grid;
-    grid-template-columns:70px 1fr 160px 30px;
-    gap:20px;align-items:center;
-    padding:22px 0;
+    grid-template-columns:90px 1fr 160px 30px;
+    gap:24px;align-items:center;
+    padding:24px 0;
     border-bottom:1px dashed var(--line);
-    transition:padding-left .35s ease;
     cursor:pointer;
+    transition:padding-left .35s ease;
   }
   .archive-item:last-child{border-bottom:none}
   .archive-item:hover{padding-left:12px}
   .archive-item .num{
-    font-family:'Fredoka',sans-serif;
-    font-size:24px;font-weight:700;
-    color:var(--pink-3);
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--pink-5);
   }
   .archive-item .title{
-    font-family:'Fredoka',sans-serif;
-    font-size:20px;font-weight:600;color:var(--ink);
+    font-family:'Instrument Serif',serif;
+    font-size:26px;font-weight:400;
+    color:var(--ink);
+    line-height:1.15;
   }
   .archive-item .title small{
-    display:block;font-family:'Inter',sans-serif;
-    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-soft);margin-top:4px;font-weight:500;
+    display:block;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    color:var(--ink-soft);margin-top:6px;font-weight:400;
   }
   .archive-item .status{
-    text-align:right;
-    font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-    padding:6px 12px;border-radius:999px;
-    background:var(--mint);color:#0d7a5a;
     justify-self:end;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+    padding:7px 14px;border-radius:999px;
+    background:var(--pink-1);color:var(--pink-deep);
   }
-  .archive-item .status.sold{
-    background:#ffe0ef;color:var(--pink-deep);
+  .archive-item .status.sold{background:#f3e8ee;color:#9a7a8a}
+  .archive-item .status.live{background:var(--pink-4);color:#fff;display:inline-flex;align-items:center;gap:6px}
+  .archive-item .status.live::before{
+    content:"";width:5px;height:5px;border-radius:50%;background:#fff;
+    animation:pulse 1.4s infinite;
   }
   .archive-item .arrow{
-    color:var(--pink-3);font-size:18px;text-align:right;
+    color:var(--pink-3);
+    font-family:'DM Mono',monospace;
+    text-align:right;
+    transition:transform .3s,color .3s;
+  }
+  .archive-item:hover .arrow{transform:translateX(6px);color:var(--pink-5)}
+
+  /* ---------- CLOSING QUOTE ---------- */
+  .quote{
+    text-align:center;
+    padding:110px 48px;
+    max-width:900px;margin:0 auto;
+  }
+  .quote .mark{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:80px;
+    color:var(--pink-3);
+    line-height:1;
+    margin-bottom:-20px;
+  }
+  .quote p{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:clamp(28px,3.6vw,48px);
+    line-height:1.25;
+    color:var(--ink);
+    letter-spacing:-.01em;
+  }
+  .quote p em{color:var(--pink-5)}
+  .quote .sig{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:32px;
   }
 
   /* ---------- FOOTER ---------- */
   footer{
-    margin-top:60px;padding:48px 0 60px;
-    border-top:1px dashed var(--line);
+    background:var(--ink);
+    color:var(--pink-1);
+    padding:80px 48px 40px;
+    border-top:6px solid var(--pink-4);
   }
   .foot-grid{
-    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
-    gap:32px;
+    max-width:1240px;margin:0 auto;
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;
+    margin-bottom:56px;
   }
   footer .logo{
-    font-family:'Fredoka',sans-serif;
-    font-size:32px;font-weight:700;color:var(--pink-5);
-    margin-bottom:12px;
+    font-family:'Instrument Serif',serif;
+    font-size:38px;letter-spacing:.16em;
+    color:#fff;
+    margin-bottom:14px;
   }
-  footer p{color:var(--ink-soft);font-size:13px;max-width:320px}
+  footer .tagline{
+    font-family:'Instrument Serif',serif;
+    font-style:italic;
+    font-size:18px;
+    color:var(--pink-3);
+    margin-bottom:14px;
+  }
+  footer p{font-size:13px;color:#c9a4b8;max-width:340px;line-height:1.7}
   footer h4{
-    font-family:'Fredoka',sans-serif;
-    font-size:14px;font-weight:600;color:var(--pink-5);
-    margin-bottom:14px;letter-spacing:.02em;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--pink-3);
+    margin-bottom:20px;font-weight:400;
   }
-  footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-  footer ul a{color:var(--ink-soft);font-size:13px;transition:color .25s}
-  footer ul a:hover{color:var(--pink-4)}
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:11px}
+  footer ul a{
+    font-size:13px;color:#e8c9d8;
+    transition:color .3s;
+  }
+  footer ul a:hover{color:#fff}
   .foot-bottom{
-    max-width:1240px;margin:36px auto 0;
-    padding-top:22px;
-    border-top:1px dashed var(--line);
-    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
-    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--ink-soft);
+    max-width:1240px;margin:0 auto;
+    padding-top:26px;
+    border-top:1px solid rgba(255,255,255,.1);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:#8a6678;
   }
-  .foot-bottom .heart{color:var(--pink-4)}
 
   /* ---------- MODAL ---------- */
   .modal-overlay{
     position:fixed;inset:0;z-index:200;
-    background:rgba(58,15,36,.55);
-    backdrop-filter:blur(10px);
+    background:rgba(42,10,26,.55);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
     display:none;align-items:center;justify-content:center;
-    padding:20px;
+    padding:24px;
   }
   .modal-overlay.open{display:flex}
   .modal{
-    background:#fff;
-    border-radius:28px;
-    max-width:520px;width:100%;
-    padding:44px 36px 36px;
+    background:var(--paper);
+    border-radius:24px;
+    max-width:560px;width:100%;
+    padding:48px 44px 40px;
     position:relative;
     max-height:90vh;overflow-y:auto;
-    box-shadow:0 30px 80px rgba(224,47,136,.4);
+    box-shadow:0 30px 80px rgba(233,30,99,.35);
+  }
+  .modal::before{
+    content:"";
+    position:absolute;top:0;left:0;right:0;height:6px;
+    background:linear-gradient(90deg,var(--pink-3),var(--pink-5));
+    border-radius:24px 24px 0 0;
   }
   .modal .close{
-    position:absolute;top:16px;right:20px;
-    width:34px;height:34px;border-radius:50%;
+    position:absolute;top:18px;right:22px;
+    width:36px;height:36px;border-radius:50%;
     background:var(--pink-1);color:var(--pink-5);
     border:none;font-size:20px;line-height:1;
     cursor:pointer;font-family:inherit;
     transition:all .25s;
   }
-  .modal .close:hover{background:var(--pink-3);color:#fff;transform:rotate(90deg)}
-  .modal .tagline{
-    font-family:'Caveat',cursive;
-    font-size:22px;color:var(--pink-3);margin-bottom:6px;
+  .modal .close:hover{background:var(--pink-4);color:#fff;transform:rotate(90deg)}
+  .modal .tc{
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--pink-5);
+    margin-bottom:14px;
   }
   .modal h3{
-    font-family:'Fredoka',sans-serif;
-    font-size:34px;font-weight:700;color:var(--pink-5);
-    line-height:1;margin-bottom:8px;
+    font-family:'Instrument Serif',serif;
+    font-weight:400;
+    font-size:44px;
+    line-height:1;
+    color:var(--ink);
+    margin-bottom:14px;
   }
+  .modal h3 em{font-style:italic;color:var(--pink-5)}
   .modal .sub{
-    color:var(--ink-soft);font-size:13.5px;margin-bottom:26px;
+    color:var(--ink-soft);
+    font-size:13.5px;line-height:1.7;
+    margin-bottom:26px;
   }
   .modal label{
     display:block;
-    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--pink-deep);margin:16px 0 8px;
+    font-family:'DM Mono',monospace;
+    font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--pink-5);
+    margin:16px 0 8px;
   }
   .modal input,.modal select,.modal textarea{
     width:100%;
-    background:var(--pink-1);
-    border:1px solid transparent;
-    border-radius:14px;
+    background:var(--pink-bg);
+    border:1.5px solid transparent;
+    border-radius:12px;
     padding:13px 16px;
     font-family:inherit;font-size:14px;color:var(--ink);
-    outline:none;transition:all .25s;
+    outline:none;
+    transition:all .25s;
   }
   .modal input:focus,.modal select:focus,.modal textarea:focus{
-    background:#fff;border-color:var(--pink-3);
-    box-shadow:0 0 0 4px rgba(255,126,192,.2);
+    background:#fff;
+    border-color:var(--pink-4);
+    box-shadow:0 0 0 4px rgba(255,79,163,.15);
   }
-  .modal textarea{resize:vertical;min-height:80px}
-  .modal .btn{width:100%;justify-content:center;margin-top:24px}
+  .modal textarea{resize:vertical;min-height:74px}
+  .modal .btn{
+    width:100%;
+    margin-top:28px;
+    padding:17px 32px;
+    background:var(--pink-4);color:#fff;
+    border:none;border-radius:999px;
+    font-family:'DM Mono',monospace;
+    font-size:11px;letter-spacing:.24em;text-transform:uppercase;
+    cursor:pointer;
+    transition:background .3s,transform .3s;
+  }
+  .modal .btn:hover{background:var(--pink-5);transform:translateY(-2px)}
 
   /* ---------- RESPONSIVE ---------- */
-  @media(max-width:980px){
-    nav{padding:10px 12px 10px 18px}
+  @media(max-width:1024px){
+    nav{padding:16px 24px}
     nav ul{display:none}
-    .hero-grid,.story-grid,.designer-grid{grid-template-columns:1fr;gap:22px}
-    .features{grid-template-columns:1fr 1fr}
-    .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
-    .archive-item{grid-template-columns:50px 1fr;gap:14px}
+    .wrap{padding:0 24px}
+    .hero{padding:110px 24px 40px}
+    .hero-title h1{font-size:clamp(72px,16vw,160px)}
+    section{padding:80px 0}
+    .sec-head{grid-template-columns:1fr;gap:16px}
+    .sec-head .aside{text-align:left}
+    .steps{grid-template-columns:1fr 1fr}
+    .designer{grid-template-columns:1fr;gap:32px}
+    .vip-inner{grid-template-columns:1fr;gap:36px}
+    .vip{padding:56px 30px;border-radius:24px}
+    .archive-item{grid-template-columns:70px 1fr;gap:14px}
     .archive-item .status,.archive-item .arrow{display:none}
-    .ooo{padding:52px 24px;border-radius:26px}
-    .story-cols{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:32px}
   }
-  @media(max-width:560px){
-    .features{grid-template-columns:1fr}
+  @media(max-width:640px){
+    .steps{grid-template-columns:1fr}
+    .grid{grid-template-columns:1fr}
+    .hero-bottom{flex-direction:column;align-items:flex-start}
+    .hero-reel{text-align:left}
+    .quote{padding:70px 24px}
+    footer{padding:60px 24px 30px}
     .foot-grid{grid-template-columns:1fr}
-    .hero-card{padding:32px 24px}
+    .ticket{display:block}
+    .ticket-stub{border-left:none;border-top:2px dashed rgba(255,255,255,.6)}
+    .ticket::before,.ticket::after{display:none}
   }
 
   /* reveal */
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}
   .reveal.in{opacity:1;transform:none}
 </style>
 </head>
 <body>
 
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-<div class="blob b3"></div>
-
 <nav>
-  <div class="logo"><span></span>SCENORA</div>
+  <div class="logo">SCENORA</div>
   <ul>
     <li><a href="#drop">Drop 01</a></li>
     <li><a href="#story">Story</a></li>
@@ -723,153 +982,218 @@
     <li><a href="#ooo">One of One</a></li>
     <li><a href="#archive">Archive</a></li>
   </ul>
-  <a href="#drop" class="cta">Shop ♡</a>
+  <a href="#drop" class="nav-cta">Билеты →</a>
 </nav>
 
 <!-- ============== HERO ============== -->
 <header class="hero">
-  <div class="wrap">
-    <div class="hero-grid">
 
-      <div class="hero-card reveal">
-        <span class="pill">Drop 01 · Live Now</span>
-        <h1>Cursed<br><em>Silhouettes</em></h1>
-        <p>Лимитированные коллекции, вдохновлённые эстетикой кино, сериалов и аниме. Каждая вещь — авторская работа приглашённого дизайнера. Тираж 100 штук. Больше не повторим.</p>
-
-        <div class="hero-tags">
-          <span class="tag"><span class="dot"></span>7 designs</span>
-          <span class="tag"><span class="dot"></span>100 pieces each</span>
-          <span class="tag dark">Spring 2025</span>
-        </div>
-
-        <div class="hero-actions">
-          <a href="#drop" class="btn btn-primary">View collection →</a>
-          <a href="#story" class="btn btn-ghost">The story</a>
-        </div>
-      </div>
-
-      <div class="hero-visual reveal">
-        <div class="film">
-          <div class="film-grid">
-            <div class="frame"><div class="silhouette"></div><span class="name">Arel</span></div>
-            <div class="frame"><div class="silhouette b"></div><span class="name">Layla</span></div>
-            <div class="frame"><div class="silhouette c"></div><span class="name">Hanni</span></div>
-            <div class="frame"><div class="silhouette d"></div><span class="name">Shiko</span></div>
-            <div class="frame"><div class="silhouette e"></div><span class="name">Nova</span></div>
-            <div class="frame"><div class="silhouette f"></div><span class="name">Lux</span></div>
-          </div>
-        </div>
-        <div class="sticker script">Scenora</div>
-        <div class="sticker sparkle">✦</div>
-        <div class="sticker heart">♡</div>
-      </div>
-
+  <div class="seats" aria-hidden="true">
+    <div class="row">
+      <div class="seat tall"></div><div class="seat"></div><div class="seat short"></div>
+      <div class="seat tall"></div><div class="seat"></div><div class="seat short"></div>
+      <div class="seat tall"></div><div class="seat"></div>
     </div>
+    <div class="row">
+      <div class="seat"></div><div class="seat tall"></div><div class="seat"></div>
+      <div class="seat short"></div><div class="seat tall"></div><div class="seat"></div>
+      <div class="seat short"></div><div class="seat tall"></div>
+    </div>
+    <div class="row">
+      <div class="seat short"></div><div class="seat"></div><div class="seat tall"></div>
+      <div class="seat"></div><div class="seat short"></div><div class="seat tall"></div>
+      <div class="seat"></div><div class="seat short"></div>
+    </div>
+  </div>
+
+  <div class="hero-inner">
+
+    <div class="hero-top">
+      <span><span class="dot"></span>SEANCE · DROP 01</span>
+      <span>SPRING · 2025 · PINK HALL</span>
+    </div>
+
+    <div class="hero-title">
+      <div class="hero-kicker">сеанс начинается</div>
+      <h1>Scen<em>o</em>ra</h1>
+      <div class="hero-sub">
+        Одежда с вайбом любимой истории.
+        <span>Капсульные коллекции по мотивам атмосферы кино и сериалов — узнаваемое настроение, цвет и силуэт без копирования костюмов и логотипов.</span>
+      </div>
+    </div>
+
+    <div class="hero-bottom">
+      <a href="#drop" class="ticket">
+        <div class="ticket-main">
+          <div class="top">ADMIT ONE · DROP 01</div>
+          <div class="name">Cursed <em>Silhouettes</em></div>
+          <div class="meta">7 Designs · 100 Pieces · Limited</div>
+        </div>
+        <div class="ticket-stub">
+          <div>ROW</div>
+          <div class="big">A12</div>
+          <div>SEAT</div>
+        </div>
+      </a>
+
+      <div class="hero-reel">
+        REEL · 01 · 35 MM<br>
+        <b>● REC</b> · TIRAЖ 100 PIECES<br>
+        SOLD OUT — НЕ ПОВТОРИМ
+      </div>
+    </div>
+
   </div>
 </header>
 
-<!-- ============== CURRENT DROP ============== -->
+<div class="filmstrip" aria-hidden="true"></div>
+
+<!-- ============== ACT I — CURRENT DROP ============== -->
 <section id="drop">
   <div class="wrap">
+
     <div class="sec-head reveal">
-      <h2>Current <em>drop</em></h2>
-      <p>Семь силуэтов. Каждый — ограниченный тираж. Цифры обновляются в реальном времени.</p>
+      <div>
+        <div class="act">ACT I · SHOWING NOW</div>
+        <h2>Капсула <em>на сеансе</em></h2>
+      </div>
+      <div class="aside">
+        <b>7 designs</b><br>
+        limited to 100 each<br>
+        never restocked
+      </div>
     </div>
 
     <div class="grid">
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p1"></div>
-          <div class="num">01</div>
-          <div class="stock low"><span>Осталось 17 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s1"></div>
+          <div class="frame-no">FRAME 01</div>
+          <div class="tc">00:12</div>
+          <div class="stock low">
+            <span>17 LEFT</span>
+            <span class="bar"><span style="width:83%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Cursed Jacket</h3>
-          <div class="cat">Outerwear</div>
-          <div class="row">
-            <div class="price">14 900 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Outerwear · Reel 01</div>
+          <div class="stub">
+            <span class="price">14 900 ₽</span>
+            <span class="seat">SEAT A12</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p2"></div>
-          <div class="num">02</div>
-          <div class="stock"><span>Осталось 34 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s2"></div>
+          <div class="frame-no">FRAME 02</div>
+          <div class="tc">00:24</div>
+          <div class="stock">
+            <span>34 LEFT</span>
+            <span class="bar"><span style="width:66%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Void Trousers</h3>
-          <div class="cat">Bottoms</div>
-          <div class="row">
-            <div class="price">11 900 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Bottoms · Reel 01</div>
+          <div class="stub">
+            <span class="price">11 900 ₽</span>
+            <span class="seat">SEAT B07</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p3"></div>
-          <div class="num">03</div>
-          <div class="stock low"><span>Осталось 8 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s3"></div>
+          <div class="frame-no">FRAME 03</div>
+          <div class="tc">00:38</div>
+          <div class="stock low">
+            <span>8 LEFT</span>
+            <span class="bar"><span style="width:92%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Energy Top</h3>
-          <div class="cat">Tops</div>
-          <div class="row">
-            <div class="price">7 900 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Tops · Reel 01</div>
+          <div class="stub">
+            <span class="price">7 900 ₽</span>
+            <span class="seat">SEAT C14</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p4"></div>
-          <div class="num">04</div>
-          <div class="stock"><span>Осталось 51 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s4"></div>
+          <div class="frame-no">FRAME 04</div>
+          <div class="tc">00:51</div>
+          <div class="stock">
+            <span>51 LEFT</span>
+            <span class="bar"><span style="width:49%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Shadow Hoodie</h3>
-          <div class="cat">Hoodies</div>
-          <div class="row">
-            <div class="price">12 400 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Hoodies · Reel 01</div>
+          <div class="stub">
+            <span class="price">12 400 ₽</span>
+            <span class="seat">SEAT D02</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p5"></div>
-          <div class="num">05</div>
-          <div class="stock"><span>Осталось 42 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s5"></div>
+          <div class="frame-no">FRAME 05</div>
+          <div class="tc">01:04</div>
+          <div class="stock">
+            <span>42 LEFT</span>
+            <span class="bar"><span style="width:58%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Sigil Overshirt</h3>
-          <div class="cat">Shirts</div>
-          <div class="row">
-            <div class="price">13 200 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Shirts · Reel 01</div>
+          <div class="stub">
+            <span class="price">13 200 ₽</span>
+            <span class="seat">SEAT E09</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
 
       <div class="card reveal">
         <div class="card-img">
-          <div class="ph p6"></div>
-          <div class="num">06</div>
-          <div class="stock low"><span>Осталось 12 / 100</span><span class="heart">♥</span></div>
+          <div class="scene s6"></div>
+          <div class="frame-no">FRAME 06</div>
+          <div class="tc">01:17</div>
+          <div class="stock low">
+            <span>12 LEFT</span>
+            <span class="bar"><span style="width:88%"></span></span>
+            <span>100</span>
+          </div>
         </div>
         <div class="card-body">
           <h3>Fragment Coat</h3>
-          <div class="cat">Outerwear</div>
-          <div class="row">
-            <div class="price">22 900 ₽</div>
-            <button class="add" aria-label="add">+</button>
+          <div class="cat">Outerwear · Reel 01</div>
+          <div class="stub">
+            <span class="price">22 900 ₽</span>
+            <span class="seat">SEAT F11</span>
+            <div class="plus">Добавить в билет</div>
           </div>
         </div>
       </div>
@@ -878,120 +1202,143 @@
   </div>
 </section>
 
-<!-- ============== STORY ============== -->
+<div class="filmstrip" aria-hidden="true"></div>
+
+<!-- ============== ACT II — STORY / 4 STEPS ============== -->
 <section id="story">
   <div class="wrap">
+
     <div class="sec-head reveal">
-      <h2>The <em>story</em></h2>
-      <p>Как рождается дроп: от мудборда до ограниченного тиража.</p>
+      <div>
+        <div class="act">ACT II · THE STORY</div>
+        <h2>Как рождается <em>капсула</em></h2>
+      </div>
+      <div class="aside">
+        от настроения истории<br>
+        к ограниченному тиражу
+      </div>
     </div>
 
-    <div class="story-grid">
-
-      <div class="story-visual reveal">
-        <div class="s1"></div>
-        <div class="s2"></div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>Вайб фильма</h3>
+        <p>Цвет, свет, силуэт. Мы смотрим кадры, собираем мудборд — визуальный референс, а не буквальный костюм.</p>
       </div>
-
-      <div class="info-card story-text reveal">
-        <h3>Каждая коллекция — <br>это коллаборация</h3>
-        <div class="sub">mb — moodboard, эскизы, ткани, съёмка</div>
-        <p>Мы не копируем костюмы персонажей. Мы берём эстетику — палитру, символику, атмосферу — и переводим её на язык современной одежды.</p>
-        <p>Дизайнер изучает первоисточник, рисует собственные силуэты, выбирает материалы. После презентации коллекция выпускается ограниченным тиражом и больше не повторяется.</p>
-
-        <div class="story-cols">
-          <div class="mini">
-            <b>Step 01</b>
-            Произведение → мудборд
-          </div>
-          <div class="mini">
-            <b>Step 02</b>
-            Дизайнер → эскизы
-          </div>
-          <div class="mini">
-            <b>Step 03</b>
-            Один образец каждой вещи
-          </div>
-          <div class="mini">
-            <b>Step 04</b>
-            Тираж · съёмка · показ
-          </div>
-        </div>
-
-        <div class="features">
-          <div class="feature"><span class="check">✓</span>Limited tirage</div>
-          <div class="feature"><span class="check">✓</span>Guest designer</div>
-          <div class="feature"><span class="check">✓</span>Made in small batch</div>
-          <div class="feature"><span class="check">✓</span>Never restocked</div>
-        </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3>Эскиз дизайнера</h3>
+        <p>Приглашённый дизайнер получает оплату за эскизы. Он изучает атмосферу истории и рисует собственные силуэты.</p>
       </div>
-
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3>Тестовый образец</h3>
+        <p>Выбираем силуэты и детали. Проверяем посадку на реальном человеке и ткань — до того, как запустить тираж.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">04</div>
+        <h3>Капсула</h3>
+        <p>Средний ограниченный тираж, без копирования костюмов. Запуск к премьере или новому сезону истории.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== DESIGNER ============== -->
+<!-- ============== ACT III — DESIGNER ============== -->
 <section id="designer">
   <div class="wrap">
+
     <div class="sec-head reveal">
-      <h2>Guest <em>designer</em></h2>
-      <p>Автор Drop 01 — её имя стоит на бирке каждой вещи.</p>
+      <div>
+        <div class="act">ACT III · CREDITS</div>
+        <h2>Гость <em>Drop 01</em></h2>
+      </div>
+      <div class="aside">
+        имя дизайнера —<br>
+        на бирке каждой вещи
+      </div>
     </div>
 
-    <div class="designer-grid">
+    <div class="designer">
       <div class="designer-photo reveal"></div>
-      <div class="info-card designer-text reveal">
-        <div class="role">Drop 01 · Guest designer</div>
-        <h3>Anna Vertinskaya</h3>
+      <div class="designer-text reveal">
+        <div class="role">Guest designer · Reel 01</div>
+        <h3>Anna <em>Vertinskaya</em></h3>
         <blockquote>«Мне было важно поймать то ощущение, которое возникает, когда смотришь на тёмную энергию. Одежда должна работать как оберег — не показывать, а защищать».</blockquote>
         <p>Выпускница Британской высшей школы дизайна. Работала с независимыми театральными проектами, автор двух собственных капсул. В SCENORA отвечает за визуальный язык Drop 01 — от первых набросков до подбора тканей.</p>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ============== ONE OF ONE ============== -->
+<!-- ============== ACT IV — ONE OF ONE (VIP) ============== -->
 <section id="ooo">
   <div class="wrap">
-    <div class="ooo reveal">
-      <span class="pill">Bespoke service ♡</span>
-      <h2>One of <em>One</em></h2>
-      <p>Вещь, которой больше ни у кого не будет. Дизайнер разрабатывает индивидуальный эскиз в эстетике текущего дропа — с учётом твоих пожеланий, размеров и материалов.</p>
-      <button class="btn btn-primary" onclick="openModal()">Заказать авторскую вещь →</button>
+    <div class="vip reveal">
+      <div class="vip-inner">
+        <div>
+          <div class="kicker">Private screening · Bespoke</div>
+          <h2>One of <em>One</em></h2>
+          <p>Вещь, которой больше ни у кого не будет. Дизайнер разрабатывает индивидуальный эскиз в эстетике текущего дропа — с учётом твоих пожеланий, размеров и материалов. Единственный экземпляр в мире.</p>
+          <button class="btn" onclick="openModal()">Забронировать место →</button>
+        </div>
+        <div class="pass">
+          <div class="top">
+            <span>VIP PASS</span>
+            <span>№ 001 / ∞</span>
+          </div>
+          <div class="title">One of One</div>
+          <div class="desc">Индивидуальная разработка под тебя: эскиз, ткань, посадка, детали. Один экземпляр.</div>
+          <div class="rows">
+            <div class="row"><span>Формат</span><b>Bespoke</b></div>
+            <div class="row"><span>Срок</span><b>4–6 недель</b></div>
+            <div class="row"><span>Тираж</span><b>1 of 1</b></div>
+            <div class="row"><span>Подпись</span><b>Дизайнер</b></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============== ARCHIVE ============== -->
+<!-- ============== ACT V — ARCHIVE ============== -->
 <section id="archive">
   <div class="wrap">
+
     <div class="sec-head reveal">
-      <h2>Drop <em>archive</em></h2>
-      <p>Каждый дроп живёт один раз. Распродали — закрыли навсегда.</p>
+      <div>
+        <div class="act">ACT V · ARCHIVE</div>
+        <h2>Прошлые <em>сеансы</em></h2>
+      </div>
+      <div class="aside">
+        каждый дроп живёт один раз<br>
+        распродали — закрыли
+      </div>
     </div>
 
     <div class="archive-list">
       <div class="archive-item reveal">
-        <div class="num">01</div>
-        <div class="title">Cursed Silhouettes <small>Jujutsu Kaisen</small></div>
-        <div class="status">Live · 2025</div>
+        <div class="num">REEL 01</div>
+        <div class="title">Cursed Silhouettes <small>Jujutsu Kaisen · 2025</small></div>
+        <div class="status live">Live now</div>
         <div class="arrow">→</div>
       </div>
       <div class="archive-item reveal">
-        <div class="num">02</div>
-        <div class="title">Down the Rabbit Hole <small>Alice in Wonderland</small></div>
+        <div class="num">REEL 02</div>
+        <div class="title">Down the Rabbit Hole <small>Alice in Wonderland · 2024</small></div>
         <div class="status sold">Sold out</div>
         <div class="arrow">→</div>
       </div>
       <div class="archive-item reveal">
-        <div class="num">03</div>
-        <div class="title">Black & White <small>Cruella</small></div>
+        <div class="num">REEL 03</div>
+        <div class="title">Black & White <small>Cruella · 2024</small></div>
         <div class="status sold">Sold out</div>
         <div class="arrow">→</div>
       </div>
       <div class="archive-item reveal">
-        <div class="num">04</div>
-        <div class="title">Neon Tokyo <small>Akira</small></div>
+        <div class="num">REEL 04</div>
+        <div class="title">Neon Tokyo <small>Akira · 2023</small></div>
         <div class="status sold">Sold out</div>
         <div class="arrow">→</div>
       </div>
@@ -999,43 +1346,49 @@
   </div>
 </section>
 
+<!-- ============== QUOTE ============== -->
+<div class="quote reveal">
+  <div class="mark">“</div>
+  <p>Мы не продаём <em>костюм героя</em>. Мы продаём способ носить настроение истории каждый день.</p>
+  <div class="sig">— Manifesto · SCENORA · 2025</div>
+</div>
+
 <!-- ============== FOOTER ============== -->
 <footer>
-  <div class="wrap">
-    <div class="foot-grid">
-      <div>
-        <div class="logo">SCENORA</div>
-        <p>Limited fashion drops, вдохновлённые эстетикой кино, сериалов и аниме. Авторские коллекции. Ограниченные тиражи. Никогда не повторяются.</p>
-      </div>
-      <div>
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#drop">Drop 01</a></li>
-          <li><a href="#archive">Archive</a></li>
-          <li><a href="#ooo">One of One</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>About</h4>
-        <ul>
-          <li><a href="#story">Story</a></li>
-          <li><a href="#designer">Designer</a></li>
-          <li><a href="#">Licensing</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="#">hello@scenora.studio</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">Telegram</a></li>
-        </ul>
-      </div>
+  <div class="foot-grid">
+    <div>
+      <div class="logo">SCENORA</div>
+      <div class="tagline">Одежда с вайбом любимой истории.</div>
+      <p>Капсульные коллекции по мотивам атмосферы кино и сериалов. Узнаваемое настроение, цвет и силуэт — без копирования костюмов и логотипов.</p>
     </div>
-    <div class="foot-bottom">
-      <span>© 2025 Scenora Studio <span class="heart">♡</span></span>
-      <span>Made with love · Educational project</span>
+    <div>
+      <h4>Shop</h4>
+      <ul>
+        <li><a href="#drop">Drop 01</a></li>
+        <li><a href="#archive">Archive</a></li>
+        <li><a href="#ooo">One of One</a></li>
+      </ul>
     </div>
+    <div>
+      <h4>About</h4>
+      <ul>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#designer">Designer</a></li>
+        <li><a href="#">Лицензирование</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">hello@scenora.studio</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2025 SCENORA STUDIO</span>
+    <span>REEL 01 · 35 MM · PINK HALL · 2025</span>
   </div>
 </footer>
 
@@ -1043,9 +1396,9 @@
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="close" onclick="closeModal()">×</button>
-    <div class="tagline">one of one ♡</div>
-    <h3>Индивидуальный заказ</h3>
-    <div class="sub">Оставь заявку — дизайнер свяжется в течение 3 рабочих дней.</div>
+    <div class="tc">VIP PASS · ONE OF ONE</div>
+    <h3>Приватный <em>показ</em></h3>
+    <div class="sub">Оставь заявку — дизайнер свяжется в течение 3 рабочих дней и обсудит детали.</div>
 
     <label>Тип вещи</label>
     <select>
@@ -1069,12 +1422,11 @@
     <label>Email</label>
     <input type="email" placeholder="you@example.com" />
 
-    <button class="btn btn-primary" onclick="submitModal()">Отправить заявку ♡</button>
+    <button class="btn" onclick="submitModal()">Отправить заявку ♡</button>
   </div>
 </div>
 
 <script>
-  // Reveal on scroll
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{
       if(e.isIntersecting){
@@ -1085,18 +1437,16 @@
   },{threshold:.1});
   document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
-  // Modal
   const modal = document.getElementById('modal');
   function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
   function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
   function submitModal(){
-    alert('Спасибо! Заявка отправлена ♡ Дизайнер свяжется с тобой в течение 3 рабочих дней.');
+    alert('Заявка отправлена ♡ Дизайнер свяжется с тобой в течение 3 рабочих дней.');
     closeModal();
   }
   modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
   document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
 
-  // Smooth scroll
   document.querySelectorAll('a[href^="#"]').forEach(a=>{
     a.addEventListener('click',(e)=>{
       const t = document.querySelector(a.getAttribute('href'));
@@ -1106,4 +1456,4 @@
 </script>
 
 </body>
-  </html>
+            </html>
