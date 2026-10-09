@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SCENORA — limited drops ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-1:#ffd9ec;
+    --pink-2:#ffb3d9;
+    --pink-3:#ff7ec0;
+    --pink-4:#ff4fa3;
+    --pink-5:#e02f88;
+    --pink-deep:#a81b5f;
+    --white:#ffffff;
+    --ink:#3a0f24;
+    --ink-soft:#8a5c76;
+    --line:#ffc9e3;
+    --lilac:#e9d5ff;
+    --mint:#d5ffec;
+    --cream:#fff6fb;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    line-height:1.55;
+    background:
+      radial-gradient(circle at 15% 10%, #ffe0f0 0%, transparent 45%),
+      radial-gradient(circle at 90% 30%, #ffd0e8 0%, transparent 40%),
+      radial-gradient(circle at 50% 90%, #ffeaf6 0%, transparent 50%),
+      #fff2f9;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+
+  /* ---------- ЯРКИЕ ПЯТНА ФОНА ---------- */
+  .blob{
+    position:fixed;border-radius:50%;filter:blur(80px);opacity:.55;
+    z-index:-1;pointer-events:none;
+  }
+  .blob.b1{width:420px;height:420px;background:#ff9ecb;top:-80px;left:-80px}
+  .blob.b2{width:380px;height:380px;background:#c99bff;top:40%;right:-120px}
+  .blob.b3{width:500px;height:500px;background:#ffd6ea;bottom:-160px;left:30%}
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:sticky;top:14px;z-index:100;
+    max-width:1240px;margin:14px auto 0;
+    padding:10px 14px 10px 24px;
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:999px;
+    box-shadow:0 8px 32px rgba(255,79,163,.18);
+    display:flex;align-items:center;justify-content:space-between;
+    gap:20px;
+  }
+  nav .logo{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;font-size:24px;letter-spacing:.02em;
+    color:var(--pink-5);
+    display:flex;align-items:center;gap:6px;
+  }
+  nav .logo span{
+    display:inline-block;width:10px;height:10px;border-radius:50%;
+    background:var(--pink-3);
+    box-shadow:0 0 0 4px rgba(255,126,192,.35);
+  }
+  nav ul{display:flex;gap:6px;list-style:none;flex-wrap:wrap}
+  nav ul a{
+    display:inline-block;
+    padding:9px 18px;border-radius:999px;
+    font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;
+    color:var(--pink-deep);
+    transition:all .3s ease;
+  }
+  nav ul a:hover{background:var(--pink-2);color:#fff}
+  nav .cta{
+    background:var(--pink-4);color:#fff;
+    padding:10px 20px;border-radius:999px;
+    font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+    box-shadow:0 4px 14px rgba(255,79,163,.45);
+    transition:transform .3s ease;
+  }
+  nav .cta:hover{transform:translateY(-2px)}
+
+  /* ---------- WRAP ---------- */
+  .wrap{max-width:1240px;margin:0 auto;padding:0 24px}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:60px 0 40px;position:relative}
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 1fr;
+    gap:36px;
+    align-items:center;
+  }
+  .hero-card{
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(16px);
+    border:1px solid #fff;
+    border-radius:32px;
+    padding:44px 40px 40px;
+    box-shadow:0 20px 60px rgba(255,79,163,.16);
+    position:relative;
+  }
+  .hero-card .pill{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:6px 14px;border-radius:999px;
+    background:var(--pink-2);color:#fff;
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero-card .pill::before{
+    content:"";width:6px;height:6px;border-radius:50%;background:#fff;
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+  .hero-card h1{
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;
+    font-size:clamp(52px,8vw,96px);
+    line-height:.92;
+    letter-spacing:-.02em;
+    color:var(--pink-5);
+    margin-bottom:18px;
+  }
+  .hero-card h1 em{
+    font-family:'Caveat',cursive;
+    font-style:normal;font-weight:700;
+    color:var(--pink-3);
+    font-size:1.15em;
+  }
+  .hero-card p{
+    color:var(--ink-soft);font-size:15px;max-width:440px;
+    margin-bottom:28px;
+  }
+  .hero-tags{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:32px;
+  }
+  .tag{
+    display:inline-flex;align-items:center;gap:6px;
+    padding:8px 14px;border-radius:999px;
+    background:#fff;border:1px solid var(--line);
+    font-size:11px;font-weight:500;letter-spacing:.06em;
+    color:var(--pink-deep);
+  }
+  .tag .dot{width:6px;height:6px;border-radius:50%;background:var(--pink-3)}
+  .tag.dark{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 32px;border-radius:999px;
+    font-family:'Inter',sans-serif;
+    font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    border:none;cursor:pointer;
+    transition:all .3s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--pink-3),var(--pink-5));
+    color:#fff;
+    box-shadow:0 10px 26px rgba(255,79,163,.45);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(255,79,163,.55)}
+  .btn-ghost{
+    background:#fff;color:var(--pink-5);
+    border:1px solid var(--line);
+  }
+  .btn-ghost:hover{background:var(--pink-1)}
+
+  .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+  /* ---------- HERO VISUAL (плёнка + фото) ---------- */
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/4.4;
+  }
+  .film{
+    position:absolute;inset:0;
+    background:var(--pink-3);
+    border-radius:26px;
+    padding:26px 20px;
+    box-shadow:0 24px 60px rgba(224,47,136,.35);
+    transform:rotate(2deg);
+    overflow:hidden;
+  }
+  .film::before,.film::after{
+    content:"";
+    position:absolute;left:0;right:0;height:22px;
+    background-image:radial-gradient(circle, #fff 3px, transparent 3.5px);
+    background-size:22px 22px;
+    background-position:11px 0;
+  }
+  .film::before{top:8px}
+  .film::after{bottom:8px}
+  .film-grid{
+    height:100%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-rows:1fr 1fr 1fr;
+    gap:8px;
+    padding:14px 0;
+  }
+  .frame{
+    border-radius:10px;
+    background:#fff;
+    position:relative;overflow:hidden;
+    border:2px solid rgba(255,255,255,.9);
+  }
+  .frame .silhouette{
+    position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(255,255,255,.6) 0%, transparent 40%),
+      linear-gradient(160deg,#ff8bc4,#a81b5f);
+  }
+  .frame .silhouette.b{background:linear-gradient(160deg,#c99bff,#5a2a9c)}
+  .frame .silhouette.c{background:linear-gradient(160deg,#ffc0dd,#e02f88)}
+  .frame .silhouette.d{background:linear-gradient(160deg,#ffd6ea,#ff7ec0)}
+  .frame .silhouette.e{background:linear-gradient(160deg,#b3e5ff,#5a8bd0)}
+  .frame .silhouette.f{background:linear-gradient(160deg,#ffe8b0,#e08a2a)}
+  .frame .name{
+    position:absolute;bottom:6px;left:8px;
+    font-family:'Fredoka',sans-serif;
+    font-size:11px;font-weight:600;letter-spacing:.08em;
+    color:#fff;text-transform:uppercase;
+    text-shadow:0 1px 4px rgba(0,0,0,.5);
+  }
+
+  /* Стикер поверх плёнки */
+  .sticker{
+    position:absolute;z-index:5;
+    font-family:'Caveat',cursive;
+    font-weight:700;
+  }
+  .sticker.script{
+    top:6%;left:-6%;
+    transform:rotate(-14deg);
+    color:#fff;font-size:clamp(48px,7vw,84px);
+    text-shadow:
+      2px 2px 0 var(--pink-5),
+      4px 4px 0 rgba(168,27,95,.4);
+    line-height:1;
+  }
+  .sticker.heart{
+    bottom:8%;right:-4%;
+    font-size:56px;color:var(--pink-5);
+    transform:rotate(12deg);
+    filter:drop-shadow(0 6px 12px rgba(255,79,163,.5));
+  }
+  .sticker.sparkle{
+    top:-3%;right:8%;
+    font-size:40px;color:#fff;
+    filter:drop-shadow(0 0 12px #fff);
+    animation:sparkle 2.4s ease-in-out infinite;
+  }
+  @keyframes sparkle{0%,100%{transform:scale(1) rotate(0)}50%{transform:scale(1.15) rotate(20deg)}}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:80px 0}
+  .sec-head{margin-bottom:40px;display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+  .sec-head h2{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    font-size:clamp(34px,5vw,56px);
+    line-height:1;letter-spacing:-.01em;
+    color:var(--pink-5);
+  }
+  .sec-head h2 em{
+    font-family:'Caveat',cursive;font-style:normal;font-weight:700;
+    color:var(--pink-3);font-size:1.1em;
+  }
+  .sec-head p{color:var(--ink-soft);font-size:14px;max-width:420px}
+
+  /* ---------- PRODUCT CARDS ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:20px;
+  }
+  .card{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(10px);
+    border:1px solid #fff;
+    border-radius:24px;
+    padding:14px;
+    box-shadow:0 12px 30px rgba(255,79,163,.12);
+    transition:transform .35s ease, box-shadow .35s ease;
+    cursor:pointer;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(255,79,163,.25)}
+  .card-img{
+    aspect-ratio:1/1.15;
+    border-radius:16px;
+    position:relative;overflow:hidden;
+  }
+  .card-img .ph{
+    position:absolute;inset:0;
+    background:linear-gradient(160deg,var(--pink-2),var(--pink-5));
+  }
+  .card-img .ph.p1{background:linear-gradient(160deg,#ffc0dd,#e02f88)}
+  .card-img .ph.p2{background:linear-gradient(160deg,#e9d5ff,#7c3aed)}
+  .card-img .ph.p3{background:linear-gradient(160deg,#ffd6ea,#ff4fa3)}
+  .card-img .ph.p4{background:linear-gradient(160deg,#d5ffec,#10b981)}
+  .card-img .ph.p5{background:linear-gradient(160deg,#fff0c2,#f59e0b)}
+  .card-img .ph.p6{background:linear-gradient(160deg,#d5e8ff,#3b82f6)}
+  .card-img .num{
+    position:absolute;top:12px;left:12px;
+    font-family:'Fredoka',sans-serif;
+    font-size:28px;font-weight:700;color:rgba(255,255,255,.85);
+    text-shadow:0 2px 6px rgba(0,0,0,.15);
+  }
+  .card-img .stock{
+    position:absolute;bottom:10px;left:10px;right:10px;
+    background:rgba(255,255,255,.92);
+    backdrop-filter:blur(6px);
+    border-radius:999px;
+    padding:7px 12px;
+    font-size:11px;font-weight:600;
+    color:var(--pink-deep);
+    display:flex;justify-content:space-between;align-items:center;
+    letter-spacing:.04em;
+  }
+  .card-img .stock.low{background:var(--ink);color:#fff}
+  .card-img .stock .heart{color:var(--pink-4);font-size:13px}
+  .card-img .stock.low .heart{color:#ff8bc4}
+
+  .card-body{padding:14px 6px 6px}
+  .card-body h3{
+    font-family:'Fredoka',sans-serif;
+    font-size:19px;font-weight:600;
+    color:var(--ink);
+    margin-bottom:4px;
+  }
+  .card-body .cat{
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:10px;
+  }
+  .card-body .row{display:flex;justify-content:space-between;align-items:center}
+  .card-body .price{
+    font-family:'Fredoka',sans-serif;
+    font-size:20px;font-weight:700;color:var(--pink-5);
+  }
+  .card-body .add{
+    width:34px;height:34px;border-radius:50%;
+    background:var(--pink-4);color:#fff;border:none;
+    font-size:18px;font-weight:600;line-height:1;
+    cursor:pointer;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 6px 14px rgba(255,79,163,.4);
+    transition:transform .25s ease;
+  }
+  .card-body .add:hover{transform:rotate(90deg) scale(1.08)}
+
+  /* ---------- INFO CARD (как MAVIE FAM) ---------- */
+  .info-card{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px);
+    border:1px solid #fff;
+    border-radius:28px;
+    padding:36px 34px;
+    box-shadow:0 18px 50px rgba(255,79,163,.14);
+    position:relative;
+    overflow:hidden;
+  }
+  .info-card::before{
+    content:"";
+    position:absolute;top:-60px;right:-60px;
+    width:200px;height:200px;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,126,192,.35),transparent 70%);
+  }
+
+  .story-grid{
+    display:grid;
+    grid-template-columns:1fr 1.3fr;
+    gap:24px;
+  }
+  .story-visual{
+    border-radius:28px;
+    background:
+      radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), transparent 45%),
+      linear-gradient(160deg,#ffb3d9,#a81b5f 80%);
+    position:relative;overflow:hidden;
+    min-height:380px;
+    box-shadow:0 18px 50px rgba(224,47,136,.3);
+  }
+  .story-visual::after{
+    content:"♥ MOODBOARD / DROP 01";
+    position:absolute;bottom:20px;left:22px;
+    font-family:'Fredoka',sans-serif;
+    font-size:11px;font-weight:600;letter-spacing:.18em;
+    color:#fff;text-transform:uppercase;
+  }
+  .story-visual .s1,.story-visual .s2{
+    position:absolute;border-radius:50%;
+    border:2px dashed rgba(255,255,255,.7);
+  }
+  .story-visual .s1{width:160px;height:160px;top:40px;left:40px}
+  .story-visual .s2{width:90px;height:90px;bottom:80px;right:50px}
+
+  .story-text h3{
+    font-family:'Fredoka',sans-serif;
+    font-size:30px;font-weight:600;
+    color:var(--pink-5);margin-bottom:8px;
+  }
+  .story-text .sub{
+    font-family:'Caveat',cursive;font-size:22px;
+    color:var(--pink-3);margin-bottom:20px;
+  }
+  .story-text p{color:var(--ink-soft);font-size:14.5px;margin-bottom:14px}
+  .story-cols{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+    margin-top:20px;
+  }
+  .mini{
+    background:var(--pink-1);
+    border-radius:16px;padding:16px;
+    font-size:13px;color:var(--pink-deep);
+    font-weight:500;
+  }
+  .mini b{display:block;font-family:'Fredoka',sans-serif;font-size:15px;margin-bottom:4px;color:var(--pink-5)}
+
+  /* ---------- FEATURES STRIP ---------- */
+  .features{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:12px;margin-top:22px;
+  }
+  .feature{
+    background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:14px 16px;
+    display:flex;align-items:center;gap:10px;
+    font-size:12px;font-weight:600;color:var(--pink-deep);
+    letter-spacing:.04em;text-transform:uppercase;
+  }
+  .feature .check{
+    width:22px;height:22px;border-radius:50%;
+    background:var(--pink-2);color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;flex-shrink:0;
+  }
+
+  /* ---------- DESIGNER ---------- */
+  .designer-grid{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:center;
+  }
+  .designer-photo{
+    aspect-ratio:4/5;
+    border-radius:28px;
+    background:
+      radial-gradient(circle at 50% 30%, rgba(255,255,255,.5), transparent 40%),
+      linear-gradient(160deg,#ffd6ea,#e02f88);
+    position:relative;overflow:hidden;
+    box-shadow:0 18px 50px rgba(224,47,136,.3);
+  }
+  .designer-photo::before{
+    content:"✿";
+    position:absolute;top:20px;right:24px;
+    font-size:36px;color:#fff;
+    opacity:.9;
+  }
+  .designer-photo::after{
+    content:"ANNA V.";
+    position:absolute;bottom:24px;left:24px;
+    font-family:'Fredoka',sans-serif;
+    font-weight:700;font-size:20px;
+    color:#fff;letter-spacing:.1em;
+    text-shadow:0 2px 8px rgba(0,0,0,.2);
+  }
+  .designer-text .role{
+    font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--pink-3);margin-bottom:12px;font-weight:600;
+  }
+  .designer-text h3{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(28px,4vw,42px);
+    color:var(--pink-5);line-height:1.1;margin-bottom:16px;
+  }
+  .designer-text blockquote{
+    font-family:'Caveat',cursive;
+    font-size:24px;line-height:1.35;
+    color:var(--pink-deep);
+    padding:18px 22px;
+    background:rgba(255,255,255,.7);
+    border-left:4px solid var(--pink-3);
+    border-radius:12px;
+    margin-bottom:18px;
+  }
+  .designer-text p{color:var(--ink-soft);font-size:14.5px}
+
+  /* ---------- ONE OF ONE ---------- */
+  .ooo{
+    background:
+      radial-gradient(circle at 50% 0%, rgba(255,255,255,.8), transparent 55%),
+      linear-gradient(160deg,#ffb3d9,#ff4fa3 70%,#a81b5f);
+    border-radius:36px;
+    padding:72px 40px;
+    text-align:center;
+    color:#fff;
+    box-shadow:0 24px 70px rgba(224,47,136,.4);
+    position:relative;overflow:hidden;
+  }
+  .ooo::before,.ooo::after{
+    content:"✦";position:absolute;
+    font-size:120px;color:rgba(255,255,255,.15);
+  }
+  .ooo::before{top:-20px;left:20px}
+  .ooo::after{bottom:-40px;right:30px;font-size:180px}
+  .ooo .pill{
+    display:inline-block;
+    padding:7px 18px;border-radius:999px;
+    background:rgba(255,255,255,.25);
+    backdrop-filter:blur(10px);
+    font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+    margin-bottom:20px;
+  }
+  .ooo h2{
+    font-family:'Fredoka',sans-serif;
+    font-size:clamp(44px,7vw,84px);
+    font-weight:700;line-height:.95;letter-spacing:-.02em;
+    margin-bottom:18px;
+    text-shadow:0 4px 20px rgba(0,0,0,.15);
+  }
+  .ooo h2 em{
+    font-family:'Caveat',cursive;font-style:normal;font-weight:700;
+    font-size:1.05em;
+  }
+  .ooo p{
+    max-width:560px;margin:0 auto 32px;
+    font-size:15px;color:rgba(255,255,255,.92);
+  }
+  .ooo .btn-primary{
+    background:#fff;color:var(--pink-5);
+    box-shadow:0 12px 30px rgba(0,0,0,.15);
+  }
+  .ooo .btn-primary:hover{background:var(--ink);color:#fff}
+
+  /* ---------- ARCHIVE ---------- */
+  .archive-list{
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px);
+    border:1px solid #fff;
+    border-radius:28px;
+    padding:12px 28px;
+    box-shadow:0 18px 50px rgba(255,79,163,.14);
+  }
+  .archive-item{
+    display:grid;
+    grid-template-columns:70px 1fr 160px 30px;
+    gap:20px;align-items:center;
+    padding:22px 0;
+    border-bottom:1px dashed var(--line);
+    transition:padding-left .35s ease;
+    cursor:pointer;
+  }
+  .archive-item:last-child{border-bottom:none}
+  .archive-item:hover{padding-left:12px}
+  .archive-item .num{
+    font-family:'Fredoka',sans-serif;
+    font-size:24px;font-weight:700;
+    color:var(--pink-3);
+  }
+  .archive-item .title{
+    font-family:'Fredoka',sans-serif;
+    font-size:20px;font-weight:600;color:var(--ink);
+  }
+  .archive-item .title small{
+    display:block;font-family:'Inter',sans-serif;
+    font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);margin-top:4px;font-weight:500;
+  }
+  .archive-item .status{
+    text-align:right;
+    font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    padding:6px 12px;border-radius:999px;
+    background:var(--mint);color:#0d7a5a;
+    justify-self:end;
+  }
+  .archive-item .status.sold{
+    background:#ffe0ef;color:var(--pink-deep);
+  }
+  .archive-item .arrow{
+    color:var(--pink-3);font-size:18px;text-align:right;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:60px;padding:48px 0 60px;
+    border-top:1px dashed var(--line);
+  }
+  .foot-grid{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:32px;
+  }
+  footer .logo{
+    font-family:'Fredoka',sans-serif;
+    font-size:32px;font-weight:700;color:var(--pink-5);
+    margin-bottom:12px;
+  }
+  footer p{color:var(--ink-soft);font-size:13px;max-width:320px}
+  footer h4{
+    font-family:'Fredoka',sans-serif;
+    font-size:14px;font-weight:600;color:var(--pink-5);
+    margin-bottom:14px;letter-spacing:.02em;
+  }
+  footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  footer ul a{color:var(--ink-soft);font-size:13px;transition:color .25s}
+  footer ul a:hover{color:var(--pink-4)}
+  .foot-bottom{
+    max-width:1240px;margin:36px auto 0;
+    padding-top:22px;
+    border-top:1px dashed var(--line);
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;
+    font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .foot-bottom .heart{color:var(--pink-4)}
+
+  /* ---------- MODAL ---------- */
+  .modal-overlay{
+    position:fixed;inset:0;z-index:200;
+    background:rgba(58,15,36,.55);
+    backdrop-filter:blur(10px);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .modal-overlay.open{display:flex}
+  .modal{
+    background:#fff;
+    border-radius:28px;
+    max-width:520px;width:100%;
+    padding:44px 36px 36px;
+    position:relative;
+    max-height:90vh;overflow-y:auto;
+    box-shadow:0 30px 80px rgba(224,47,136,.4);
+  }
+  .modal .close{
+    position:absolute;top:16px;right:20px;
+    width:34px;height:34px;border-radius:50%;
+    background:var(--pink-1);color:var(--pink-5);
+    border:none;font-size:20px;line-height:1;
+    cursor:pointer;font-family:inherit;
+    transition:all .25s;
+  }
+  .modal .close:hover{background:var(--pink-3);color:#fff;transform:rotate(90deg)}
+  .modal .tagline{
+    font-family:'Caveat',cursive;
+    font-size:22px;color:var(--pink-3);margin-bottom:6px;
+  }
+  .modal h3{
+    font-family:'Fredoka',sans-serif;
+    font-size:34px;font-weight:700;color:var(--pink-5);
+    line-height:1;margin-bottom:8px;
+  }
+  .modal .sub{
+    color:var(--ink-soft);font-size:13.5px;margin-bottom:26px;
+  }
+  .modal label{
+    display:block;
+    font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--pink-deep);margin:16px 0 8px;
+  }
+  .modal input,.modal select,.modal textarea{
+    width:100%;
+    background:var(--pink-1);
+    border:1px solid transparent;
+    border-radius:14px;
+    padding:13px 16px;
+    font-family:inherit;font-size:14px;color:var(--ink);
+    outline:none;transition:all .25s;
+  }
+  .modal input:focus,.modal select:focus,.modal textarea:focus{
+    background:#fff;border-color:var(--pink-3);
+    box-shadow:0 0 0 4px rgba(255,126,192,.2);
+  }
+  .modal textarea{resize:vertical;min-height:80px}
+  .modal .btn{width:100%;justify-content:center;margin-top:24px}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:980px){
+    nav{padding:10px 12px 10px 18px}
+    nav ul{display:none}
+    .hero-grid,.story-grid,.designer-grid{grid-template-columns:1fr;gap:22px}
+    .features{grid-template-columns:1fr 1fr}
+    .foot-grid{grid-template-columns:1fr 1fr;gap:24px}
+    .archive-item{grid-template-columns:50px 1fr;gap:14px}
+    .archive-item .status,.archive-item .arrow{display:none}
+    .ooo{padding:52px 24px;border-radius:26px}
+    .story-cols{grid-template-columns:1fr}
+  }
+  @media(max-width:560px){
+    .features{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .hero-card{padding:32px 24px}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<nav>
+  <div class="logo"><span></span>SCENORA</div>
+  <ul>
+    <li><a href="#drop">Drop 01</a></li>
+    <li><a href="#story">Story</a></li>
+    <li><a href="#designer">Designer</a></li>
+    <li><a href="#ooo">One of One</a></li>
+    <li><a href="#archive">Archive</a></li>
+  </ul>
+  <a href="#drop" class="cta">Shop ♡</a>
+</nav>
+
+<!-- ============== HERO ============== -->
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+
+      <div class="hero-card reveal">
+        <span class="pill">Drop 01 · Live Now</span>
+        <h1>Cursed<br><em>Silhouettes</em></h1>
+        <p>Лимитированные коллекции, вдохновлённые эстетикой кино, сериалов и аниме. Каждая вещь — авторская работа приглашённого дизайнера. Тираж 100 штук. Больше не повторим.</p>
+
+        <div class="hero-tags">
+          <span class="tag"><span class="dot"></span>7 designs</span>
+          <span class="tag"><span class="dot"></span>100 pieces each</span>
+          <span class="tag dark">Spring 2025</span>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#drop" class="btn btn-primary">View collection →</a>
+          <a href="#story" class="btn btn-ghost">The story</a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <div class="film">
+          <div class="film-grid">
+            <div class="frame"><div class="silhouette"></div><span class="name">Arel</span></div>
+            <div class="frame"><div class="silhouette b"></div><span class="name">Layla</span></div>
+            <div class="frame"><div class="silhouette c"></div><span class="name">Hanni</span></div>
+            <div class="frame"><div class="silhouette d"></div><span class="name">Shiko</span></div>
+            <div class="frame"><div class="silhouette e"></div><span class="name">Nova</span></div>
+            <div class="frame"><div class="silhouette f"></div><span class="name">Lux</span></div>
+          </div>
+        </div>
+        <div class="sticker script">Scenora</div>
+        <div class="sticker sparkle">✦</div>
+        <div class="sticker heart">♡</div>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ============== CURRENT DROP ============== -->
+<section id="drop">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Current <em>drop</em></h2>
+      <p>Семь силуэтов. Каждый — ограниченный тираж. Цифры обновляются в реальном времени.</p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p1"></div>
+          <div class="num">01</div>
+          <div class="stock low"><span>Осталось 17 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Cursed Jacket</h3>
+          <div class="cat">Outerwear</div>
+          <div class="row">
+            <div class="price">14 900 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p2"></div>
+          <div class="num">02</div>
+          <div class="stock"><span>Осталось 34 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Void Trousers</h3>
+          <div class="cat">Bottoms</div>
+          <div class="row">
+            <div class="price">11 900 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p3"></div>
+          <div class="num">03</div>
+          <div class="stock low"><span>Осталось 8 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Energy Top</h3>
+          <div class="cat">Tops</div>
+          <div class="row">
+            <div class="price">7 900 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p4"></div>
+          <div class="num">04</div>
+          <div class="stock"><span>Осталось 51 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Shadow Hoodie</h3>
+          <div class="cat">Hoodies</div>
+          <div class="row">
+            <div class="price">12 400 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p5"></div>
+          <div class="num">05</div>
+          <div class="stock"><span>Осталось 42 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Sigil Overshirt</h3>
+          <div class="cat">Shirts</div>
+          <div class="row">
+            <div class="price">13 200 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-img">
+          <div class="ph p6"></div>
+          <div class="num">06</div>
+          <div class="stock low"><span>Осталось 12 / 100</span><span class="heart">♥</span></div>
+        </div>
+        <div class="card-body">
+          <h3>Fragment Coat</h3>
+          <div class="cat">Outerwear</div>
+          <div class="row">
+            <div class="price">22 900 ₽</div>
+            <button class="add" aria-label="add">+</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== STORY ============== -->
+<section id="story">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>The <em>story</em></h2>
+      <p>Как рождается дроп: от мудборда до ограниченного тиража.</p>
+    </div>
+
+    <div class="story-grid">
+
+      <div class="story-visual reveal">
+        <div class="s1"></div>
+        <div class="s2"></div>
+      </div>
+
+      <div class="info-card story-text reveal">
+        <h3>Каждая коллекция — <br>это коллаборация</h3>
+        <div class="sub">mb — moodboard, эскизы, ткани, съёмка</div>
+        <p>Мы не копируем костюмы персонажей. Мы берём эстетику — палитру, символику, атмосферу — и переводим её на язык современной одежды.</p>
+        <p>Дизайнер изучает первоисточник, рисует собственные силуэты, выбирает материалы. После презентации коллекция выпускается ограниченным тиражом и больше не повторяется.</p>
+
+        <div class="story-cols">
+          <div class="mini">
+            <b>Step 01</b>
+            Произведение → мудборд
+          </div>
+          <div class="mini">
+            <b>Step 02</b>
+            Дизайнер → эскизы
+          </div>
+          <div class="mini">
+            <b>Step 03</b>
+            Один образец каждой вещи
+          </div>
+          <div class="mini">
+            <b>Step 04</b>
+            Тираж · съёмка · показ
+          </div>
+        </div>
+
+        <div class="features">
+          <div class="feature"><span class="check">✓</span>Limited tirage</div>
+          <div class="feature"><span class="check">✓</span>Guest designer</div>
+          <div class="feature"><span class="check">✓</span>Made in small batch</div>
+          <div class="feature"><span class="check">✓</span>Never restocked</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============== DESIGNER ============== -->
+<section id="designer">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Guest <em>designer</em></h2>
+      <p>Автор Drop 01 — её имя стоит на бирке каждой вещи.</p>
+    </div>
+
+    <div class="designer-grid">
+      <div class="designer-photo reveal"></div>
+      <div class="info-card designer-text reveal">
+        <div class="role">Drop 01 · Guest designer</div>
+        <h3>Anna Vertinskaya</h3>
+        <blockquote>«Мне было важно поймать то ощущение, которое возникает, когда смотришь на тёмную энергию. Одежда должна работать как оберег — не показывать, а защищать».</blockquote>
+        <p>Выпускница Британской высшей школы дизайна. Работала с независимыми театральными проектами, автор двух собственных капсул. В SCENORA отвечает за визуальный язык Drop 01 — от первых набросков до подбора тканей.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ONE OF ONE ============== -->
+<section id="ooo">
+  <div class="wrap">
+    <div class="ooo reveal">
+      <span class="pill">Bespoke service ♡</span>
+      <h2>One of <em>One</em></h2>
+      <p>Вещь, которой больше ни у кого не будет. Дизайнер разрабатывает индивидуальный эскиз в эстетике текущего дропа — с учётом твоих пожеланий, размеров и материалов.</p>
+      <button class="btn btn-primary" onclick="openModal()">Заказать авторскую вещь →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ARCHIVE ============== -->
+<section id="archive">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Drop <em>archive</em></h2>
+      <p>Каждый дроп живёт один раз. Распродали — закрыли навсегда.</p>
+    </div>
+
+    <div class="archive-list">
+      <div class="archive-item reveal">
+        <div class="num">01</div>
+        <div class="title">Cursed Silhouettes <small>Jujutsu Kaisen</small></div>
+        <div class="status">Live · 2025</div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="archive-item reveal">
+        <div class="num">02</div>
+        <div class="title">Down the Rabbit Hole <small>Alice in Wonderland</small></div>
+        <div class="status sold">Sold out</div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="archive-item reveal">
+        <div class="num">03</div>
+        <div class="title">Black & White <small>Cruella</small></div>
+        <div class="status sold">Sold out</div>
+        <div class="arrow">→</div>
+      </div>
+      <div class="archive-item reveal">
+        <div class="num">04</div>
+        <div class="title">Neon Tokyo <small>Akira</small></div>
+        <div class="status sold">Sold out</div>
+        <div class="arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="logo">SCENORA</div>
+        <p>Limited fashion drops, вдохновлённые эстетикой кино, сериалов и аниме. Авторские коллекции. Ограниченные тиражи. Никогда не повторяются.</p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="#drop">Drop 01</a></li>
+          <li><a href="#archive">Archive</a></li>
+          <li><a href="#ooo">One of One</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>About</h4>
+        <ul>
+          <li><a href="#story">Story</a></li>
+          <li><a href="#designer">Designer</a></li>
+          <li><a href="#">Licensing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">hello@scenora.studio</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2025 Scenora Studio <span class="heart">♡</span></span>
+      <span>Made with love · Educational project</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============== MODAL ============== -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">×</button>
+    <div class="tagline">one of one ♡</div>
+    <h3>Индивидуальный заказ</h3>
+    <div class="sub">Оставь заявку — дизайнер свяжется в течение 3 рабочих дней.</div>
+
+    <label>Тип вещи</label>
+    <select>
+      <option>Верхняя одежда</option>
+      <option>Футболка / лонгслив</option>
+      <option>Худи / свитшот</option>
+      <option>Брюки</option>
+      <option>Аксессуары</option>
+      <option>Другое</option>
+    </select>
+
+    <label>Размер</label>
+    <input type="text" placeholder="XS / S / M / L / XL или индивидуальные мерки" />
+
+    <label>Пожелания</label>
+    <textarea placeholder="Силуэт, материалы, референсы, детали..."></textarea>
+
+    <label>Бюджет</label>
+    <input type="text" placeholder="от 50 000 ₽" />
+
+    <label>Email</label>
+    <input type="email" placeholder="you@example.com" />
+
+    <button class="btn btn-primary" onclick="submitModal()">Отправить заявку ♡</button>
+  </div>
+</div>
+
+<script>
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // Modal
+  const modal = document.getElementById('modal');
+  function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  function submitModal(){
+    alert('Спасибо! Заявка отправлена ♡ Дизайнер свяжется с тобой в течение 3 рабочих дней.');
+    closeModal();
+  }
+  modal.addEventListener('click',(e)=>{ if(e.target===modal) closeModal(); });
+  document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') closeModal(); });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a=>{
+    a.addEventListener('click',(e)=>{
+      const t = document.querySelector(a.getAttribute('href'));
+      if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+    });
+  });
+</script>
+
+</body>
+  </html>
