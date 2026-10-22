@@ -2,1361 +2,2584 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>SCENORA — одежда с вайбом любимой истории</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,700;1,400;1,700&family=Archivo+Black&family=Space+Grotesk:wght@400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
 
 <style>
 
+:root{
+    --pink:#ffb6d0;
+    --pink-light:#ffd9e6;
+    --hot:#ff4d87;
+    --cream:#fff6ef;
+    --cream-light:#fffaf6;
+    --ink:#180810;
+    --plum:#3b0a28;
+    --lilac:#dda9dc;
+    --butter:#ffe4a3;
+    --mint:#a8e6cf;
+}
+
 *{
-box-sizing:border-box
+    box-sizing:border-box;
 }
 
 html{
-scroll-behavior:smooth
+    scroll-behavior:smooth;
 }
 
 body{
-margin:0;
-background:#fff6ef;
-color:#180810;
-font:15px/1.65 'Space Grotesk',sans-serif;
-overflow-x:hidden
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font:15px/1.65 'Space Grotesk',sans-serif;
+    overflow-x:hidden;
 }
 
-button,
-input,
-textarea,
-select{
-font:inherit
-}
-
-button{
-cursor:pointer
+body.intro-lock{
+    overflow:hidden;
 }
 
 a{
-text-decoration:none;
-color:inherit
+    color:inherit;
+    text-decoration:none;
 }
 
-:root{
---pink:#ffb6d0;
---hot:#ff4d87;
---cream:#fff6ef;
---ink:#180810;
---plum:#3b0a28;
---lilac:#dda9dc;
---butter:#ffe4a3;
---mint:#a8e6cf
+button,
+input{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+.container{
+    max-width:1260px;
+    margin:auto;
+}
+
+.sec{
+    padding:88px 5%;
 }
 
 
+/* ================================= */
+/* СТАРТОВАЯ АНИМАЦИЯ — ЗАНАВЕС */
+/* ================================= */
+
+.intro-curtain{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    pointer-events:none;
+    overflow:hidden;
+
+    background:var(--cream);
+}
+
+.curtain-panel{
+    position:absolute;
+    top:0;
+    bottom:0;
+
+    width:51%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #fffaf6 0%,
+            #ffe5ee 45%,
+            #ffb6d0 100%
+        );
+
+    box-shadow:
+        inset 0 0 40px rgba(255,77,135,.10);
+}
+
+/* лёгкие складки */
+
+.curtain-panel:after{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            90deg,
+
+            transparent 0 34px,
+
+            rgba(255,255,255,.26) 34px 39px,
+
+            transparent 39px 66px,
+
+            rgba(255,77,135,.055) 66px 70px,
+
+            transparent 70px 96px
+        );
+}
+
+.curtain-left{
+    left:0;
+
+    animation:
+        curtainLeft
+        1.15s
+        cubic-bezier(.77,0,.18,1)
+        .48s
+        forwards;
+}
+
+.curtain-right{
+    right:0;
+
+    transform:scaleX(-1);
+
+    animation:
+        curtainRight
+        1.15s
+        cubic-bezier(.77,0,.18,1)
+        .48s
+        forwards;
+}
+
+.intro-logo{
+    position:absolute;
+    inset:0;
+
+    display:grid;
+    place-items:center;
+
+    z-index:5;
+
+    color:var(--ink);
+
+    font:
+        clamp(34px,8vw,88px)
+        'Archivo Black';
+
+    letter-spacing:10px;
+
+    text-shadow:
+        0 6px 25px rgba(255,77,135,.12);
+
+    animation:
+        introLogo
+        1s
+        ease
+        .15s
+        forwards;
+}
+
+.intro-logo span{
+    color:var(--hot);
+}
+
+@keyframes curtainLeft{
+
+    to{
+        transform:translateX(-105%);
+    }
+
+}
+
+@keyframes curtainRight{
+
+    to{
+        transform:
+            scaleX(-1)
+            translateX(-105%);
+    }
+
+}
+
+@keyframes introLogo{
+
+    0%{
+        opacity:0;
+        transform:scale(.95);
+    }
+
+    35%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    75%{
+        opacity:1;
+    }
+
+    100%{
+        opacity:0;
+        transform:scale(1.025);
+    }
+
+}
+
+
+/* ================================= */
 /* ВЕРХНЯЯ БЕГУЩАЯ СТРОКА */
+/* ================================= */
 
 .ticker{
-overflow:hidden;
-background:var(--ink);
-color:var(--pink);
-padding:12px 0;
-font:12px 'Archivo Black';
-letter-spacing:3px
+    overflow:hidden;
+
+    background:var(--ink);
+    color:var(--pink);
+
+    padding:10px 0;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:2.5px;
 }
 
 .ticker-track{
-display:flex;
-width:max-content;
-gap:45px;
-white-space:nowrap;
-animation:marq 28s linear infinite
+    display:flex;
+
+    width:max-content;
+
+    gap:42px;
+
+    white-space:nowrap;
+
+    animation:
+        marqueeMove
+        28s
+        linear
+        infinite;
 }
 
 .ticker-track span:after{
-content:' ✦';
-color:var(--hot)
+    content:' ✦';
+    color:var(--hot);
 }
 
-@keyframes marq{
-to{
-transform:translateX(-50%)
-}
+@keyframes marqueeMove{
+
+    to{
+        transform:translateX(-50%);
+    }
+
 }
 
 
-/* МЕНЮ */
+/* ================================= */
+/* НАВИГАЦИЯ */
+/* ================================= */
 
 .nav{
-position:sticky;
-top:0;
-z-index:30;
-background:#fff6efee;
-backdrop-filter:blur(18px);
-border-bottom:2px solid var(--ink);
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px;
-padding:16px 4%
-}
+    position:sticky;
+    top:0;
 
-.nav-left,
-.nav-right{
-display:flex;
-gap:22px;
-align-items:center
-}
+    z-index:50;
 
-.nlink{
-font-weight:700;
-font-size:11px;
-letter-spacing:1.5px;
-text-transform:uppercase
-}
+    background:rgba(255,246,239,.94);
 
-.nlink:hover{
-color:var(--hot)
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px
+        solid
+        rgba(24,8,16,.75);
+
+    display:grid;
+
+    grid-template-columns:
+        auto
+        1fr
+        auto;
+
+    align-items:center;
+
+    gap:24px;
+
+    padding:
+        14px
+        4%;
 }
 
 .brand{
-font:25px 'Archivo Black';
-letter-spacing:5px
+    font:
+        25px
+        'Archivo Black';
+
+    letter-spacing:5px;
+
+    white-space:nowrap;
 }
 
 .brand span,
 .footer-brand span{
-color:var(--hot)
+    color:var(--hot);
+}
+
+.nav-links{
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:25px;
+
+    min-width:0;
+
+    white-space:nowrap;
+}
+
+.nlink{
+    position:relative;
+
+    font:
+        700
+        10px
+        'Space Grotesk';
+
+    letter-spacing:1.4px;
+
+    text-transform:uppercase;
+}
+
+.nlink:after{
+    content:'';
+
+    position:absolute;
+
+    left:0;
+    right:100%;
+    bottom:-5px;
+
+    height:2px;
+
+    background:var(--hot);
+
+    transition:.25s;
+}
+
+.nlink:hover{
+    color:var(--hot);
+}
+
+.nlink:hover:after{
+    right:0;
 }
 
 .cart-pill{
-border:0;
-border-radius:35px;
-background:var(--ink);
-color:white;
-padding:11px 18px;
-font-weight:700
+    border:0;
+
+    border-radius:35px;
+
+    background:var(--ink);
+
+    color:white;
+
+    padding:
+        10px
+        17px;
+
+    font-weight:700;
+
+    white-space:nowrap;
 }
 
 .cart-pill b{
-background:var(--pink);
-color:var(--ink);
-padding:4px 9px;
-border-radius:100px
+    background:var(--pink);
+
+    color:var(--ink);
+
+    padding:
+        4px
+        9px;
+
+    margin-left:5px;
+
+    border-radius:100px;
 }
 
 
+/* ================================= */
 /* ГЛАВНЫЙ ЭКРАН */
+/* ================================= */
 
 .hero{
-position:relative;
-min-height:82vh;
-padding:70px 5%;
-background:
-radial-gradient(
-circle at 78% 20%,
-#ffb6d080,
-transparent 50%
-);
-display:grid;
-grid-template-columns:1.1fr .9fr;
-gap:7%;
-align-items:center
+    min-height:80vh;
+
+    padding:
+        70px
+        5%;
+
+    background:
+        radial-gradient(
+            circle at 78% 18%,
+            rgba(255,182,208,.52),
+            transparent 50%
+        );
+
+    display:grid;
+
+    grid-template-columns:
+        1.05fr
+        .95fr;
+
+    gap:7%;
+
+    align-items:center;
 }
 
-.hero-tag,
-.eyebrow{
-display:inline-block;
-background:var(--pink);
-padding:8px 18px;
-border-radius:50px;
-font:11px 'Archivo Black';
-letter-spacing:2px
+.hero-tag{
+    display:inline-block;
+
+    background:var(--pink);
+
+    padding:
+        8px
+        17px;
+
+    border-radius:50px;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.8px;
 }
 
 .hero h1{
-font:300 clamp(44px,6.5vw,95px)/.99 'Fraunces';
-letter-spacing:-2px;
-margin:24px 0
+    font:
+        300
+        clamp(44px,6.5vw,92px)
+        /.99
+        'Fraunces';
+
+    letter-spacing:-2px;
+
+    margin:
+        22px
+        0;
 }
 
 .hero h1 em,
-.sec-title em,
-.sc-extra-heading em{
-color:var(--hot)
+.sec-title em{
+    color:var(--hot);
 }
 
 .hero p{
-font-size:17px;
-color:var(--plum);
-max-width:530px
+    font-size:17px;
+
+    color:var(--plum);
+
+    max-width:540px;
 }
 
-.hero-cta,
-.btn-main,
-.btn-submit,
-.add-to-cart-btn,
-.btn-outline{
-display:inline-flex;
-justify-content:center;
-align-items:center;
-gap:10px;
-background:var(--ink);
-color:white;
-border:2px solid var(--ink);
-padding:18px 30px;
-border-radius:100px;
-font:12px 'Archivo Black';
-letter-spacing:1.5px;
-transition:.25s
+.btn{
+    display:inline-flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--ink);
+
+    color:white;
+
+    border:
+        2px
+        solid
+        var(--ink);
+
+    border-radius:100px;
+
+    padding:
+        17px
+        27px;
+
+    font:
+        11px
+        'Archivo Black';
+
+    letter-spacing:1.4px;
+
+    transition:.25s;
 }
 
-.hero-cta:hover,
-.btn-main:hover,
-.btn-submit:hover,
-.add-to-cart-btn:hover,
-.btn-outline:hover{
-background:var(--hot);
-border-color:var(--hot);
-transform:translateY(-3px)
+.btn:hover{
+    background:var(--hot);
+    border-color:var(--hot);
+
+    transform:translateY(-2px);
 }
 
 .hero-visual{
-position:relative;
-height:530px
+    position:relative;
+
+    height:510px;
 }
 
 .hero-photo{
-position:absolute;
-inset:0;
-background:
-url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop')
-center/cover;
-border-radius:20px;
-box-shadow:18px 18px var(--ink)
+    position:absolute;
+    inset:0;
+
+    background:
+        url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?q=80&w=1200&auto=format&fit=crop')
+        center/cover;
+
+    border-radius:22px;
+
+    box-shadow:
+        16px
+        16px
+        var(--ink);
 }
 
 .hero-badge{
-position:absolute;
-right:-17px;
-top:-17px;
-background:var(--butter);
-width:120px;
-height:120px;
-border-radius:50%;
-display:grid;
-place-items:center;
-text-align:center;
-padding:15px;
-font:11px 'Archivo Black';
-animation:spin 18s linear infinite
+    position:absolute;
+
+    right:-15px;
+    top:-15px;
+
+    width:112px;
+    height:112px;
+
+    border-radius:50%;
+
+    background:var(--butter);
+
+    display:grid;
+    place-items:center;
+
+    text-align:center;
+
+    padding:14px;
+
+    font:
+        10px
+        'Archivo Black';
+
+    animation:
+        spinBadge
+        18s
+        linear
+        infinite;
 }
 
 .hero-sticker{
-position:absolute;
-left:-12px;
-bottom:20px;
-background:var(--pink);
-padding:12px 22px;
-border-radius:50px;
-transform:rotate(-6deg);
-box-shadow:5px 5px var(--ink);
-font:23px 'Caveat'
+    position:absolute;
+
+    left:-10px;
+    bottom:20px;
+
+    background:var(--pink);
+
+    padding:
+        11px
+        20px;
+
+    border-radius:50px;
+
+    transform:rotate(-5deg);
+
+    box-shadow:
+        5px
+        5px
+        var(--ink);
+
+    font:
+        22px
+        'Caveat';
 }
 
-@keyframes spin{
-to{
-transform:rotate(360deg)
-}
+@keyframes spinBadge{
+
+    to{
+        transform:rotate(360deg);
+    }
+
 }
 
 
-/* БЕГУЩИЕ СТРОКИ */
+/* ================================= */
+/* ЦВЕТНЫЕ БЕГУЩИЕ ЛЕНТЫ */
+/* ================================= */
 
 .marquee{
-padding:20px 0;
-overflow:hidden;
-border-block:2px solid var(--ink)
+    padding:
+        14px
+        0;
+
+    overflow:hidden;
+
+    border-block:
+        1px
+        solid
+        rgba(24,8,16,.8);
 }
 
 .marquee.pink{
-background:var(--pink)
+    background:var(--pink);
 }
 
 .marquee.lilac{
-background:var(--lilac)
+    background:var(--lilac);
 }
 
 .marquee.mint{
-background:var(--mint)
+    background:var(--mint);
 }
 
 .marquee.ink{
-background:var(--ink);
-color:var(--cream)
+    background:var(--ink);
+    color:var(--cream);
 }
 
 .marquee-track{
-display:flex;
-width:max-content;
-gap:55px;
-white-space:nowrap;
-animation:marq 35s linear infinite;
-font:italic 30px 'Fraunces'
+    display:flex;
+
+    width:max-content;
+
+    gap:48px;
+
+    white-space:nowrap;
+
+    animation:
+        marqueeMove
+        35s
+        linear
+        infinite;
+
+    font:
+        italic
+        25px
+        'Fraunces';
 }
 
 .marquee-track span:after{
-content:' ✿';
-font-size:22px
+    content:' ✿';
+
+    font-size:17px;
 }
 
 
-/* ОБЩИЕ РАЗДЕЛЫ */
-
-section.sec{
-padding:95px 5%;
-position:relative
-}
-
-.container{
-max-width:1300px;
-margin:auto
-}
+/* ================================= */
+/* ЗАГОЛОВКИ РАЗДЕЛОВ */
+/* ================================= */
 
 .sec-head{
-display:grid;
-grid-template-columns:auto 1fr auto;
-align-items:end;
-gap:25px;
-border-bottom:2px solid var(--ink);
-padding-bottom:22px;
-margin-bottom:42px
+    display:grid;
+
+    grid-template-columns:
+        auto
+        1fr
+        auto;
+
+    align-items:end;
+
+    gap:24px;
+
+    border-bottom:
+        1px
+        solid
+        rgba(24,8,16,.72);
+
+    padding-bottom:20px;
+
+    margin-bottom:40px;
 }
 
 .sec-num{
-font:11px 'Archivo Black';
-letter-spacing:2px;
-background:var(--ink);
-color:white;
-border-radius:35px;
-padding:10px 15px
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.8px;
+
+    background:var(--ink);
+
+    color:white;
+
+    border-radius:35px;
+
+    padding:
+        9px
+        14px;
 }
 
 .sec-title{
-font:400 clamp(35px,5vw,66px)/1 'Fraunces';
-text-align:center;
-margin:0
+    font:
+        400
+        clamp(34px,5vw,62px)
+        /1
+        'Fraunces';
+
+    text-align:center;
+
+    margin:0;
 }
 
 .sec-tag{
-font:11px/1.6 'Archivo Black';
-letter-spacing:2px;
-text-align:right
+    font:
+        10px
+        /1.6
+        'Archivo Black';
+
+    letter-spacing:1.6px;
+
+    text-align:right;
 }
 
 
+/* ================================= */
 /* О ПРОЕКТЕ */
+/* ================================= */
 
 .about-grid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:7%;
-align-items:center
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:7%;
+
+    align-items:center;
 }
 
 .about-text .label{
-font:25px 'Caveat';
-color:var(--hot)
+    font:
+        24px
+        'Caveat';
+
+    color:var(--hot);
 }
 
 .about-text h3{
-font:400 clamp(30px,3.5vw,49px)/1.1 'Fraunces';
-margin:15px 0 25px
+    font:
+        400
+        clamp(30px,3.5vw,48px)
+        /1.08
+        'Fraunces';
+
+    margin:
+        14px
+        0
+        24px;
 }
 
 .about-text h3 em{
-color:var(--hot)
+    color:var(--hot);
 }
 
 .about-text p{
-color:var(--plum)
+    color:var(--plum);
 }
 
 .about-stats{
-display:flex;
-gap:45px;
-border-top:1px solid var(--ink);
-padding-top:25px;
-margin-top:25px
+    display:flex;
+
+    gap:40px;
+
+    border-top:
+        1px
+        solid
+        var(--ink);
+
+    padding-top:22px;
+
+    margin-top:24px;
 }
 
 .stat b{
-display:block;
-font:italic 700 45px 'Fraunces';
-color:var(--hot)
+    display:block;
+
+    font:
+        italic
+        700
+        42px
+        'Fraunces';
+
+    color:var(--hot);
 }
 
 .stat span{
-font:11px 'Archivo Black';
-letter-spacing:1px
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1px;
 }
 
 .about-visual{
-height:480px;
-position:relative
+    height:460px;
+
+    position:relative;
 }
 
 .about-photo{
-position:absolute;
-inset:0;
-background:
-url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop')
-center/cover;
-border-radius:22px;
-box-shadow:-18px 18px var(--ink)
+    position:absolute;
+    inset:0;
+
+    background:
+        url('https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop')
+        center/cover;
+
+    border-radius:22px;
+
+    box-shadow:
+        -15px
+        15px
+        var(--ink);
 }
 
 
-/* КАПСУЛА */
+/* ================================= */
+/* КАПСУЛА — КИНОПЛЁНКА */
+/* ================================= */
 
 .carousel-sec{
-background:
-linear-gradient(
-var(--cream),
-#ffe8de
-);
-border-block:2px solid var(--ink)
+    background:
+        linear-gradient(
+            var(--cream),
+            #ffe8de
+        );
+
+    border-block:
+        1px
+        solid
+        var(--ink);
 }
 
 .carousel-wrap{
-position:relative;
-height:535px;
-perspective:1900px;
-overflow:hidden
+    position:relative;
+
+    height:500px;
+
+    perspective:1850px;
+
+    overflow:hidden;
 }
-
-
-/* 3D КАРУСЕЛЬ */
 
 .carousel-stage{
-position:absolute;
-top:0;
-left:50%;
-width:260px;
-height:100%;
-transform-style:preserve-3d;
-transition:
-transform .9s cubic-bezier(.25,1,.5,1)
+    position:absolute;
+
+    top:0;
+    left:50%;
+
+    width:238px;
+    height:100%;
+
+    transform-style:preserve-3d;
+
+    transition:
+        transform
+        .9s
+        cubic-bezier(.25,1,.5,1);
 }
 
+.film-card{
+    position:absolute;
 
-/* КАДР ПЛЁНКИ */
+    top:18px;
+    left:0;
 
-.mannequin{
-position:absolute;
-top:18px;
-left:0;
-width:260px;
-cursor:pointer;
-transition:
-filter .35s,
-opacity .35s
+    width:238px;
+
+    cursor:pointer;
+
+    transition:
+        filter .35s,
+        opacity .35s;
+
+    backface-visibility:hidden;
 }
 
-.mq-body{
-position:relative;
-height:405px;
-padding:28px 20px;
-background:var(--ink);
-border:2px solid var(--ink);
-border-radius:14px;
-overflow:hidden;
-box-shadow:
-7px 9px 0 #18081033
+.film-frame{
+    position:relative;
+
+    height:368px;
+
+    padding:
+        24px
+        18px
+        45px;
+
+    background:var(--ink);
+
+    border-radius:13px;
+
+    overflow:hidden;
+
+    box-shadow:
+        6px
+        8px
+        0
+        rgba(24,8,16,.17);
 }
 
+.film-frame:before,
+.film-frame:after{
+    content:'';
 
-/* ПЕРФОРАЦИЯ ПЛЁНКИ */
+    position:absolute;
 
-.mq-body:before,
-.mq-body:after{
-content:'';
-position:absolute;
-z-index:3;
-top:9px;
-bottom:9px;
-width:8px;
-background:
-repeating-linear-gradient(
-to bottom,
-var(--cream) 0 8px,
-transparent 8px 16px
-);
-border-radius:2px
+    z-index:5;
+
+    top:10px;
+    bottom:10px;
+
+    width:8px;
+
+    background:
+        repeating-linear-gradient(
+            to bottom,
+
+            var(--cream) 0 7px,
+
+            transparent 7px 15px
+        );
+
+    border-radius:2px;
 }
 
-.mq-body:before{
-left:6px
+.film-frame:before{
+    left:6px;
 }
 
-.mq-body:after{
-right:6px
+.film-frame:after{
+    right:6px;
 }
 
+.film-frame img{
+    width:100%;
+    height:100%;
 
-/* ФОТО */
+    object-fit:cover;
 
-.mq-body img{
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:4px;
-display:block
+    border-radius:4px;
+
+    display:block;
 }
 
+.film-vibe{
+    position:absolute;
 
-/* НАСТРОЕНИЕ */
+    left:31px;
+    top:33px;
 
-.mq-vibe{
-position:absolute;
-left:34px;
-top:42px;
-z-index:4;
-border-radius:24px;
-padding:7px 11px;
-font:9px 'Archivo Black';
-letter-spacing:1px;
-background:var(--cream);
-color:var(--ink);
-border:1px solid var(--ink)
+    z-index:6;
+
+    border-radius:24px;
+
+    padding:
+        7px
+        10px;
+
+    font:
+        8px
+        'Archivo Black';
+
+    letter-spacing:.9px;
+
+    background:rgba(255,246,239,.94);
+
+    border:
+        1px
+        solid
+        var(--ink);
 }
 
+.film-num{
+    position:absolute;
 
-/* НОМЕР КАДРА */
+    right:30px;
+    top:33px;
 
-.mq-frame{
-position:absolute;
-right:34px;
-bottom:40px;
-z-index:4;
-background:var(--hot);
-color:white;
-border-radius:24px;
-padding:6px 10px;
-font:9px 'Archivo Black';
-letter-spacing:1.2px
+    z-index:6;
+
+    background:var(--hot);
+
+    color:white;
+
+    border-radius:24px;
+
+    padding:
+        6px
+        9px;
+
+    font:
+        8px
+        'Archivo Black';
+
+    letter-spacing:1px;
 }
 
+.film-caption{
+    position:absolute;
 
-/* НАЗВАНИЕ ВЕЩИ */
+    left:25px;
+    right:25px;
+    bottom:10px;
 
-.mq-label{
-text-align:center;
-font:italic 19px 'Fraunces';
-margin-top:14px
+    z-index:6;
+
+    color:var(--cream);
+
+    font:
+        italic
+        700
+        13px
+        'Fraunces';
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
 }
 
-.mannequin.active .mq-body{
-box-shadow:
-10px 12px 0 var(--hot)
+.film-card.active .film-frame{
+    box-shadow:
+        9px
+        11px
+        0
+        var(--hot);
 }
-
-
-/* СТРЕЛКИ */
 
 .carousel-controls{
-position:absolute;
-top:43%;
-z-index:5;
-border:0;
-border-radius:50%;
-width:55px;
-height:55px;
-background:var(--ink);
-color:white;
-font-size:28px;
-display:grid;
-place-items:center
+    position:absolute;
+
+    top:41%;
+
+    z-index:8;
+
+    border:0;
+
+    border-radius:50%;
+
+    width:50px;
+    height:50px;
+
+    background:var(--ink);
+
+    color:white;
+
+    font-size:26px;
+
+    display:grid;
+    place-items:center;
 }
 
 .nav-prev{
-left:2%
+    left:2%;
 }
 
 .nav-next{
-right:2%
+    right:2%;
 }
 
-
-/* ТОЧКИ */
-
 .carousel-dots{
-display:flex;
-gap:10px;
-justify-content:center;
-margin:12px 0 35px
+    display:flex;
+
+    gap:9px;
+
+    justify-content:center;
+
+    margin:
+        7px
+        0
+        34px;
 }
 
 .dot-btn{
-width:32px;
-height:7px;
-background:#18081044;
-border:0;
-border-radius:20px;
-transition:.25s
+    width:30px;
+    height:6px;
+
+    background:rgba(24,8,16,.22);
+
+    border:0;
+
+    border-radius:20px;
+
+    transition:.25s;
 }
 
 .dot-btn.active{
-background:var(--hot);
-width:50px
+    background:var(--hot);
+
+    width:48px;
 }
 
 
-/* ДЕТАЛИ ТОВАРА */
+/* ================================= */
+/* КАРТОЧКА ТОВАРА */
+/* ================================= */
 
 .detail-panel{
-max-width:1080px;
-margin:35px auto 0;
-border:2px solid var(--ink);
-border-radius:20px;
-background:var(--cream);
-overflow:hidden;
-box-shadow:12px 12px var(--ink);
-display:grid;
-grid-template-columns:1fr 1fr
+    max-width:1050px;
+
+    margin:
+        32px
+        auto
+        0;
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius:20px;
+
+    background:var(--cream);
+
+    overflow:hidden;
+
+    box-shadow:
+        10px
+        10px
+        var(--ink);
+
+    display:grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
 }
 
 .detail-img{
-position:relative;
-min-height:480px;
-background:var(--pink)
+    position:relative;
+
+    min-height:450px;
+
+    background:var(--pink);
 }
 
 .detail-img img{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
 }
 
 .detail-info{
-padding:40px
+    padding:38px;
 }
 
 .detail-info .vibe{
-color:var(--hot);
-font:11px 'Archivo Black';
-letter-spacing:2px
+    color:var(--hot);
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.6px;
 }
 
 .detail-info h3{
-font:400 40px 'Fraunces';
-margin:15px 0
+    font:
+        400
+        38px
+        'Fraunces';
+
+    margin:
+        14px
+        0;
 }
 
 .detail-info .desc{
-color:var(--plum)
+    color:var(--plum);
 }
 
 .price-row{
-border-bottom:1px dashed #bbb;
-padding:20px 0;
-display:flex;
-gap:15px;
-align-items:baseline
+    border-bottom:
+        1px
+        dashed
+        #bbb;
+
+    padding:
+        18px
+        0;
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:baseline;
 }
 
 .price{
-font:italic 700 38px 'Fraunces'
+    font:
+        italic
+        700
+        35px
+        'Fraunces';
 }
 
 .price-old{
-text-decoration:line-through;
-opacity:.5
+    text-decoration:line-through;
+    opacity:.5;
 }
 
 .size-block{
-margin:24px 0
+    margin:
+        22px
+        0;
 }
 
 .size-label{
-display:flex;
-justify-content:space-between;
-font:11px 'Archivo Black';
-letter-spacing:1px;
-margin-bottom:14px
+    display:flex;
+
+    justify-content:space-between;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1px;
+
+    margin-bottom:12px;
 }
 
 .hint{
-font:20px 'Caveat';
-color:var(--hot)
+    font:
+        19px
+        'Caveat';
+
+    color:var(--hot);
 }
 
 .sizes{
-display:flex;
-flex-wrap:wrap;
-gap:9px
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:8px;
 }
 
 .size-btn{
-min-width:48px;
-height:48px;
-border:2px solid var(--ink);
-border-radius:50px;
-background:transparent;
-font-weight:700
+    min-width:46px;
+    height:46px;
+
+    border:
+        1.5px
+        solid
+        var(--ink);
+
+    border-radius:50px;
+
+    background:transparent;
+
+    font-weight:700;
 }
 
 .size-btn.selected{
-background:var(--ink);
-color:white
+    background:var(--ink);
+    color:white;
 }
 
 .add-to-cart-btn{
-background:var(--hot);
-border-color:var(--hot);
-width:100%
+    width:100%;
+
+    border:0;
+
+    border-radius:100px;
+
+    background:var(--hot);
+
+    color:white;
+
+    padding:16px;
+
+    font:
+        11px
+        'Archivo Black';
+
+    letter-spacing:1.2px;
 }
 
 .add-to-cart-btn:disabled{
-opacity:.4;
-cursor:not-allowed
+    opacity:.4;
+    cursor:not-allowed;
 }
 
 
+/* ================================= */
 /* КОРЗИНА */
+/* ================================= */
 
 .cart-sec{
-background:var(--pink);
-border-top:2px solid var(--ink)
+    background:var(--pink);
 }
 
 #cart-items{
-max-width:850px;
-margin:auto
+    max-width:830px;
+    margin:auto;
 }
 
 .cart-item{
-background:var(--cream);
-border:2px solid var(--ink);
-border-radius:16px;
-padding:20px;
-margin:10px 0;
-display:flex;
-justify-content:space-between;
-align-items:center;
-gap:20px
+    background:var(--cream);
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius:16px;
+
+    padding:18px;
+
+    margin:
+        10px
+        0;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:18px;
 }
 
 .cart-item h4{
-font:italic 700 22px 'Fraunces';
-margin:0 0 7px
-}
+    font:
+        italic
+        700
+        21px
+        'Fraunces';
 
-.cart-item small{
-font-size:12px
+    margin:
+        0
+        0
+        6px;
 }
 
 .size-tag{
-background:var(--ink);
-color:white;
-padding:3px 10px;
-border-radius:20px;
-font:10px 'Archivo Black'
+    background:var(--ink);
+    color:white;
+
+    padding:
+        3px
+        9px;
+
+    border-radius:20px;
+
+    font:
+        9px
+        'Archivo Black';
 }
 
 .cart-remove{
-border:0;
-background:transparent;
-font-size:22px
+    border:0;
+    background:transparent;
+
+    font-size:21px;
 }
 
 .cart-empty{
-text-align:center;
-background:var(--cream);
-border:2px dashed var(--ink);
-padding:50px;
-border-radius:20px;
-font:25px 'Caveat'
+    text-align:center;
+
+    background:var(--cream);
+
+    border:
+        1px
+        dashed
+        var(--ink);
+
+    padding:42px;
+
+    border-radius:20px;
+
+    font:
+        24px
+        'Caveat';
 }
 
 .cart-total{
-text-align:center;
-margin:30px 0;
-font:italic 700 40px 'Fraunces'
+    text-align:center;
+
+    margin:
+        28px
+        0;
+
+    font:
+        italic
+        700
+        36px
+        'Fraunces';
 }
 
 .cart-actions{
-text-align:center
+    text-align:center;
 }
 
-
-/* ОФОРМЛЕНИЕ */
-
 #checkout{
-display:none;
-max-width:650px;
-margin:30px auto;
-background:var(--cream);
-border:2px solid var(--ink);
-padding:35px;
-border-radius:20px;
-box-shadow:10px 10px var(--ink)
+    display:none;
+
+    max-width:630px;
+
+    margin:
+        28px
+        auto;
+
+    background:var(--cream);
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    padding:32px;
+
+    border-radius:20px;
+
+    box-shadow:
+        8px
+        8px
+        var(--ink);
 }
 
 #checkout h3{
-font:italic 35px 'Fraunces';
-text-align:center;
-margin:0
+    font:
+        italic
+        33px
+        'Fraunces';
+
+    text-align:center;
+    margin:0;
 }
 
 #checkout .sub{
-text-align:center;
-font:22px 'Caveat'
+    text-align:center;
+
+    font:
+        21px
+        'Caveat';
 }
 
 .form-group{
-margin:17px 0
+    margin:
+        15px
+        0;
 }
 
 .form-group label{
-display:block;
-font:11px 'Archivo Black';
-letter-spacing:1.5px;
-margin-bottom:8px
+    display:block;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.3px;
+
+    margin-bottom:7px;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea{
-width:100%;
-padding:13px 17px;
-border:2px solid var(--ink);
-border-radius:16px;
-background:var(--cream)
-}
+.form-group input{
+    width:100%;
 
-.form-group textarea{
-min-height:100px
-}
+    padding:
+        12px
+        15px;
 
-.form-row{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:15px
-}
+    border:
+        1px
+        solid
+        var(--ink);
 
-.pay-note{
-font:18px 'Caveat';
-color:var(--plum);
-text-align:center
-}
+    border-radius:14px;
 
-.btn-submit{
-width:100%;
-background:var(--hot);
-border-color:var(--hot)
+    background:var(--cream);
 }
 
 .success-msg{
-display:none;
-max-width:650px;
-margin:30px auto;
-text-align:center;
-background:var(--cream);
-border:2px solid var(--ink);
-border-radius:20px;
-padding:45px
+    display:none;
+
+    max-width:630px;
+
+    margin:
+        28px
+        auto;
+
+    text-align:center;
+
+    background:var(--cream);
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius:20px;
+
+    padding:40px;
 }
 
 .success-msg h3{
-font:italic 40px 'Fraunces';
-color:var(--hot)
+    font:
+        italic
+        37px
+        'Fraunces';
+
+    color:var(--hot);
 }
 
 
+/* ================================= */
+/* ПРОЦЕСС */
+/* ================================= */
+
+.process-sec{
+    background:var(--cream-light);
+
+    border-block:
+        1px
+        solid
+        rgba(24,8,16,.72);
+}
+
+.process-intro{
+    max-width:730px;
+
+    color:var(--plum);
+
+    font-size:16px;
+
+    line-height:1.65;
+
+    margin:
+        0
+        0
+        38px;
+}
+
+.process-grid{
+    display:grid;
+
+    grid-template-columns:
+        repeat(5,1fr);
+
+    gap:18px;
+}
+
+.process-step{
+    position:relative;
+
+    padding-top:14px;
+}
+
+/* линии короче */
+
+.process-step:before{
+    content:'';
+
+    display:block;
+
+    width:68%;
+    height:2px;
+
+    background:var(--hot);
+
+    margin-bottom:14px;
+
+    transform:scaleX(0);
+    transform-origin:left;
+
+    animation:
+        lineGrow
+        .65s
+        ease
+        forwards;
+}
+
+.process-step:nth-child(2):before{
+    animation-delay:.08s;
+}
+
+.process-step:nth-child(3):before{
+    animation-delay:.16s;
+}
+
+.process-step:nth-child(4):before{
+    animation-delay:.24s;
+}
+
+.process-step:nth-child(5):before{
+    animation-delay:.32s;
+}
+
+@keyframes lineGrow{
+
+    to{
+        transform:scaleX(1);
+    }
+
+}
+
+.process-step strong{
+    display:block;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1px;
+
+    margin-bottom:9px;
+}
+
+.process-step p{
+    margin:0;
+
+    color:var(--plum);
+
+    font:
+        13px
+        /1.5
+        'Space Grotesk',
+        sans-serif;
+}
+
+
+/* ================================= */
 /* ДИЗАЙНЕРЫ */
+/* ================================= */
 
 .designers-sec{
-background:
-linear-gradient(
-var(--cream),
-#dda9dc88
-)
+    background:
+        linear-gradient(
+            var(--cream),
+            rgba(221,169,220,.43)
+        );
+}
+
+.designer-profiles{
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:22px;
+
+    margin-bottom:34px;
+}
+
+.designer-card{
+    background:var(--cream);
+
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        7px
+        7px
+        0
+        var(--pink);
+}
+
+.designer-photo{
+    position:relative;
+
+    aspect-ratio:4/5;
+
+    overflow:hidden;
+
+    background:#eadde1;
+}
+
+.designer-photo img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    filter:
+        saturate(.88)
+        contrast(.96);
+}
+
+.designer-photo:after{
+    content:'';
+
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(24,8,16,.55),
+            transparent 43%
+        );
+}
+
+.designer-badge{
+    position:absolute;
+
+    left:15px;
+    top:15px;
+
+    z-index:2;
+
+    background:var(--ink);
+
+    color:var(--cream);
+
+    padding:
+        6px
+        10px;
+
+    border-radius:30px;
+
+    font:
+        8px
+        'Archivo Black';
+
+    letter-spacing:1.2px;
+}
+
+.designer-collection{
+    position:absolute;
+
+    left:17px;
+    right:17px;
+    bottom:15px;
+
+    z-index:2;
+
+    color:white;
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+}
+
+.designer-copy{
+    padding:22px;
+}
+
+.designer-copy h3{
+    margin:
+        0
+        0
+        5px;
+
+    font:
+        400
+        28px
+        /1.05
+        'Fraunces';
+}
+
+.designer-role{
+    margin-bottom:14px;
+
+    color:var(--hot);
+
+    font:
+        9px
+        'Archivo Black';
+
+    letter-spacing:1.3px;
+
+    text-transform:uppercase;
+}
+
+.designer-copy p{
+    margin:0;
+
+    color:var(--plum);
+
+    font-size:13.5px;
+
+    line-height:1.6;
+}
+
+.designer-note{
+    color:#6e5361;
+
+    font-size:12px;
+
+    margin:
+        0
+        0
+        34px;
+}
+
+.open-call{
+    border:
+        1px
+        solid
+        var(--ink);
+
+    border-radius:22px;
+
+    background:var(--cream);
+
+    padding:30px;
+
+    box-shadow:
+        8px
+        8px
+        0
+        var(--pink);
+}
+
+.open-call h3{
+    font:
+        400
+        34px
+        'Fraunces';
+
+    margin:
+        0
+        0
+        10px;
+}
+
+.open-call h3 em{
+    color:var(--hot);
+}
+
+.open-call p{
+    color:var(--plum);
+
+    max-width:700px;
+
+    margin:
+        0
+        0
+        20px;
 }
 
 
+/* ================================= */
 /* ЛИЦЕНЗИЯ */
+/* ================================= */
 
 .license-sec{
-background:var(--ink);
-color:var(--cream)
+    background:var(--ink);
+
+    color:var(--cream);
 }
 
 .license-sec .sec-head{
-border-color:var(--pink)
+    border-color:var(--pink);
 }
 
 .license-sec .sec-num{
-background:var(--pink);
-color:var(--ink)
+    background:var(--pink);
+    color:var(--ink);
 }
 
 .license-grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:20px
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:18px;
 }
 
 .license-card{
-border:1px solid #ffb6d066;
-border-radius:20px;
-padding:25px;
-background:#ffffff0d
+    border:
+        1px
+        solid
+        rgba(255,182,208,.35);
+
+    border-radius:18px;
+
+    padding:23px;
+
+    background:rgba(255,255,255,.05);
 }
 
 .license-card h4{
-color:var(--pink);
-font:12px 'Archivo Black';
-letter-spacing:2px
+    color:var(--pink);
+
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.7px;
 }
 
 .license-card p,
 .license-card li{
-color:#fff6efbb;
-font-size:13px
+    color:rgba(255,246,239,.75);
+
+    font-size:13px;
 }
 
 
+/* ================================= */
 /* ПОДВАЛ */
+/* ================================= */
 
 footer{
-text-align:center;
-padding:55px 4%;
-background:var(--pink);
-border-top:2px solid var(--ink)
+    text-align:center;
+
+    padding:
+        50px
+        4%;
+
+    background:var(--pink);
+
+    border-top:
+        1px
+        solid
+        var(--ink);
 }
 
 .footer-brand{
-font:clamp(50px,10vw,110px) 'Archivo Black';
-letter-spacing:-3px
-}
+    font:
+        clamp(48px,10vw,105px)
+        'Archivo Black';
 
-.footer-brand span{
-color:var(--cream)
+    letter-spacing:-3px;
 }
 
 footer p{
-font:11px 'Archivo Black';
-letter-spacing:2px
+    font:
+        10px
+        'Archivo Black';
+
+    letter-spacing:1.7px;
 }
 
 footer .legal{
-font:20px 'Caveat'
+    font:
+        19px
+        'Caveat';
 }
 
 
+/* ================================= */
 /* ПЛАНШЕТ */
+/* ================================= */
 
 @media(max-width:950px){
 
-.nav{
-flex-wrap:wrap
+    .nav{
+        grid-template-columns:
+            auto
+            auto;
+
+        grid-template-areas:
+            "brand cart"
+            "links links";
+
+        gap:11px;
+    }
+
+    .brand{
+        grid-area:brand;
+    }
+
+    .cart-pill{
+        grid-area:cart;
+        justify-self:end;
+    }
+
+    .nav-links{
+        grid-area:links;
+
+        justify-content:flex-start;
+
+        overflow-x:auto;
+
+        padding-bottom:3px;
+
+        scrollbar-width:none;
+    }
+
+    .nav-links::-webkit-scrollbar{
+        display:none;
+    }
+
+    .hero,
+    .about-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-visual{
+        height:370px;
+    }
+
+    .about-visual{
+        height:370px;
+    }
+
+    .detail-panel{
+        grid-template-columns:1fr;
+    }
+
+    .detail-img{
+        min-height:320px;
+    }
+
+    .sec-head{
+        grid-template-columns:1fr;
+
+        gap:10px;
+    }
+
+    .sec-title{
+        text-align:left;
+    }
+
+    .sec-tag{
+        text-align:left;
+    }
+
+    .process-grid{
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+    .designer-profiles{
+        grid-template-columns:
+            1fr
+            1fr;
+    }
+
+    .license-grid{
+        grid-template-columns:1fr;
+    }
+
 }
 
-.nav-left,
-.nav-right{
-gap:12px
-}
 
-.brand{
-order:-1
-}
-
-.hero,
-.about-grid{
-grid-template-columns:1fr
-}
-
-.hero-visual{
-height:380px
-}
-
-.about-visual{
-height:380px
-}
-
-.detail-panel{
-grid-template-columns:1fr
-}
-
-.detail-img{
-min-height:330px
-}
-
-.sec-head{
-grid-template-columns:1fr;
-gap:12px
-}
-
-.sec-title{
-text-align:left
-}
-
-.sec-tag{
-text-align:left
-}
-
-.carousel-wrap{
-height:510px
-}
-
-.carousel-stage,
-.mannequin{
-width:230px
-}
-
-.mq-body{
-height:380px
-}
-
-.license-grid{
-grid-template-columns:1fr
-}
-
-}
-
-
+/* ================================= */
 /* ТЕЛЕФОН */
+/* ================================= */
 
 @media(max-width:580px){
 
-.nav{
-padding:12px 4%
-}
+    .intro-logo{
+        font-size:36px;
+        letter-spacing:6px;
+    }
 
-.brand{
-font-size:20px
-}
+    .ticker{
+        font-size:8px;
 
-.nav-left,
-.nav-right{
-flex-wrap:wrap
-}
+        padding:
+            8px
+            0;
+    }
 
-.nlink{
-font-size:10px
-}
+    .nav{
+        padding:
+            12px
+            4%;
+    }
 
-.hero{
-padding:50px 5%
-}
+    .brand{
+        font-size:20px;
 
-.hero h1{
-letter-spacing:-1px
-}
+        letter-spacing:4px;
+    }
 
-.hero-visual{
-height:330px
-}
+    .cart-pill{
+        padding:
+            9px
+            14px;
 
-.hero-badge{
-width:90px;
-height:90px;
-font-size:9px
-}
+        font-size:12px;
+    }
 
-.hero-sticker{
-font-size:18px
-}
+    .nav-links{
+        gap:20px;
+    }
 
-.detail-info{
-padding:24px
-}
+    .nlink{
+        font-size:9px;
 
-.detail-info h3{
-font-size:32px
-}
+        letter-spacing:1.1px;
+    }
 
-.detail-img{
-min-height:280px
-}
+    .hero{
+        padding:
+            48px
+            5%;
 
-.form-row{
-grid-template-columns:1fr
-}
+        min-height:auto;
+    }
 
-.carousel-wrap{
-height:455px
-}
+    .hero h1{
+        letter-spacing:-1px;
+    }
 
-.carousel-stage,
-.mannequin{
-width:190px
-}
+    .hero-visual{
+        height:315px;
+    }
 
-.mq-body{
-height:320px;
-padding:24px 17px;
-border-radius:11px
-}
+    .hero-badge{
+        width:86px;
+        height:86px;
 
-.mq-vibe{
-left:29px;
-top:37px;
-font-size:8px
-}
+        font-size:8px;
+    }
 
-.mq-frame{
-right:29px;
-bottom:35px;
-font-size:8px
-}
+    .hero-sticker{
+        font-size:17px;
+    }
 
-.mq-label{
-font-size:17px;
-margin-top:12px
-}
+    .sec{
+        padding:
+            62px
+            5%;
+    }
 
-.carousel-controls{
-width:42px;
-height:42px;
-font-size:23px
-}
+    /* полосы стали уже */
 
-.nav-prev{
-left:0
-}
+    .marquee{
+        padding:
+            11px
+            0;
+    }
 
-.nav-next{
-right:0
-}
+    .marquee-track{
+        font-size:21px;
 
-.sec{
-padding:65px 5%!important
-}
+        gap:38px;
+    }
 
-.cart-item{
-padding:14px
-}
+    .carousel-wrap{
+        height:438px;
+    }
 
-.cart-item h4{
-font-size:17px
-}
+    .carousel-stage,
+    .film-card{
+        width:188px;
+    }
+
+    .film-frame{
+        height:310px;
+
+        padding:
+            22px
+            16px
+            42px;
+    }
+
+    .film-vibe{
+        left:28px;
+        top:31px;
+
+        font-size:7px;
+    }
+
+    .film-num{
+        right:27px;
+        top:31px;
+
+        font-size:7px;
+    }
+
+    .film-caption{
+        left:23px;
+        right:23px;
+
+        font-size:12px;
+    }
+
+    .carousel-controls{
+        width:41px;
+        height:41px;
+
+        font-size:22px;
+    }
+
+    .nav-prev{
+        left:0;
+    }
+
+    .nav-next{
+        right:0;
+    }
+
+    .detail-info{
+        padding:23px;
+    }
+
+    .detail-info h3{
+        font-size:31px;
+    }
+
+    .detail-img{
+        min-height:270px;
+    }
+
+    .process-intro{
+        font-size:14px;
+
+        line-height:1.55;
+
+        margin-bottom:27px;
+    }
+
+    .process-grid{
+        grid-template-columns:1fr;
+
+        gap:17px;
+    }
+
+    .process-step{
+        padding-top:7px;
+    }
+
+    .process-step:before{
+        width:55%;
+
+        height:2px;
+
+        margin-bottom:11px;
+    }
+
+    .process-step strong{
+        font-size:9px;
+    }
+
+    .process-step p{
+        font-size:13px;
+    }
+
+    .designer-profiles{
+        grid-template-columns:1fr;
+
+        gap:18px;
+    }
+
+    .designer-photo{
+        aspect-ratio:5/4;
+    }
+
+    .designer-copy h3{
+        font-size:26px;
+    }
+
+    .open-call{
+        padding:24px;
+    }
+
+    .open-call h3{
+        font-size:29px;
+    }
+
+    .cart-item{
+        padding:14px;
+    }
+
+    .cart-item h4{
+        font-size:17px;
+    }
+
+    .license-card{
+        padding:20px;
+    }
 
 }
 
 </style>
 
-<link rel="stylesheet" href="scenora-extra.css">
-
 </head>
 
-<body>
+
+<body class="intro-lock">
 
 
+<!-- ================================= -->
+<!-- СТАРТОВАЯ АНИМАЦИЯ -->
+<!-- ================================= -->
+
+<div
+    class="intro-curtain"
+    id="introCurtain"
+>
+
+    <div
+        class="curtain-panel curtain-left"
+    ></div>
+
+    <div
+        class="curtain-panel curtain-right"
+    ></div>
+
+    <div class="intro-logo">
+
+        SCEN<span>O</span>RA
+
+    </div>
+
+</div>
+
+
+<!-- ================================= -->
 <!-- ВЕРХНЯЯ СТРОКА -->
+<!-- ================================= -->
 
 <div class="ticker">
 
 <div class="ticker-track">
 
-<span>SCENORA · ОДЕЖДА С НАСТРОЕНИЕМ</span>
+    <span>
+        SCENORA · ОДЕЖДА С НАСТРОЕНИЕМ
+    </span>
 
-<span>СЕЗОН 01 · ОГРАНИЧЕННЫЙ ТИРАЖ</span>
+    <span>
+        СЕЗОН 01 · ОГРАНИЧЕННЫЙ ТИРАЖ
+    </span>
 
-<span>ИСТОРИЯ, КОТОРУЮ МОЖНО НОСИТЬ</span>
+    <span>
+        ИСТОРИЯ, КОТОРУЮ МОЖНО НОСИТЬ
+    </span>
 
-<span>SCENORA · ОДЕЖДА С НАСТРОЕНИЕМ</span>
+    <span>
+        SCENORA · ОДЕЖДА С НАСТРОЕНИЕМ
+    </span>
 
-<span>СЕЗОН 01 · ОГРАНИЧЕННЫЙ ТИРАЖ</span>
+    <span>
+        СЕЗОН 01 · ОГРАНИЧЕННЫЙ ТИРАЖ
+    </span>
 
-<span>ИСТОРИЯ, КОТОРУЮ МОЖНО НОСИТЬ</span>
+    <span>
+        ИСТОРИЯ, КОТОРУЮ МОЖНО НОСИТЬ
+    </span>
 
 </div>
 
 </div>
 
 
-<!-- МЕНЮ -->
+<!-- ================================= -->
+<!-- НАВИГАЦИЯ -->
+<!-- ================================= -->
 
 <nav class="nav">
 
-<div class="nav-left">
-
-<a href="#about" class="nlink">
-О проекте
-</a>
-
-<a href="#capsule" class="nlink">
-Капсула
-</a>
-
-</div>
-
-
-<a href="#top" class="brand">
-SCEN<span>O</span>RA
-</a>
-
-
-<div class="nav-right">
-
-<a href="#designers" class="nlink">
-Дизайнеры
-</a>
-
-<a href="#license" class="nlink">
-Лицензия
-</a>
-
-<button
-class="cart-pill"
-onclick="scrollToCart()"
+<a
+    class="brand"
+    href="#top"
 >
 
-Корзина
+    SCEN<span>O</span>RA
 
-<b id="cartCount">
-0
-</b>
+</a>
 
-</button>
+
+<div class="nav-links">
+
+    <a class="nlink" href="#about">
+        О проекте
+    </a>
+
+    <a class="nlink" href="#capsule">
+        Капсула
+    </a>
+
+    <a class="nlink" href="#process">
+        Процесс
+    </a>
+
+    <a class="nlink" href="#designers">
+        Дизайнеры
+    </a>
+
+    <a class="nlink" href="#license">
+        Лицензия
+    </a>
 
 </div>
+
+
+<button
+    class="cart-pill"
+    onclick="scrollToCart()"
+>
+
+    Корзина
+
+    <b id="cartCount">
+        0
+    </b>
+
+</button>
 
 </nav>
 
 
-<!-- ГЛАВНАЯ -->
+<!-- ================================= -->
+<!-- HERO -->
+<!-- ================================= -->
 
 <section
-class="hero"
-id="top"
+    class="hero"
+    id="top"
 >
 
 <div>
 
-<span class="hero-tag">
-СЦЕНА × АТМОСФЕРА
-</span>
+    <span class="hero-tag">
 
-<h1>
+        СЦЕНА × АТМОСФЕРА
 
-Одежда с вайбом<br>
+    </span>
 
-<em>
-любимой истории
-</em>
 
-</h1>
+    <h1>
 
-<p>
+        Одежда с вайбом<br>
 
-Капсульные коллекции по мотивам атмосферы кино и сериалов.
-Настроение, цвет и силуэт, без копирования костюмов и логотипов.
+        <em>
+            любимой истории
+        </em>
 
-</p>
+    </h1>
 
-<a
-href="#capsule"
-class="hero-cta"
->
 
-СМОТРЕТЬ КАПСУЛУ ↗
+    <p>
 
-</a>
+        Капсульные коллекции,
+        вдохновлённые атмосферой
+        кино и сериалов.
+
+        Настроение, цвет и силуэт
+        без копирования костюмов,
+        логотипов и названий.
+
+    </p>
+
+
+    <a
+        class="btn"
+        href="#capsule"
+    >
+
+        СМОТРЕТЬ КАПСУЛУ ↗
+
+    </a>
 
 </div>
 
 
 <div class="hero-visual">
 
-<div class="hero-photo">
-</div>
+    <div class="hero-photo"></div>
 
-<div class="hero-badge">
-SCENORA · СЕЗОН 01
-</div>
+    <div class="hero-badge">
 
-<div class="hero-sticker">
-вайб любимого кино ✨
-</div>
+        SCENORA · СЕЗОН 01
+
+    </div>
+
+    <div class="hero-sticker">
+
+        вайб любимого кино ✨
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- БЕГУЩАЯ СТРОКА -->
+<!-- ================================= -->
+<!-- БЕГУЩАЯ ЛЕНТА -->
+<!-- ================================= -->
 
 <div class="marquee pink">
 
 <div class="marquee-track">
 
-<span>
-Настроение вместо костюма
-</span>
+    <span>
+        Настроение вместо костюма
+    </span>
 
-<span>
-История вместо логотипа
-</span>
+    <span>
+        История вместо логотипа
+    </span>
 
-<span>
-Авторская интерпретация
-</span>
+    <span>
+        Авторская интерпретация
+    </span>
 
-<span>
-Одежда на каждый день
-</span>
+    <span>
+        Одежда на каждый день
+    </span>
 
-<span>
-Настроение вместо костюма
-</span>
+    <span>
+        Настроение вместо костюма
+    </span>
 
-<span>
-История вместо логотипа
-</span>
-
-<span>
-Авторская интерпретация
-</span>
-
-<span>
-Одежда на каждый день
-</span>
+    <span>
+        История вместо логотипа
+    </span>
 
 </div>
 
 </div>
 
 
+<!-- ================================= -->
 <!-- О ПРОЕКТЕ -->
+<!-- ================================= -->
 
 <section
-class="sec"
-id="about"
+    class="sec"
+    id="about"
 >
 
 <div class="container">
 
+
 <div class="sec-head">
 
-<span class="sec-num">
-01 / О ПРОЕКТЕ
-</span>
+    <span class="sec-num">
 
-<h2 class="sec-title">
-Больше, чем <em>мерч</em>
-</h2>
+        01 / О ПРОЕКТЕ
 
-<span class="sec-tag">
+    </span>
 
-МАНИФЕСТ<br>
 
-КАК ЭТО РАБОТАЕТ
+    <h2 class="sec-title">
 
-</span>
+        Больше, чем
+
+        <em>
+            мерч
+        </em>
+
+    </h2>
+
+
+    <span class="sec-tag">
+
+        МАНИФЕСТ<br>
+
+        КАК ЭТО РАБОТАЕТ
+
+    </span>
 
 </div>
 
@@ -1366,88 +2589,93 @@ id="about"
 
 <div class="about-text">
 
-<div class="label">
-— наш манифест —
-</div>
+    <div class="label">
+
+        — наш манифест —
+
+    </div>
 
 
-<h3>
+    <h3>
 
-Мы не копируем костюмы.<br>
+        Мы не копируем костюмы.<br>
 
-Мы создаём
+        Мы создаём
 
-<em>
-настроение
-</em>.
+        <em>
+            настроение
+        </em>.
 
-</h3>
-
-
-<p>
-
-SCENORA — от английских
-
-<em>scene</em>
-
-(«сцена») и
-
-<em>aura</em>
-
-(«атмосфера»).
-
-Мы переводим визуальный референс из кино
-в удобную одежду для повседневной носки.
-
-</p>
+    </h3>
 
 
-<p>
+    <p>
 
-Дизайнерская капсула среднего ограниченного тиража.
-Продуманные силуэты, качественные ткани, понятная цена.
+        SCENORA — от английских
 
-</p>
+        <em>scene</em>
 
+        («сцена») и
 
-<div class="about-stats">
+        <em>aura</em>
 
-<div class="stat">
+        («атмосфера»).
 
-<b>
-04
-</b>
+        Мы переводим визуальный язык
+        истории в современную одежду
+        для повседневной носки.
 
-<span>
-КАПСУЛЫ В СЕЗОНЕ
-</span>
-
-</div>
+    </p>
 
 
-<div class="stat">
+    <p>
 
-<b>
-100%
-</b>
+        Небольшие дизайнерские капсулы,
+        выразительные силуэты,
+        понятные вещи
+        и ограниченный тираж.
 
-<span>
-АВТОРСКИЙ ДИЗАЙН
-</span>
+    </p>
 
-</div>
 
-</div>
+    <div class="about-stats">
+
+        <div class="stat">
+
+            <b>
+                04
+            </b>
+
+            <span>
+                КАПСУЛЫ В СЕЗОНЕ
+            </span>
+
+        </div>
+
+
+        <div class="stat">
+
+            <b>
+                100%
+            </b>
+
+            <span>
+                АВТОРСКИЙ ДИЗАЙН
+            </span>
+
+        </div>
+
+    </div>
 
 </div>
 
 
 <div class="about-visual">
 
-<div class="about-photo">
-</div>
+    <div class="about-photo"></div>
 
 </div>
+
 
 </div>
 
@@ -1456,52 +2684,50 @@ SCENORA — от английских
 </section>
 
 
+<!-- ================================= -->
+<!-- ЛЕНТА -->
+<!-- ================================= -->
+
 <div class="marquee lilac">
 
 <div class="marquee-track">
 
-<span>
-Дизайнерская капсула
-</span>
+    <span>
+        Дизайнерская капсула
+    </span>
 
-<span>
-Ограниченный тираж
-</span>
+    <span>
+        Ограниченный тираж
+    </span>
 
-<span>
-Средний ценовой сегмент
-</span>
+    <span>
+        Средний ценовой сегмент
+    </span>
 
-<span>
-Индивидуальный пошив
-</span>
+    <span>
+        Индивидуальный пошив
+    </span>
 
-<span>
-Дизайнерская капсула
-</span>
+    <span>
+        Дизайнерская капсула
+    </span>
 
-<span>
-Ограниченный тираж
-</span>
-
-<span>
-Средний ценовой сегмент
-</span>
-
-<span>
-Индивидуальный пошив
-</span>
+    <span>
+        Ограниченный тираж
+    </span>
 
 </div>
 
 </div>
 
 
+<!-- ================================= -->
 <!-- КАПСУЛА -->
+<!-- ================================= -->
 
 <section
-class="sec carousel-sec"
-id="capsule"
+    class="sec carousel-sec"
+    id="capsule"
 >
 
 <div class="container">
@@ -1509,29 +2735,31 @@ id="capsule"
 
 <div class="sec-head">
 
-<span class="sec-num">
-02 / КАПСУЛА
-</span>
+    <span class="sec-num">
+
+        02 / КАПСУЛА
+
+    </span>
 
 
-<h2 class="sec-title">
+    <h2 class="sec-title">
 
-Прокрути
+        Прокрути
 
-<em>
-плёнку
-</em>
+        <em>
+            плёнку
+        </em>
 
-</h2>
+    </h2>
 
 
-<span class="sec-tag">
+    <span class="sec-tag">
 
-ОБРАЗЫ<br>
+        ОБРАЗЫ<br>
 
-СЕЗОН 01
+        СЕЗОН 01
 
-</span>
+    </span>
 
 </div>
 
@@ -1540,30 +2768,29 @@ id="capsule"
 
 
 <button
-class="carousel-controls nav-prev"
-onclick="rotate(-1)"
-aria-label="Назад"
+    class="carousel-controls nav-prev"
+    onclick="rotateCarousel(-1)"
+    aria-label="Назад"
 >
 
-‹
+    ‹
 
 </button>
 
 
 <div
-class="carousel-stage"
-id="stage"
->
-</div>
+    class="carousel-stage"
+    id="stage"
+></div>
 
 
 <button
-class="carousel-controls nav-next"
-onclick="rotate(1)"
-aria-label="Вперёд"
+    class="carousel-controls nav-next"
+    onclick="rotateCarousel(1)"
+    aria-label="Вперёд"
 >
 
-›
+    ›
 
 </button>
 
@@ -1572,17 +2799,15 @@ aria-label="Вперёд"
 
 
 <div
-class="carousel-dots"
-id="dots"
->
-</div>
+    class="carousel-dots"
+    id="dots"
+></div>
 
 
 <div
-class="detail-panel"
-id="detailPanel"
->
-</div>
+    class="detail-panel"
+    id="detailPanel"
+></div>
 
 
 </div>
@@ -1590,52 +2815,50 @@ id="detailPanel"
 </section>
 
 
+<!-- ================================= -->
+<!-- ЛЕНТА -->
+<!-- ================================= -->
+
 <div class="marquee mint">
 
 <div class="marquee-track">
 
-<span>
-Выбери историю
-</span>
+    <span>
+        Выбери историю
+    </span>
 
-<span>
-Выбери настроение
-</span>
+    <span>
+        Выбери настроение
+    </span>
 
-<span>
-Выбери размер
-</span>
+    <span>
+        Выбери размер
+    </span>
 
-<span>
-Выбери себя
-</span>
+    <span>
+        Выбери себя
+    </span>
 
-<span>
-Выбери историю
-</span>
+    <span>
+        Выбери историю
+    </span>
 
-<span>
-Выбери настроение
-</span>
-
-<span>
-Выбери размер
-</span>
-
-<span>
-Выбери себя
-</span>
+    <span>
+        Выбери настроение
+    </span>
 
 </div>
 
 </div>
 
 
+<!-- ================================= -->
 <!-- КОРЗИНА -->
+<!-- ================================= -->
 
 <section
-class="sec cart-sec"
-id="cart"
+    class="sec cart-sec"
+    id="cart"
 >
 
 <div class="container">
@@ -1643,57 +2866,55 @@ id="cart"
 
 <div class="sec-head">
 
+    <span class="sec-num">
 
-<span class="sec-num">
-03 / КОРЗИНА
-</span>
+        03 / КОРЗИНА
 
-
-<h2 class="sec-title">
-
-Ваш
-
-<em>
-заказ
-</em>
-
-</h2>
+    </span>
 
 
-<span class="sec-tag">
+    <h2 class="sec-title">
 
-СОСТАВ<br>
+        Ваш
 
-ЗАКАЗА
+        <em>
+            заказ
+        </em>
 
-</span>
+    </h2>
 
+
+    <span class="sec-tag">
+
+        СОСТАВ<br>
+
+        ЗАКАЗА
+
+    </span>
 
 </div>
 
 
-<div id="cart-items">
-</div>
+<div id="cart-items"></div>
 
 
 <div
-class="cart-total"
-id="cartTotal"
-style="display:none"
->
-</div>
+    class="cart-total"
+    id="cartTotal"
+    style="display:none"
+></div>
 
 
 <div class="cart-actions">
 
 <button
-class="btn-main"
-id="checkoutBtn"
-onclick="showCheckout()"
-style="display:none"
+    class="btn"
+    id="checkoutBtn"
+    onclick="showCheckout()"
+    style="display:none"
 >
 
-К ОПЛАТЕ ↗
+    К ОФОРМЛЕНИЮ ↗
 
 </button>
 
@@ -1702,46 +2923,36 @@ style="display:none"
 
 <div id="checkout">
 
-
 <h3>
-Оформление заказа
+
+    Оформление заказа
+
 </h3>
 
 
 <p class="sub">
-демонстрация оформления
+
+    демонстрация оформления
+
 </p>
 
 
 <form
-onsubmit="processPayment(event)"
+    onsubmit="processPayment(event)"
 >
 
 
 <div class="form-group">
 
 <label>
-ИМЯ И ФАМИЛИЯ
+
+    ИМЯ И ФАМИЛИЯ
+
 </label>
 
 <input
-required
-placeholder="Иван Иванов"
->
-
-</div>
-
-
-<div class="form-group">
-
-<label>
-ЭЛЕКТРОННАЯ ПОЧТА
-</label>
-
-<input
-type="email"
-required
-placeholder="ivan@example.com"
+    required
+    placeholder="Иван Иванов"
 >
 
 </div>
@@ -1750,30 +2961,58 @@ placeholder="ivan@example.com"
 <div class="form-group">
 
 <label>
-АДРЕС ДОСТАВКИ
+
+    ЭЛЕКТРОННАЯ ПОЧТА
+
 </label>
 
 <input
-required
-placeholder="г. Москва, ул. Примерная, д. 1"
+    type="email"
+    required
+    placeholder="ivan@example.com"
+>
+
+</div>
+
+
+<div class="form-group">
+
+<label>
+
+    АДРЕС ДОСТАВКИ
+
+</label>
+
+<input
+    required
+    placeholder="г. Москва, ул. Примерная, д. 1"
 >
 
 </div>
 
 
 <button
-class="btn-submit"
-type="submit"
+    class="btn"
+    style="width:100%"
+    type="submit"
 >
 
-ПОДТВЕРДИТЬ ДЕМОЗАКАЗ
+    ПОДТВЕРДИТЬ ДЕМОЗАКАЗ
 
 </button>
 
 
-<p class="pay-note">
+<p
+    style="
+        text-align:center;
+        color:var(--plum);
+        font-size:12px;
+    "
+>
 
-Учебный проект · данные не отправляются · оплата не производится
+    Учебный проект ·
+    данные не отправляются ·
+    оплата не производится
 
 </p>
 
@@ -1784,32 +3023,180 @@ type="submit"
 
 
 <div
-class="success-msg"
-id="successMsg"
+    class="success-msg"
+    id="successMsg"
 >
 
-
 <h3>
-Демозаказ оформлен ✨
+
+    Демозаказ оформлен ✨
+
 </h3>
 
 
 <p>
 
-Это учебный проект,
-реальная оплата не производилась.
+    Это учебный проект,
+    реальная оплата не производилась.
 
 </p>
 
 
 <button
-class="btn-main"
-onclick="resetAll()"
+    class="btn"
+    onclick="resetAll()"
 >
 
-ВЕРНУТЬСЯ В МАГАЗИН
+    ВЕРНУТЬСЯ В МАГАЗИН
 
 </button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- ================================= -->
+<!-- ПРОЦЕСС -->
+<!-- ================================= -->
+
+<section
+    class="sec process-sec"
+    id="process"
+>
+
+<div class="container">
+
+
+<div class="sec-head">
+
+    <span class="sec-num">
+
+        04 / ПРОЦЕСС
+
+    </span>
+
+
+    <h2 class="sec-title">
+
+        Как рождается
+
+        <em>
+            капсула
+        </em>
+
+    </h2>
+
+
+    <span class="sec-tag">
+
+        ОТ ИДЕИ<br>
+
+        ДО ВЕЩИ
+
+    </span>
+
+</div>
+
+
+<p class="process-intro">
+
+    Показываем путь будущей коллекции.
+
+    Сейчас SCENORA находится
+    на этапе разработки концепции
+    и поиска партнёров.
+
+</p>
+
+
+<div class="process-grid">
+
+
+<div class="process-step">
+
+    <strong>
+        01 / ИСТОРИЯ
+    </strong>
+
+    <p>
+
+        Выбираем атмосферу,
+        а не копируем костюмы.
+
+    </p>
+
+</div>
+
+
+<div class="process-step">
+
+    <strong>
+        02 / ДИЗАЙНЕР
+    </strong>
+
+    <p>
+
+        Находим автора
+        и согласуем условия сотрудничества.
+
+    </p>
+
+</div>
+
+
+<div class="process-step">
+
+    <strong>
+        03 / ЭСКИЗЫ
+    </strong>
+
+    <p>
+
+        Создаём модели,
+        силуэты и детали
+        будущей капсулы.
+
+    </p>
+
+</div>
+
+
+<div class="process-step">
+
+    <strong>
+        04 / ПРОИЗВОДСТВО
+    </strong>
+
+    <p>
+
+        Подбираем ткани,
+        образцы
+        и швейного партнёра.
+
+    </p>
+
+</div>
+
+
+<div class="process-step">
+
+    <strong>
+        05 / ЗАПУСК
+    </strong>
+
+    <p>
+
+        Снимаем кампанию
+        и выпускаем
+        ограниченный тираж.
+
+    </p>
+
+</div>
 
 
 </div>
@@ -1819,44 +3206,46 @@ onclick="resetAll()"
 </section>
 
 
-<!-- ДИЗАЙНЕРЫ -->
+<!-- ================================= -->
+<!-- ЛЕНТА ДИЗАЙНЕРОВ -->
+<!-- ================================= -->
 
 <div class="marquee ink">
 
 <div class="marquee-track">
 
-<span>
-ДИЗАЙНЕРЫ SCENORA
-</span>
+    <span>
+        ДИЗАЙНЕРЫ SCENORA
+    </span>
 
-<span>
-ОТКРЫТЫ К СОТРУДНИЧЕСТВУ
-</span>
+    <span>
+        АВТОРЫ КАПСУЛ
+    </span>
 
-<span>
-СОЗДАВАЙ С НАМИ
-</span>
+    <span>
+        СОЗДАВАЙ С НАМИ
+    </span>
 
-<span>
-ДИЗАЙНЕРЫ SCENORA
-</span>
+    <span>
+        ДИЗАЙНЕРЫ SCENORA
+    </span>
 
-<span>
-ОТКРЫТЫ К СОТРУДНИЧЕСТВУ
-</span>
-
-<span>
-СОЗДАВАЙ С НАМИ
-</span>
+    <span>
+        АВТОРЫ КАПСУЛ
+    </span>
 
 </div>
 
 </div>
 
+
+<!-- ================================= -->
+<!-- ДИЗАЙНЕРЫ -->
+<!-- ================================= -->
 
 <section
-class="sec designers-sec"
-id="designers"
+    class="sec designers-sec"
+    id="designers"
 >
 
 <div class="container">
@@ -1864,39 +3253,270 @@ id="designers"
 
 <div class="sec-head">
 
+    <span class="sec-num">
 
-<span class="sec-num">
-04 / ДИЗАЙНЕРЫ
+        05 / ДИЗАЙНЕРЫ
+
+    </span>
+
+
+    <h2 class="sec-title">
+
+        Наши
+
+        <em>
+            дизайнеры
+        </em>
+
+    </h2>
+
+
+    <span class="sec-tag">
+
+        АВТОРЫ<br>
+
+        КАПСУЛ
+
+    </span>
+
+</div>
+
+
+<div class="designer-profiles">
+
+
+<!-- 1 -->
+
+<article class="designer-card">
+
+<div class="designer-photo">
+
+<img
+    src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=900&auto=format&fit=crop"
+    alt="Дизайнер SCENORA"
+    loading="lazy"
+>
+
+
+<span class="designer-badge">
+
+    ПРОФИЛЬ 01
+
 </span>
 
 
-<h2 class="sec-title">
+<span class="designer-collection">
 
-Создавай
-
-<em>
-с SCENORA
-</em>
-
-</h2>
-
-
-<span class="sec-tag">
-
-СОТРУДНИЧЕСТВО<br>
-
-С ДИЗАЙНЕРАМИ
+    КАПСУЛА · «СЕВЕРНЫЙ ЛЕС»
 
 </span>
+
+</div>
+
+
+<div class="designer-copy">
+
+<h3>
+
+    Дизайнер 01
+
+</h3>
+
+
+<div class="designer-role">
+
+    Верхняя одежда
+
+</div>
+
+
+<p>
+
+    Работает с плотными тканями,
+    лаконичным кроем
+    и выразительными силуэтами.
+
+    В проекте отвечает
+    за тренчи
+    и верхнюю одежду.
+
+</p>
+
+
+</div>
+
+</article>
+
+
+<!-- 2 -->
+
+<article class="designer-card">
+
+<div class="designer-photo">
+
+<img
+    src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=900&auto=format&fit=crop"
+    alt="Дизайнер SCENORA"
+    loading="lazy"
+>
+
+
+<span class="designer-badge">
+
+    ПРОФИЛЬ 02
+
+</span>
+
+
+<span class="designer-collection">
+
+    КАПСУЛА · «СОН В САДУ»
+
+</span>
+
+</div>
+
+
+<div class="designer-copy">
+
+<h3>
+
+    Дизайнер 02
+
+</h3>
+
+
+<div class="designer-role">
+
+    Женские силуэты
+
+</div>
+
+
+<p>
+
+    Специализируется
+    на мягких формах,
+    многослойности
+    и работе с фактурой.
+
+    Создаёт лёгкие
+    и пластичные образы.
+
+</p>
+
+
+</div>
+
+</article>
+
+
+<!-- 3 -->
+
+<article class="designer-card">
+
+<div class="designer-photo">
+
+<img
+    src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=900&auto=format&fit=crop"
+    alt="Дизайнер SCENORA"
+    loading="lazy"
+>
+
+
+<span class="designer-badge">
+
+    ПРОФИЛЬ 03
+
+</span>
+
+
+<span class="designer-collection">
+
+    КАПСУЛА · «ГОРОДСКОЙ РИТМ»
+
+</span>
+
+</div>
+
+
+<div class="designer-copy">
+
+<h3>
+
+    Дизайнер 03
+
+</h3>
+
+
+<div class="designer-role">
+
+    Графичный крой
+
+</div>
+
+
+<p>
+
+    Работает с геометрией,
+    конструктивными деталями
+    и современной городской одеждой.
+
+    Отвечает
+    за более строгие модели.
+
+</p>
+
+
+</div>
+
+</article>
 
 
 </div>
 
 
-<div
-class="designers-grid"
-id="designersGrid"
->
+<p class="designer-note">
+
+    Сейчас это демонстрационные профили
+    для структуры проекта.
+
+    Реальные имена,
+    фотографии и коллекции
+    можно заменить позже
+    без переделки раздела.
+
+</p>
+
+
+<div class="open-call">
+
+<h3>
+
+    Стать
+
+    <em>
+        дизайнером SCENORA
+    </em>
+
+</h3>
+
+
+<p>
+
+    Мы открыты к сотрудничеству
+    с дизайнерами одежды.
+
+    Для будущих капсул
+    ищем авторов,
+    которые умеют работать
+    с атмосферой истории
+    и переводить её
+    в самостоятельный современный дизайн.
+
+</p>
+
+
 </div>
 
 
@@ -1905,11 +3525,13 @@ id="designersGrid"
 </section>
 
 
+<!-- ================================= -->
 <!-- ЛИЦЕНЗИЯ -->
+<!-- ================================= -->
 
 <section
-class="sec license-sec"
-id="license"
+    class="sec license-sec"
+    id="license"
 >
 
 <div class="container">
@@ -1917,29 +3539,31 @@ id="license"
 
 <div class="sec-head">
 
-<span class="sec-num">
-05 / ЛИЦЕНЗИЯ
-</span>
+    <span class="sec-num">
+
+        06 / ЛИЦЕНЗИЯ
+
+    </span>
 
 
-<h2 class="sec-title">
+    <h2 class="sec-title">
 
-Правовая
+        Правовая
 
-<em>
-информация
-</em>
+        <em>
+            информация
+        </em>
 
-</h2>
+    </h2>
 
 
-<span class="sec-tag">
+    <span class="sec-tag">
 
-ПРАВОВАЯ<br>
+        ВАЖНО<br>
 
-ИНФОРМАЦИЯ
+        О ПРОЕКТЕ
 
-</span>
+    </span>
 
 </div>
 
@@ -1950,15 +3574,20 @@ id="license"
 <div class="license-card">
 
 <h4>
-О БРЕНДЕ
+
+    О БРЕНДЕ
+
 </h4>
+
 
 <p>
 
-SCENORA — учебный проект.
+    SCENORA — учебный проект.
 
-Название образовано от английских слов
-Scene («сцена») и Aura («атмосфера»).
+    Название образовано
+    от английских слов
+    Scene («сцена»)
+    и Aura («атмосфера»).
 
 </p>
 
@@ -1968,29 +3597,46 @@ Scene («сцена») и Aura («атмосфера»).
 <div class="license-card">
 
 <h4>
-ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ
+
+    ИНТЕЛЛЕКТУАЛЬНАЯ СОБСТВЕННОСТЬ
+
 </h4>
+
 
 <p>
 
-Планируется разработка авторского дизайна одежды
-без копирования костюмов,
-логотипов и охраняемых элементов.
+    Планируется разработка
+    самостоятельного дизайна одежды
+    без копирования костюмов,
+    логотипов
+    и охраняемых элементов.
 
 </p>
+
 
 <ul>
 
 <li>
-Сторонние произведения и их элементы принадлежат правообладателям
+
+    Сторонние произведения
+    принадлежат правообладателям
+
 </li>
 
-<li>
-Референсы используются в учебных целях
-</li>
 
 <li>
-Будущие изделия предполагают самостоятельный дизайн
+
+    Референсы используются
+    в учебных целях
+
+</li>
+
+
+<li>
+
+    Будущие изделия
+    предполагают авторскую переработку
+
 </li>
 
 </ul>
@@ -2001,14 +3647,20 @@ Scene («сцена») и Aura («атмосфера»).
 <div class="license-card">
 
 <h4>
-ЮРИДИЧЕСКАЯ ФОРМА
+
+    ЮРИДИЧЕСКАЯ ФОРМА
+
 </h4>
+
 
 <p>
 
-ООО, УСН «Доходы» 6%
-рассматривается как учебная модель,
-а не зарегистрированная компания.
+    ООО,
+    УСН «Доходы» 6%
+
+    рассматривается
+    как учебная модель,
+    а не зарегистрированная компания.
 
 </p>
 
@@ -2018,17 +3670,20 @@ Scene («сцена») и Aura («атмосфера»).
 <div class="license-card">
 
 <h4>
-ОПЛАТА И ДАННЫЕ
+
+    ОПЛАТА И ДАННЫЕ
+
 </h4>
+
 
 <p>
 
-Заказы демонстрационные.
+    Заказы демонстрационные.
 
-Для реальных платежей
-и обработки персональных данных
-понадобится отдельная техническая
-и юридическая настройка.
+    Для реальных платежей
+    и обработки персональных данных
+    понадобится отдельная техническая
+    и юридическая настройка.
 
 </p>
 
@@ -2042,28 +3697,34 @@ Scene («сцена») и Aura («атмосфера»).
 </section>
 
 
+<!-- ================================= -->
 <!-- ПОДВАЛ -->
+<!-- ================================= -->
 
 <footer>
 
 <div class="footer-brand">
 
-SCEN<span>O</span>RA
+    SCEN<span>O</span>RA
 
 </div>
 
 
 <p>
 
-СТУДИЯ · 2026 · УЧЕБНЫЙ ПРОЕКТ
+    СТУДИЯ ·
+    2026 ·
+    УЧЕБНЫЙ ПРОЕКТ
 
 </p>
 
 
 <p class="legal">
 
-Дизайн не копирует костюмы и логотипы.
-Авторские вещи по мотивам атмосферы.
+    Авторские вещи
+    по мотивам атмосферы,
+    без копирования костюмов
+    и логотипов.
 
 </p>
 
@@ -2073,156 +3734,143 @@ SCEN<span>O</span>RA
 <script>
 
 
+/* ================================= */
+/* ТОВАРЫ */
+/* ================================= */
+
 const products=[
 
-
 {
-id:1,
+    id:1,
 
-name:'Тренч',
+    name:'Тренч',
 
-title:'«Северный лес»',
+    title:'«Северный лес»',
 
-vibe:'ТИХИЙ ЛЕС',
+    vibe:'ТИХИЙ ЛЕС',
 
-price:14500,
+    price:14500,
 
-oldPrice:18000,
+    oldPrice:18000,
 
-desc:'Двубортный тренч из плотной шерсти. Приглушённый зелёный, свободный крой, потайная застёжка. Спокойное, немного загадочное настроение прохладного леса.',
+    desc:'Двубортный тренч из плотной шерсти. Приглушённый зелёный, свободный крой и спокойное настроение прохладного леса.',
 
-sizes:[
-'XS',
-'S',
-'M',
-'L',
-'XL'
-],
+    sizes:[
+        'XS',
+        'S',
+        'M',
+        'L',
+        'XL'
+    ],
 
-img:'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop'
+    img:'https://images.unsplash.com/photo-1591047139829-d91aecb6caea?q=80&w=1000&auto=format&fit=crop'
 },
 
-
 {
-id:2,
+    id:2,
 
-name:'Платье',
+    name:'Платье',
 
-title:'«Сон в саду»',
+    title:'«Сон в саду»',
 
-vibe:'СОН И СКАЗКА',
+    vibe:'СОН И СКАЗКА',
 
-price:9800,
+    price:9800,
 
-oldPrice:12500,
+    oldPrice:12500,
 
-desc:'Платье-миди с многослойной юбкой и мягким силуэтом. Пудрово-голубой оттенок и кружевные вставки создают лёгкий, немного нереальный образ.',
+    desc:'Платье-миди с многослойной юбкой и мягким силуэтом. Пудрово-голубой оттенок создаёт лёгкий, немного нереальный образ.',
 
-sizes:[
-'XS',
-'S',
-'M',
-'L'
-],
+    sizes:[
+        'XS',
+        'S',
+        'M',
+        'L'
+    ],
 
-img:'https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=1000&auto=format&fit=crop'
+    img:'https://images.unsplash.com/photo-1515347619252-60a6bf4fffce?q=80&w=1000&auto=format&fit=crop'
 },
 
-
 {
-id:3,
+    id:3,
 
-name:'Куртка',
+    name:'Куртка',
 
-title:'«Городской ритм»',
+    title:'«Городской ритм»',
 
-vibe:'ГОРОДСКАЯ ГРАФИКА',
+    vibe:'ГОРОДСКАЯ ГРАФИКА',
 
-price:12200,
+    price:12200,
 
-oldPrice:15000,
+    oldPrice:15000,
 
-desc:'Строгая куртка-бомбер с чёткой линией плеча. Графичный силуэт и матовая фурнитура для собранного городского образа.',
+    desc:'Строгая куртка-бомбер с чёткой линией плеча. Графичный силуэт и матовая фурнитура для собранного городского образа.',
 
-sizes:[
-'S',
-'M',
-'L',
-'XL'
-],
+    sizes:[
+        'S',
+        'M',
+        'L',
+        'XL'
+    ],
 
-img:'https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1000&auto=format&fit=crop'
+    img:'https://images.unsplash.com/photo-1551028719-00167b16eac5?q=80&w=1000&auto=format&fit=crop'
 },
 
-
 {
-id:4,
+    id:4,
 
-name:'Свитер',
+    name:'Свитер',
 
-title:'«Полночный сад»',
+    title:'«Полночный сад»',
 
-vibe:'ТУМАННОЕ УТРО',
+    vibe:'ТУМАННОЕ УТРО',
 
-price:7600,
+    price:7600,
 
-oldPrice:9500,
+    oldPrice:9500,
 
-desc:'Объёмный свитер крупной вязки. Цвет мокрого асфальта, свободная посадка и спущенное плечо. Мягкий повседневный образ для прохладной погоды.',
+    desc:'Объёмный свитер крупной вязки. Цвет мокрого асфальта, свободная посадка и спущенное плечо.',
 
-sizes:[
-'S',
-'M',
-'L',
-'XL',
-'XXL'
-],
+    sizes:[
+        'S',
+        'M',
+        'L',
+        'XL',
+        'XXL'
+    ],
 
-img:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop'
+    img:'https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=1000&auto=format&fit=crop'
 }
-
 
 ];
 
+
+/* ================================= */
+/* СОСТОЯНИЕ */
+/* ================================= */
 
 let cart=[];
 
 
 try{
 
-cart=
-JSON.parse(
-localStorage.getItem('scenoraCart') || '[]'
-);
+    cart=
+    JSON.parse(
+        localStorage.getItem('scenoraCart')
+        ||
+        '[]'
+    );
 
 }catch(e){}
 
 
-if(!Array.isArray(cart)){
+if(
+    !Array.isArray(cart)
+){
 
-cart=[];
+    cart=[];
 
 }
-
-
-cart=
-cart.filter(
-
-x=>
-
-products.some(
-p=>p.id===x.id
-)
-
-&&
-
-Number.isFinite(x.qty)
-
-&&
-
-x.qty>0
-
-);
 
 
 let currentIndex=0;
@@ -2238,972 +3886,1001 @@ const ANGLE=
 360/N;
 
 
-/* РАДИУС 3D-КАРУСЕЛИ */
+/* ================================= */
+/* РАДИУС КАРУСЕЛИ */
+/* ================================= */
 
 function carouselRadius(){
 
-return
+    return
 
-window.innerWidth<=580
+    window.innerWidth<=580
 
-?
+    ?
 
-230
+    225
 
-:
+    :
 
-window.innerWidth<=950
+    window.innerWidth<=950
 
-?
+    ?
 
-300
+    295
 
-:
+    :
 
-370;
+    365;
 
 }
 
 
-/* СОЗДАНИЕ КИНОПЛЁНКИ */
+/* ================================= */
+/* СОЗДАНИЕ КАРУСЕЛИ */
+/* ================================= */
 
 function renderCarousel(){
 
-
-const stage=
-document.getElementById('stage');
-
-
-const dots=
-document.getElementById('dots');
+    const stage=
+    document.getElementById('stage');
 
 
-const radius=
-carouselRadius();
+    const dots=
+    document.getElementById('dots');
 
 
-stage.innerHTML='';
-
-dots.innerHTML='';
-
-
-products.forEach(
-(p,i)=>{
+    const radius=
+    carouselRadius();
 
 
-const el=
-document.createElement('div');
+    stage.innerHTML='';
+
+    dots.innerHTML='';
 
 
-el.className='mannequin';
+    products.forEach(
+        (p,i)=>{
 
 
-el.style.transform=
-
-`
-rotateY(${i*ANGLE}deg)
-translateZ(${radius}px)
-`;
+            const el=
+            document.createElement('div');
 
 
-el.innerHTML=`
-
-<div class="mq-body">
-
-<span class="mq-vibe">
-${p.vibe}
-</span>
-
-<span class="mq-frame">
-
-КАДР
-${String(i+1).padStart(2,'0')}
-
-</span>
-
-<img
-src="${p.img}"
-alt="${p.name} ${p.title}"
-loading="lazy"
->
-
-</div>
-
-<div class="mq-label">
-
-${p.name}
-${p.title}
-
-</div>
-
-`;
+            el.className=
+            'film-card';
 
 
-el.onclick=()=>{
+            el.style.transform=
+
+            `
+            rotateY(${i*ANGLE}deg)
+            translateZ(${radius}px)
+            `;
 
 
-if(i!==currentIndex){
+            el.innerHTML=`
+
+            <div class="film-frame">
+
+                <span class="film-vibe">
+
+                    ${p.vibe}
+
+                </span>
 
 
-const diff=
+                <span class="film-num">
 
-(
-i-currentIndex+N
-)%N;
+                    КАДР
+                    ${String(i+1).padStart(2,'0')}
+
+                </span>
 
 
-rotate(
+                <img
+                    src="${p.img}"
+                    alt="${p.name} ${p.title}"
+                    loading="lazy"
+                >
 
-diff<=N/2
 
-?
+                <div class="film-caption">
 
-1
+                    ${p.name}
+                    ${p.title}
 
-:
+                </div>
 
--1,
+            </div>
 
-Math.min(
-diff,
-N-diff
-)
+            `;
 
-);
 
+            el.onclick=()=>{
+
+
+                if(
+                    i!==currentIndex
+                ){
+
+
+                    const diff=
+
+                    (
+                        i-currentIndex+N
+                    )%N;
+
+
+                    rotateCarousel(
+
+                        diff<=N/2
+                        ?
+                        1
+                        :
+                        -1,
+
+                        Math.min(
+                            diff,
+                            N-diff
+                        )
+
+                    );
+
+
+                }
+
+
+            };
+
+
+            stage.appendChild(el);
+
+
+            const d=
+            document.createElement('button');
+
+
+            d.className=
+            'dot-btn';
+
+
+            d.setAttribute(
+                'aria-label',
+                `Образ ${i+1}`
+            );
+
+
+            d.onclick=()=>{
+
+
+                const diff=
+
+                (
+                    i-currentIndex+N
+                )%N;
+
+
+                if(diff){
+
+                    rotateCarousel(
+
+                        diff<=N/2
+                        ?
+                        1
+                        :
+                        -1,
+
+                        Math.min(
+                            diff,
+                            N-diff
+                        )
+
+                    );
+
+                }
+
+            };
+
+
+            dots.appendChild(d);
+
+
+        }
+
+    );
+
+
+    updateCarousel();
 
 }
 
 
-};
-
-
-stage.appendChild(el);
-
-
-/* ТОЧКА */
-
-const d=
-document.createElement('button');
-
-
-d.className='dot-btn';
-
-
-d.setAttribute(
-'aria-label',
-`Образ ${i+1}`
-);
-
-
-d.onclick=()=>{
-
-
-const diff=
-
-(
-i-currentIndex+N
-)%N;
-
-
-if(diff){
-
-rotate(
-
-diff<=N/2
-
-?
-
-1
-
-:
-
--1,
-
-Math.min(
-diff,
-N-diff
-)
-
-);
-
-}
-
-
-};
-
-
-dots.appendChild(d);
-
-
-}
-);
-
-
-updateCarousel();
-
-}
-
-
+/* ================================= */
 /* ВРАЩЕНИЕ */
+/* ================================= */
 
-function rotate(
-direction,
-steps=1
+function rotateCarousel(
+    direction,
+    steps=1
 ){
 
-currentIndex=
+    currentIndex=
 
-(
-currentIndex
-+
-direction*steps
-+
-N*10
-)%N;
+    (
+        currentIndex
+        +
+        direction*steps
+        +
+        N*10
+    )%N;
 
 
-updateCarousel();
+    updateCarousel();
 
 }
 
 
-/* ОБНОВЛЕНИЕ */
+/* ================================= */
+/* ОБНОВЛЕНИЕ КАРУСЕЛИ */
+/* ================================= */
 
 function updateCarousel(){
 
 
-document
-.getElementById('stage')
-.style.transform=
+    document
+    .getElementById('stage')
+    .style.transform=
 
-`
-translateX(-50%)
-rotateY(${-currentIndex*ANGLE}deg)
-`;
-
-
-/* КАДРЫ */
-
-document
-.querySelectorAll('.mannequin')
-.forEach(
-(el,i)=>{
+    `
+    translateX(-50%)
+    rotateY(${-currentIndex*ANGLE}deg)
+    `;
 
 
-el.classList.toggle(
-'active',
-i===currentIndex
-);
+    document
+    .querySelectorAll('.film-card')
+    .forEach(
+        (el,i)=>{
 
 
-el.style.filter=
-
-i===currentIndex
-
-?
-
-'none'
-
-:
-
-'brightness(.6) saturate(.55)';
+            el.classList.toggle(
+                'active',
+                i===currentIndex
+            );
 
 
-el.style.opacity=
+            el.style.filter=
 
-i===currentIndex
+            i===currentIndex
 
-?
+            ?
 
-'1'
+            'none'
 
-:
+            :
 
-'.72';
-
-
-}
-);
+            'brightness(.58) saturate(.5)';
 
 
-/* ТОЧКИ */
+            el.style.opacity=
 
-document
-.querySelectorAll('.dot-btn')
-.forEach(
-(el,i)=>{
+            i===currentIndex
 
-el.classList.toggle(
-'active',
-i===currentIndex
-);
+            ?
 
-}
-);
+            '1'
+
+            :
+
+            '.68';
 
 
-/* ДЕТАЛИ */
+        }
+    );
 
-renderDetail(
-products[currentIndex]
-);
+
+    document
+    .querySelectorAll('.dot-btn')
+    .forEach(
+        (el,i)=>{
+
+
+            el.classList.toggle(
+                'active',
+                i===currentIndex
+            );
+
+
+        }
+    );
+
+
+    renderDetail(
+        products[currentIndex]
+    );
 
 }
 
 
+/* ================================= */
 /* КАРТОЧКА ТОВАРА */
+/* ================================= */
 
 function renderDetail(p){
 
 
-const size=
-selectedSizes[p.id];
+    const size=
+    selectedSizes[p.id];
 
 
-document
-.getElementById('detailPanel')
-.innerHTML=`
+    document
+    .getElementById('detailPanel')
+    .innerHTML=`
 
-<div class="detail-img">
+    <div class="detail-img">
 
-<img
-src="${p.img}"
-alt="${p.title}"
->
+        <img
+            src="${p.img}"
+            alt="${p.title}"
+        >
 
-</div>
-
-
-<div class="detail-info">
+    </div>
 
 
-<div class="vibe">
-${p.vibe}
-</div>
+    <div class="detail-info">
+
+        <div class="vibe">
+
+            ${p.vibe}
+
+        </div>
 
 
-<h3>
+        <h3>
 
-${p.name}
+            ${p.name}
 
-<em>
+            <em>
+                ${p.title}
+            </em>
 
-${p.title}
-
-</em>
-
-</h3>
+        </h3>
 
 
-<p class="desc">
+        <p class="desc">
 
-${p.desc}
+            ${p.desc}
 
-</p>
-
-
-<div class="price-row">
-
-<span class="price">
-
-${p.price.toLocaleString('ru-RU')}
-₽
-
-</span>
+        </p>
 
 
-<span class="price-old">
+        <div class="price-row">
 
-${p.oldPrice.toLocaleString('ru-RU')}
-₽
+            <span class="price">
 
-</span>
+                ${p.price.toLocaleString('ru-RU')}
+                ₽
 
-</div>
-
-
-<div class="size-block">
+            </span>
 
 
-<div class="size-label">
+            <span class="price-old">
 
-<span>
+                ${p.oldPrice.toLocaleString('ru-RU')}
+                ₽
 
-ВЫБЕРИТЕ РАЗМЕР
+            </span>
 
-</span>
+        </div>
 
 
-<span class="hint">
+        <div class="size-block">
 
-${
+            <div class="size-label">
 
-size
+                <span>
 
-?
+                    ВЫБЕРИТЕ РАЗМЕР
 
-'выбран · '+size
+                </span>
 
-:
 
-'обязательно'
+                <span class="hint">
+
+                    ${
+                        size
+
+                        ?
+
+                        'выбран · '+size
+
+                        :
+
+                        'обязательно'
+                    }
+
+                </span>
+
+            </div>
+
+
+            <div class="sizes">
+
+                ${
+
+                p.sizes.map(
+
+                    s=>`
+
+                    <button
+
+                        class="
+                            size-btn
+                            ${
+                                size===s
+                                ?
+                                'selected'
+                                :
+                                ''
+                            }
+                        "
+
+                        onclick="
+                            pickSize(
+                                ${p.id},
+                                '${s}'
+                            )
+                        "
+
+                    >
+
+                        ${s}
+
+                    </button>
+
+                    `
+
+                ).join('')
+
+                }
+
+            </div>
+
+        </div>
+
+
+        <button
+
+            class="add-to-cart-btn"
+
+            onclick="
+                addToCart(
+                    ${p.id}
+                )
+            "
+
+            ${
+                size
+                ?
+                ''
+                :
+                'disabled'
+            }
+
+        >
+
+            ${
+                size
+
+                ?
+
+                'ДОБАВИТЬ · '+size
+
+                :
+
+                'СНАЧАЛА ВЫБЕРИТЕ РАЗМЕР'
+            }
+
+        </button>
+
+    </div>
+
+    `;
 
 }
 
-</span>
 
-</div>
-
-
-<div class="sizes">
-
-${
-
-p.sizes.map(
-
-s=>`
-
-<button
-
-class="
-size-btn
-${size===s?'selected':''}
-"
-
-onclick="
-pickSize(
-${p.id},
-'${s}'
-)
-"
-
->
-
-${s}
-
-</button>
-
-`
-
-).join('')
-
-}
-
-</div>
-
-</div>
-
-
-<button
-
-class="add-to-cart-btn"
-
-onclick="
-addToCart(
-${p.id}
-)
-"
-
-${size?'':'disabled'}
-
->
-
-${
-
-size
-
-?
-
-'ДОБАВИТЬ · '+size
-
-:
-
-'СНАЧАЛА ВЫБЕРИТЕ РАЗМЕР'
-
-}
-
-</button>
-
-
-</div>
-
-`;
-
-}
-
-
-/* ВЫБОР РАЗМЕРА */
+/* ================================= */
+/* РАЗМЕР */
+/* ================================= */
 
 function pickSize(
-id,
-size
+    id,
+    size
 ){
 
-selectedSizes[id]=
-size;
+    selectedSizes[id]=
+    size;
 
 
-renderDetail(
+    renderDetail(
 
-products.find(
-p=>p.id===id
-)
+        products.find(
+            p=>p.id===id
+        )
 
-);
+    );
 
 }
 
 
-/* ДОБАВИТЬ В КОРЗИНУ */
+/* ================================= */
+/* КОРЗИНА */
+/* ================================= */
 
 function addToCart(id){
 
 
-const size=
-selectedSizes[id];
+    const size=
+    selectedSizes[id];
 
 
-if(!size){
-return;
+    if(!size){
+        return;
+    }
+
+
+    const key=
+    id+'_'+size;
+
+
+    const existing=
+    cart.find(
+        x=>x.key===key
+    );
+
+
+    if(existing){
+
+        existing.qty++;
+
+    }else{
+
+        cart.push({
+
+            key,
+            id,
+            size,
+            qty:1
+
+        });
+
+    }
+
+
+    saveCart();
+
+    updateCartUI();
+
+    scrollToCart();
+
 }
 
-
-const key=
-id+'_'+size;
-
-
-const ex=
-cart.find(
-x=>x.key===key
-);
-
-
-if(ex){
-
-ex.qty++;
-
-}else{
-
-cart.push({
-key,
-id,
-size,
-qty:1
-});
-
-}
-
-
-saveCart();
-
-updateCartUI();
-
-scrollToCart();
-
-}
-
-
-/* СОХРАНЕНИЕ КОРЗИНЫ */
 
 function saveCart(){
 
-try{
+    try{
 
-localStorage.setItem(
+        localStorage.setItem(
 
-'scenoraCart',
+            'scenoraCart',
 
-JSON.stringify(cart)
+            JSON.stringify(cart)
 
-);
+        );
 
-}catch(e){}
+    }catch(e){}
 
 }
 
-
-/* УДАЛЕНИЕ */
 
 function removeFromCart(key){
 
-cart=
-cart.filter(
-x=>x.key!==key
-);
+    cart=
+    cart.filter(
+        x=>x.key!==key
+    );
 
 
-saveCart();
+    saveCart();
 
-updateCartUI();
+    updateCartUI();
 
 }
 
-
-/* ОБНОВЛЕНИЕ КОРЗИНЫ */
 
 function updateCartUI(){
 
 
-document
-.getElementById('cartCount')
-.textContent=
+    document
+    .getElementById('cartCount')
+    .textContent=
 
-cart.reduce(
-(n,x)=>n+x.qty,
-0
-);
-
-
-const box=
-document.getElementById('cart-items');
+    cart.reduce(
+        (n,x)=>n+x.qty,
+        0
+    );
 
 
-const totalEl=
-document.getElementById('cartTotal');
+    const box=
+    document.getElementById('cart-items');
 
 
-const btn=
-document.getElementById('checkoutBtn');
+    const totalEl=
+    document.getElementById('cartTotal');
 
 
-if(!cart.length){
+    const btn=
+    document.getElementById('checkoutBtn');
 
 
-box.innerHTML=`
-
-<div class="cart-empty">
-
-Пока пусто —
-выберите вещи из капсулы ✨
-
-</div>
-
-`;
+    if(
+        !cart.length
+    ){
 
 
-totalEl.style.display=
-'none';
+        box.innerHTML=`
+
+        <div class="cart-empty">
+
+            Пока пусто —
+            выберите вещи
+            из капсулы ✨
+
+        </div>
+
+        `;
 
 
-btn.style.display=
-'none';
+        totalEl.style.display=
+        'none';
 
 
-return;
+        btn.style.display=
+        'none';
+
+
+        return;
+
+    }
+
+
+    let total=0;
+
+
+    box.innerHTML=
+
+    cart.map(
+        item=>{
+
+
+            const p=
+
+            products.find(
+                x=>x.id===item.id
+            );
+
+
+            total+=
+            p.price*item.qty;
+
+
+            return `
+
+            <div class="cart-item">
+
+                <div>
+
+                    <h4>
+
+                        ${p.name}
+                        ${p.title}
+
+                        <span class="size-tag">
+
+                            ${item.size}
+
+                        </span>
+
+                    </h4>
+
+
+                    <small>
+
+                        ${item.qty}
+
+                        ×
+
+                        ${p.price.toLocaleString('ru-RU')}
+
+                        ₽
+
+                        ·
+
+                        ${p.vibe}
+
+                    </small>
+
+                </div>
+
+
+                <button
+
+                    class="cart-remove"
+
+                    onclick="
+                        removeFromCart(
+                            '${item.key}'
+                        )
+                    "
+
+                    aria-label="Удалить"
+
+                >
+
+                    ✕
+
+                </button>
+
+            </div>
+
+            `;
+
+        }
+
+    ).join('');
+
+
+    totalEl.innerHTML=
+
+    'ИТОГО · <b>'
+
+    +
+
+    total.toLocaleString('ru-RU')
+
+    +
+
+    ' ₽</b>';
+
+
+    totalEl.style.display=
+    'block';
+
+
+    btn.style.display=
+    'inline-flex';
 
 }
 
-
-let total=0;
-
-
-box.innerHTML=
-
-cart.map(
-item=>{
-
-
-const p=
-
-products.find(
-x=>x.id===item.id
-);
-
-
-total+=
-p.price*item.qty;
-
-
-return `
-
-<div class="cart-item">
-
-
-<div>
-
-
-<h4>
-
-${p.name}
-
-${p.title}
-
-
-<span class="size-tag">
-
-${item.size}
-
-</span>
-
-
-</h4>
-
-
-<small>
-
-${item.qty}
-
-×
-
-${p.price.toLocaleString('ru-RU')}
-
-₽
-
-·
-
-${p.vibe}
-
-</small>
-
-
-</div>
-
-
-<button
-
-class="cart-remove"
-
-onclick="
-removeFromCart(
-'${item.key}'
-)
-"
-
-aria-label="Удалить"
-
->
-
-✕
-
-</button>
-
-
-</div>
-
-`;
-
-}
-).join('');
-
-
-totalEl.innerHTML=
-
-'ИТОГО · <b>'
-
-+
-
-total.toLocaleString('ru-RU')
-
-+
-
-' ₽</b>';
-
-
-totalEl.style.display=
-'block';
-
-
-btn.style.display=
-'inline-flex';
-
-}
-
-
-/* ПЕРЕХОД К КОРЗИНЕ */
 
 function scrollToCart(){
 
-document
-.getElementById('cart')
-.scrollIntoView({
+    document
+    .getElementById('cart')
+    .scrollIntoView({
 
-behavior:'smooth'
+        behavior:'smooth'
 
-});
+    });
 
 }
 
 
-/* ОФОРМЛЕНИЕ */
+/* ================================= */
+/* ДЕМО-ОФОРМЛЕНИЕ */
+/* ================================= */
 
 function showCheckout(){
 
-document
-.getElementById('checkout')
-.style.display=
-'block';
+
+    document
+    .getElementById('checkout')
+    .style.display=
+    'block';
 
 
-document
-.getElementById('checkoutBtn')
-.style.display=
-'none';
+    document
+    .getElementById('checkoutBtn')
+    .style.display=
+    'none';
 
 
-document
-.getElementById('checkout')
-.scrollIntoView({
+    document
+    .getElementById('checkout')
+    .scrollIntoView({
 
-behavior:'smooth'
+        behavior:'smooth'
 
-});
+    });
 
 }
 
-
-/* ДЕМО-ОПЛАТА */
 
 function processPayment(e){
 
-e.preventDefault();
+    e.preventDefault();
 
 
-document
-.getElementById('checkout')
-.style.display=
-'none';
+    document
+    .getElementById('checkout')
+    .style.display=
+    'none';
 
 
-document
-.querySelectorAll(
-'#cart-items,#cartTotal,.cart-actions'
-)
-.forEach(
+    document
+    .querySelectorAll(
+        '#cart-items,#cartTotal,.cart-actions'
+    )
+    .forEach(
 
-x=>
-x.style.display='none'
+        x=>
+        x.style.display='none'
 
-);
-
-
-const success=
-document.getElementById('successMsg');
+    );
 
 
-success.style.display=
-'block';
-
-
-success.scrollIntoView({
-
-behavior:'smooth'
-
-});
+    document
+    .getElementById('successMsg')
+    .style.display=
+    'block';
 
 }
 
-
-/* СБРОС */
 
 function resetAll(){
 
-cart=[];
+
+    cart=[];
 
 
-saveCart();
+    saveCart();
 
 
-document
-.getElementById('successMsg')
-.style.display=
-'none';
+    document
+    .getElementById('successMsg')
+    .style.display=
+    'none';
 
 
-document
-.querySelectorAll(
-'#cart-items,.cart-actions'
-)
-.forEach(
+    document
+    .querySelectorAll(
+        '#cart-items,.cart-actions'
+    )
+    .forEach(
 
-x=>
-x.style.display='block'
+        x=>
+        x.style.display='block'
 
-);
-
-
-updateCartUI();
+    );
 
 
-window.scrollTo({
-
-top:0,
-
-behavior:'smooth'
-
-});
-
-}
+    updateCartUI();
 
 
-/* ПОДСТРОЙКА КАРУСЕЛИ ПОД ЭКРАН */
+    window.scrollTo({
 
-function refreshCarouselGeometry(){
+        top:0,
 
+        behavior:'smooth'
 
-const r=
-carouselRadius();
-
-
-document
-.querySelectorAll('.mannequin')
-.forEach(
-(el,i)=>{
-
-
-el.style.transform=
-
-`
-rotateY(${i*ANGLE}deg)
-translateZ(${r}px)
-`;
-
-
-}
-);
-
-
-updateCarousel();
+    });
 
 }
 
 
+/* ================================= */
+/* АДАПТАЦИЯ КАРУСЕЛИ */
+/* ================================= */
+
+function refreshCarousel(){
+
+
+    const radius=
+    carouselRadius();
+
+
+    document
+    .querySelectorAll('.film-card')
+    .forEach(
+        (el,i)=>{
+
+
+            el.style.transform=
+
+            `
+            rotateY(${i*ANGLE}deg)
+            translateZ(${radius}px)
+            `;
+
+
+        }
+    );
+
+
+    updateCarousel();
+
+}
+
+
+/* ================================= */
 /* ЗАПУСК */
+/* ================================= */
 
 function start(){
 
-renderCarousel();
 
-updateCartUI();
+    renderCarousel();
 
 
-window.addEventListener(
-'resize',
-refreshCarouselGeometry
-);
+    updateCartUI();
+
+
+    window.addEventListener(
+        'resize',
+        refreshCarousel
+    );
+
+
+    /* убираем заставку после открытия занавеса */
+
+    setTimeout(
+        ()=>{
+
+
+            document
+            .body
+            .classList
+            .remove('intro-lock');
+
+
+            const intro=
+            document.getElementById(
+                'introCurtain'
+            );
+
+
+            if(intro){
+
+                intro.remove();
+
+            }
+
+
+        },
+        1900
+    );
 
 }
 
 
 if(
-document.readyState==='loading'
+    document.readyState==='loading'
 ){
 
-document.addEventListener(
-'DOMContentLoaded',
-start
-);
+    document.addEventListener(
+        'DOMContentLoaded',
+        start
+    );
 
 }else{
 
-start();
+    start();
 
 }
 
 </script>
 
 
-<script src="scenora-extra.js"></script>
-
 </body>
-  </html>
+</html>
